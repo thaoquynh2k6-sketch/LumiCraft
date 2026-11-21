@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LumiCraft - Tự Thiết Kế</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500;600;700;800&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fcf1ee;--card:#fffaf8;--line:#f1ddd7;--brown:#4a2b25;--text:#6a4a43;--clay:#b9604f;--clay-d:#9c4a3b;--blush:#fbdcdc;--rose:#f6d3cf}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Nunito',Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:16.5px;overflow-x:hidden;position:relative;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1160px;margin:0 auto;padding:28px 26px 56px}
+h1,h2,h3{font-family:'Comfortaa','Nunito',Arial,sans-serif;color:var(--brown);line-height:1.25;font-weight:700}
+.pill{display:inline-block;background:#fff;color:var(--clay);border:1px solid var(--line);font-size:15px;font-weight:600;padding:6px 18px;border-radius:999px}
+
+/* Đầu trang */
+.page-header{text-align:center;background:#fde9e4;border:1px solid var(--line);border-radius:40px;padding:44px 24px;margin-bottom:22px;box-shadow:0 18px 40px rgba(196,83,62,.08)}
+.page-header .pill{margin-bottom:16px}
+.page-title{font-size:clamp(28px,4vw,44px);letter-spacing:-.5px;margin-bottom:10px}
+.page-subtitle{font-size:18px}
+
+/* Quy định */
+.rule-banner{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:18px 24px;margin-bottom:10px;font-size:15px;color:var(--brown)}
+.rule-banner strong{color:var(--clay-d)}
+
+/* Tiêu đề nhóm */
+.section-header{margin:38px 0 16px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.section-title{font-family:'Comfortaa',sans-serif;font-size:clamp(19px,2.2vw,24px);font-weight:700;color:var(--brown)}
+.section-counter{font-family:'Comfortaa',sans-serif;font-size:14px;font-weight:700;color:var(--clay);background:#fff;border:1px solid var(--line);padding:4px 16px;border-radius:999px}
+
+/* Lưới thẻ */
+.slider{position:relative}
+.grid-container{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none;padding:8px 4px 16px}
+.grid-container::-webkit-scrollbar{display:none}
+.grid-container .card-item{flex:0 0 210px;scroll-snap-align:start}
+.nav-arrow{position:absolute;top:42%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;background:#fff;border:1px solid var(--line);color:var(--brown);font-size:22px;line-height:1;cursor:pointer;z-index:5;display:none;align-items:center;justify-content:center;box-shadow:0 6px 16px rgba(196,83,62,.18);transition:.2s}
+.nav-arrow.show{display:flex}
+.nav-arrow:hover,.nav-arrow:focus-visible{background:var(--clay);border-color:var(--clay);color:#fff;outline:none}
+.nav-arrow.prev{left:-14px}.nav-arrow.next{right:-14px}
+.card-item{background:var(--card);border:1.5px solid var(--line);border-radius:24px;padding:12px;text-align:center;display:flex;flex-direction:column;align-items:center;cursor:pointer;user-select:none;transition:transform .25s,border-color .25s,box-shadow .25s}
+.card-item:hover{transform:translateY(-5px);border-color:var(--rose);box-shadow:0 12px 26px rgba(196,83,62,.1)}
+.card-item.selected{border-color:var(--clay);background:#fff;box-shadow:0 10px 24px rgba(196,83,62,.14)}
+.img-wrapper{width:100%;aspect-ratio:1/1;overflow:hidden;border-radius:16px;margin-bottom:10px;background:linear-gradient(135deg,#fbdcdc,#e2d6f7 55%,#d3e9f7)}
+.img-wrapper img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s}
+.card-item:hover .img-wrapper img{transform:scale(1.05)}
+.item-name{font-family:'Comfortaa',sans-serif;font-weight:700;font-size:15px;color:var(--brown);line-height:1.35;margin-bottom:8px}
+
+/* Cộng trừ */
+.qty-control{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;margin-top:auto;padding-bottom:4px}
+.btn-qty{width:30px;height:30px;border-radius:50%;border:1px solid var(--line);background:#fff;color:var(--clay);font-weight:700;font-size:17px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:.2s}
+.btn-qty:hover,.btn-qty:focus-visible{background:var(--clay);border-color:var(--clay);color:#fff;transform:scale(1.08);outline:none}
+.qty-num{font-family:'Comfortaa',sans-serif;font-weight:700;font-size:15px;color:var(--brown);min-width:20px}
+
+/* Tóm tắt & gửi */
+.order-box{margin:46px 0 0;background:var(--card);border:1px solid var(--line);border-radius:36px;padding:38px 36px}
+.order-box h3{font-size:24px;margin-bottom:18px}
+.summary-table{background:#fff;border:1px solid var(--line);border-radius:24px;padding:18px 22px;margin-bottom:22px;font-size:15px;color:var(--brown)}
+.summary-row{margin-bottom:6px}.summary-row:last-child{margin-bottom:0}
+.summary-label{font-weight:700;color:var(--clay-d)}
+.total-badge{display:inline-block;padding:3px 14px;border-radius:999px;font-size:14px;font-weight:700;font-family:'Comfortaa',sans-serif}
+.total-badge.valid{background:var(--blush);color:var(--clay-d)}
+.total-badge.full{background:var(--clay);color:#fff}
+.input-group{margin-bottom:16px}
+.input-group label{display:block;font-family:'Comfortaa',sans-serif;font-size:14px;font-weight:700;margin-bottom:6px;color:var(--brown)}
+.input-group input,.input-group textarea{width:100%;padding:13px 16px;border:1px solid var(--line);border-radius:18px;font-size:15px;outline:none;background:#fff;color:var(--brown);font-family:'Nunito',sans-serif;transition:.2s}
+.input-group input:focus,.input-group textarea:focus{border-color:var(--clay);box-shadow:0 0 0 3px rgba(185,96,79,.12)}
+.btn-submit{width:100%;background:var(--clay);color:#fff;border:none;padding:16px;border-radius:999px;font-family:'Comfortaa',sans-serif;font-size:17px;font-weight:700;cursor:pointer;transition:.25s;box-shadow:0 10px 22px rgba(196,83,62,.28);margin-top:8px}
+.btn-submit:hover,.btn-submit:focus-visible{background:var(--clay-d);transform:translateY(-2px);outline:3px solid var(--rose)}
+.btn-submit:disabled{background:#dcbcb4;cursor:not-allowed;box-shadow:none;transform:none}
+
+/* Khung thông báo thành công */
+.modal-overlay{position:absolute;inset:0;background:rgba(74,43,37,.48);backdrop-filter:blur(4px);display:none;align-items:flex-end;justify-content:center;padding:24px 20px 65px;z-index:999;opacity:0;transition:opacity .25s ease}
+.modal-overlay.active{display:flex;opacity:1}
+.modal-card{background:var(--card);border:2px solid var(--line);border-radius:32px;max-width:480px;width:100%;padding:34px 28px;text-align:center;box-shadow:0 24px 48px rgba(74,43,37,.24);transform:translateY(16px) scale(.97);transition:transform .28s cubic-bezier(.2,.8,.2,1)}
+.modal-overlay.active .modal-card{transform:translateY(0) scale(1)}
+.modal-icon{width:62px;height:62px;margin:0 auto 14px;border-radius:50%;background:var(--blush);border:2px solid var(--rose);color:var(--clay);display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:700}
+.modal-title{font-family:'Comfortaa',sans-serif;font-size:22px;font-weight:700;color:var(--brown);margin-bottom:8px}
+.modal-desc{font-size:15px;color:var(--text);line-height:1.55;margin-bottom:18px}
+.modal-summary{background:#fff;border:1px dashed var(--rose);border-radius:20px;padding:14px 18px;text-align:left;font-size:14.5px;color:var(--brown);margin-bottom:22px;line-height:1.6}
+.modal-summary strong{color:var(--clay-d)}
+.modal-actions{display:flex;flex-direction:column;gap:10px}
+.btn-modal-primary{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;background:var(--clay);color:#fff;text-decoration:none;padding:14px 20px;border-radius:999px;font-family:'Comfortaa',sans-serif;font-size:15px;font-weight:700;box-shadow:0 8px 18px rgba(196,83,62,.25);transition:.2s}
+.btn-modal-primary:hover{background:var(--clay-d);transform:translateY(-2px)}
+.btn-modal-secondary{width:100%;background:#fff;color:var(--clay-d);border:1.5px solid var(--line);padding:13px 20px;border-radius:999px;font-family:'Comfortaa',sans-serif;font-size:14.5px;font-weight:700;cursor:pointer;transition:.2s}
+.btn-modal-secondary:hover{background:var(--blush);border-color:var(--rose)}
+
+/* ===========================================
+   CHÂN TRANG 4 CỘT (LUMICRAFT FOOTER)
+=========================================== */
+.lumi-footer-fixed {
+  width: 100%;
+  background: linear-gradient(180deg, #FFF5F1 0%, #F9E5DE 100%);
+  border-top: 2px solid #EBC9BE;
+  padding: 48px 0 0;
+  font-family: 'Nunito', sans-serif;
+  color: #58392E;
+}
+
+.footer-inner-wrap {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.footer-4col-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr 0.95fr 1.05fr;
+  gap: 36px;
+  align-items: flex-start;
+  padding-bottom: 42px;
+}
+
+.f-heading {
+  font-family: 'Comfortaa', cursive;
+  font-size: 17.5px;
+  font-weight: 800;
+  color: #40241A;
+  margin-bottom: 20px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 32px;
+}
+
+.f-heading::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 34px;
+  height: 2.5px;
+  background: linear-gradient(90deg, #C85848, #F497A9);
+  border-radius: 3px;
+}
+
+.f-brand-title {
+  font-family: 'Comfortaa', cursive;
+  font-size: 26px;
+  font-weight: 800;
+  color: #40241A;
+  letter-spacing: 1.5px;
+  display: flex;
+  align-items: center;
+  height: 32px;
+  margin-bottom: 16px;
+}
+
+.f-brand-badge {
+  display: inline-block;
+  font-family: 'Comfortaa', cursive;
+  font-size: 11px;
+  font-weight: 800;
+  color: #A93322;
+  background: #FFFFFF;
+  border: 1px solid #F3CFC6;
+  padding: 3px 10px;
+  border-radius: 20px;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 6px rgba(200, 88, 72, 0.06);
+}
+
+.f-brand-text {
+  font-size: 14.5px;
+  line-height: 1.65;
+  color: #58392E;
+  margin-bottom: 22px;
+  font-weight: 600;
+}
+
+.f-social-group {
+  display: flex;
+  gap: 12px;
+}
+
+.f-social-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  border: 1.5px solid #E8C7BC;
+  color: #40241A;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  box-shadow: 0 3px 10px rgba(135, 75, 60, 0.08);
+}
+
+.f-social-btn svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
+.f-social-btn:hover {
+  background: #C85848;
+  color: #FFFFFF;
+  border-color: #C85848;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 14px rgba(200, 88, 72, 0.28);
+}
+
+.f-menu-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.f-menu-list li a {
+  color: #58392E;
+  text-decoration: none;
+  font-size: 14.5px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.f-menu-list li a::before {
+  content: '•';
+  color: #C85848;
+  font-weight: 800;
+  transition: transform 0.2s ease;
+}
+
+.f-menu-list li a:hover {
+  color: #A93322;
+  transform: translateX(4px);
+}
+
+.f-store-info {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  font-size: 14px;
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+
+.f-store-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.f-store-badge {
+  background: #FFFFFF;
+  color: #A93322;
+  font-size: 11.5px;
+  font-weight: 800;
+  padding: 3px 9px;
+  border-radius: 7px;
+  white-space: nowrap;
+  border: 1px solid #F0C7BC;
+  box-shadow: 0 1px 4px rgba(135, 75, 60, 0.05);
+}
+
+.f-store-desc {
+  color: #58392E;
+  line-height: 1.45;
+}
+
+.f-map-box {
+  width: 100%;
+  height: 135px;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 3px solid #FFFFFF;
+  box-shadow: 0 5px 14px rgba(135, 75, 60, 0.1);
+}
+
+.f-map-box iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.f-bottom-bar {
+  background: #F1D7CE;
+  border-top: 1px solid #E3C1B6;
+  padding: 15px 0;
+}
+
+.f-bottom-flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13.5px;
+  color: #4E3127;
+  font-weight: 600;
+}
+
+@media (max-width: 1024px) {
+  .footer-4col-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-4col-grid {
+    grid-template-columns: 1fr;
+    gap: 26px;
+  }
+  .f-heading, .f-brand-title {
+    height: auto;
+  }
+  .f-bottom-flex {
+    flex-direction: column;
+    gap: 6px;
+    text-align: center;
+  }
+}
+
+@media(max-width:560px){
+  .wrap{padding:20px 14px 36px}.page-header{padding:32px 18px;border-radius:30px}
+  .order-box{padding:26px 18px;border-radius:28px}
+  .grid-container{gap:12px}.grid-container .card-item{flex-basis:165px}.nav-arrow{width:36px;height:36px;font-size:18px}.nav-arrow.prev{left:-6px}.nav-arrow.next{right:-6px}
+  .modal-overlay{padding:20px 14px 40px}
+  .modal-card{padding:26px 18px;border-radius:26px}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <div class="page-header">
+    <span class="pill">Custom Workshop</span>
+    <h1 class="page-title">Tự Thiết Kế Cùng LumiCraft</h1>
+    <p class="page-subtitle">Tự do phối charm mang dấu ấn cá tính riêng của bạn</p>
+  </div>
+
+  <div class="rule-banner" id="ruleBanner">Đang tải quy định...</div>
+
+  <div class="section-header"><div class="section-title">1. Chọn sản phẩm (Chọn 1)</div></div>
+  <div class="grid-container" id="productGrid"></div>
+
+  <div class="section-header"><div class="section-title">2. Chọn loại dây (Chọn 1)</div></div>
+  <div class="grid-container" id="strapGrid"></div>
+
+  <div class="section-header"><div class="section-title">3. Charm chính (Điểm nhấn)</div><div class="section-counter" id="counterMain">0/2</div></div>
+  <div class="grid-container" id="gridMain"></div>
+
+  <div class="section-header"><div class="section-title">4. Charm phụ</div><div class="section-counter" id="counterSub">0/3</div></div>
+  <div class="grid-container" id="gridSub"></div>
+
+  <div class="section-header"><div class="section-title">5. Charm nhỏ</div><div class="section-counter" id="counterSmall">0/8</div></div>
+  <div class="grid-container" id="gridSmall"></div>
+
+  <div class="order-box" id="orderBox">
+    <h3>Tóm tắt thiết kế của bạn:</h3>
+    <div class="summary-table">
+      <div class="summary-row"><span class="summary-label">Sản phẩm:</span> <span id="sumProduct">Dây Đeo Điện Thoại</span></div>
+      <div class="summary-row"><span class="summary-label">Loại dây:</span> <span id="sumStrap">Dây Sáp Đan (Màu Kem)</span></div>
+      <div class="summary-row"><span class="summary-label">Charm chính:</span> <span id="sumMain">Chưa chọn</span></div>
+      <div class="summary-row"><span class="summary-label">Charm phụ:</span> <span id="sumSub">Chưa chọn</span></div>
+      <div class="summary-row"><span class="summary-label">Charm nhỏ:</span> <span id="sumSmall">Chưa chọn</span></div>
+      <div class="summary-row" style="margin-top:10px;border-top:1px dashed var(--line);padding-top:8px">
+        <span class="summary-label">Tổng số lượng charm:</span>
+        <span id="sumTotal" class="total-badge valid">0 / 12 charm</span>
+      </div>
+    </div>
+    <div class="input-group">
+      <label for="custContact">Tên &amp; Số điện thoại / Zalo nhận liên hệ:</label>
+      <input type="text" id="custContact" placeholder="Ví dụ: Quỳnh - 0987654321">
+    </div>
+    <div class="input-group">
+      <label for="custNote">Ghi chú kích cỡ (cm cổ tay nếu là vòng) hoặc thứ tự xâu hạt:</label>
+      <textarea id="custNote" rows="2" placeholder="Ví dụ: Cổ tay 15cm, charm nơ ở chính giữa..."></textarea>
+    </div>
+    <button class="btn-submit" onclick="submitOrder()">Gửi Yêu Cầu Thiết Kế</button>
+  </div>
+
+</div>
+
+<!-- KHUNG THÔNG BÁO GỬI YÊU CẦU THÀNH CÔNG -->
+<div class="modal-overlay" id="successModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal-card" id="modalCard">
+    <div class="modal-icon">✓</div>
+    <h3 class="modal-title" id="modalTitle">Đã Gửi Bản Phối Thành Công!</h3>
+    <p class="modal-desc">LumiCraft đã ghi nhận thông tin thiết kế của bạn. Tụi mình sẽ sớm liên hệ để xác nhận chi tiết và gửi ảnh mẫu hoàn thiện trước khi giao nhé!</p>
+    <div class="modal-summary" id="modalSummaryContent"></div>
+    <div class="modal-actions">
+      <a href="https://www.facebook.com/profile.php?id=61594591964097" target="_blank" rel="noopener noreferrer" class="btn-modal-primary">
+        <span>Nhắn Fanpage Tư Vấn Ngay →</span>
+      </a>
+      <button type="button" class="btn-modal-secondary" onclick="continueDesigning()">
+        Phối Thêm Mẫu Khác
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- CHÂN TRANG 4 CỘT -->
+<footer class="lumi-footer-fixed">
+  <div class="footer-inner-wrap">
+
+    <div class="footer-4col-grid">
+
+      <!-- CỘT 1: THƯƠNG HIỆU -->
+      <div>
+        <span class="f-brand-title">LUMICRAFT</span>
+        <span class="f-brand-badge">Craft Your Own Shine</span>
+        <p class="f-brand-text">Thương hiệu phụ kiện thủ công ngọt ngào. Nơi những hạt charm nhỏ bé lưu giữ phong cách và câu chuyện riêng biệt của bạn.</p>
+        
+        <div class="f-social-group">
+          <!-- Icon Facebook -->
+          <a href="https://www.facebook.com/profile.php?id=61594591964097" target="_blank" rel="noopener noreferrer" class="f-social-btn" aria-label="Facebook">
+            <svg viewBox="0 0 24 24"><path d="M14 13.5h2.5l1-4H14v-2c0-1.03 0-2 2-2h1.5V2.14c-.326-.043-1.557-.14-2.857-.14C11.928 2 10 3.657 10 6.7v2.8H7v4h3V22h4v-8.5z"/></svg>
+          </a>
+          <!-- Icon Instagram -->
+          <a href="https://www.facebook.com/profile.php?id=61594591964097" target="_blank" rel="noopener noreferrer" class="f-social-btn" aria-label="Instagram">
+            <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+          <!-- Icon TikTok -->
+          <a href="https://www.facebook.com/profile.php?id=61594591964097" target="_blank" rel="noopener noreferrer" class="f-social-btn" aria-label="TikTok">
+            <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- CỘT 2: VỀ LUMICRAFT -->
+      <div>
+        <h3 class="f-heading">Về LumiCraft</h3>
+        <ul class="f-menu-list">
+          <li><a href="https://sites.google.com/view/lumi-craft/blog/cau-chuyen-thuong-hieu" target="_blank" rel="noopener noreferrer">Câu chuyện thương hiệu</a></li>
+          <li><a href="https://sites.google.com/view/lumi-craft/s%E1%BA%A3n-ph%E1%BA%A9m" target="_blank" rel="noopener noreferrer">Bộ sưu tập mới nhất</a></li>
+          <li><a href="https://sites.google.com/view/lumi-craft/blog/huong-dan-do-co-tay-chon-size" target="_blank" rel="noopener noreferrer">Cẩm nang đo size &amp; bảo quản</a></li>
+          <li><a href="https://sites.google.com/view/lumi-craft/blog" target="_blank" rel="noopener noreferrer">Góc blog &amp; mẹo phối đồ</a></li>
+        </ul>
+      </div>
+
+      <!-- CỘT 3: DANH MỤC SẢN PHẨM -->
+      <div>
+        <h3 class="f-heading">Danh Mục Sản Phẩm</h3>
+        <ul class="f-menu-list">
+          <li><a href="https://sites.google.com/view/lumi-craft/s%E1%BA%A3n-ph%E1%BA%A9m" target="_blank" rel="noopener noreferrer">Vòng Tay Charm Thủ Công</a></li>
+          <li><a href="https://sites.google.com/view/lumi-craft/s%E1%BA%A3n-ph%E1%BA%A9m" target="_blank" rel="noopener noreferrer">Dây Treo Phone Charm</a></li>
+          <li><a href="https://sites.google.com/view/lumi-craft/s%E1%BA%A3n-ph%E1%BA%A9m" target="_blank" rel="noopener noreferrer">Phụ Kiện Đồ Len Móc</a></li>
+          <li><a href="https://sites.google.com/view/lumi-craft/s%E1%BA%A3n-ph%E1%BA%A9m" target="_blank" rel="noopener noreferrer">Vương Miện Handmade</a></li>
+          <li><a href="https://sites.google.com/view/lumi-craft/ch%E1%BB%8Dn-charm" target="_blank" rel="noopener noreferrer">Tự Phối Charm Mẫu Riêng</a></li>
+        </ul>
+      </div>
+
+      <!-- CỘT 4: CỬA HÀNG LUMICRAFT -->
+      <div>
+        <h3 class="f-heading">Cửa Hàng LumiCraft</h3>
+        <div class="f-store-info">
+          <div class="f-store-row">
+            <span class="f-store-badge">Địa chỉ</span>
+            <span class="f-store-desc">79 Hồ Tùng Mậu, Cầu Giấy, Hà Nội</span>
+          </div>
+          <div class="f-store-row">
+            <span class="f-store-badge">Hotline</span>
+            <span class="f-store-desc">0123 456 78910</span>
+          </div>
+          <div class="f-store-row">
+            <span class="f-store-badge">Email</span>
+            <a href="mailto:lumicraftvn@gmail.com" class="f-store-desc" style="color:#A93322; font-weight:700; text-decoration:none;">lumicraftvn@gmail.com</a>
+          </div>
+        </div>
+
+        <div class="f-map-box">
+          <iframe
+            src="https://www.google.com/maps?q=79%20H%E1%BB%93%20T%C3%B9ng%20M%E1%BA%ADu%2C%20H%C3%A0%20N%E1%BB%99i&output=embed"
+            loading="lazy"
+            allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- THANH COPYRIGHT -->
+  <div class="f-bottom-bar">
+    <div class="footer-inner-wrap f-bottom-flex">
+      <span>© 2026 <strong>LUMICRAFT STUDIO</strong>. All rights reserved.</span>
+      <span>CRAFT YOUR OWN SHINE ♡</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx8_EkFLOUisfaF4tf01HJU2j61iw4BwKfeWFcaCNp2qDR0itFW2JrLbFAjAGMHINktDw/exec";
+const IMG = id => "https://lh3.googleusercontent.com/d/" + id + "=w800";
+
+const PRODUCTS = [
+  ['Dây đeo','Dây Đeo Điện Thoại','1gr5Vt0Ta07MWSpF1QtIuwzPmaxX6-ey7'],
+  ['Vòng tay','Vòng Tay Handmade','1UyDVJ6LEQNYSoyNBVyr-3-2D7pEXkgXg']
+];
+const STRAPS = [
+  ['Dây sáp đan (Kem)','Dây Sáp Đan (Màu Kem)','1Fx9kotHn4-UQD2NmyUxgbiDfgsoJBvgY'],
+  ['Dây sáp đan (Nâu)','Dây Sáp Đan (Màu Nâu)','1WeMybiqVqere3zjBdm0sNqTwiAcdBKrT'],
+  ['Dây sáp đan (Trắng)','Dây Sáp Đan (Màu Trắng)','1-m_B2P6GhwrenXRS212Tiw36-W_fErrO'],
+  ['Dây sáp đan (Đen)','Dây Sáp Đan (Màu Đen)','1gCPQ9vSXh0ylK42nfYU2P2-xmM48UaS_']
+];
+const CHARMS = {
+  main: [['Nơ Bạc Rỗng','15TganO17ILV6enT_CpsWI7y6vS9D0pxJ'],['Sao Pastel','1QXul3V6Dp8E6HZwJBeUdUwEB1ATYOgB_'],['Khung Sao Lớn','1NxsGYBiIcJC4nnRJU7dNAFFPCRV5yBOK'],['Sao biển','17gQLR8iIUgo9M9B_jqdxpXCmKvjItNn2'],['Bướm Bạc Rỗng','1_e3y9Q3FEytCgH-bRPz6LDXg_J7kPIPj'],['Cá Sứ Màu','1cShQeqsOYMhSo5s6QPzE4QeQaxNPBNf-'],['Sao Xà Cừ','1Hb8HzEudQND7qFSMfqfexO5XuIv4jDHW'],['Bướm Trong Suốt','1gJrrdq_8V0euSUHkfw1BIdIyrBPzTSto'],['Hoa Bốn Cánh','1qxZmtECEIxkTKL9thwiWNUccMGFJJYWQ'],['Trăng Khuyết','1W4KNp9Hl7_HkUmugaY_EOPj96m4LDE-L']],
+  sub: [['Bướm Sứ','18xW81CVD1_wkX6I9rKWm4xjH7S6dTSJ9'],['Khung Sao Treo','1FtA2ILoMeFkoBDIyaLiDtJDUD0eBLf_5'],['Hoa Pha Lê','1Zkj3qo_yReFkNe0b2iqwsMYOwoPI7-Lq'],['Sao Nhũ Kim','1cZONwp-WurAehOnvQH-VvpJ44cSX7cl9'],['Hoa Cúc Nhỏ','1mKYOeqh4LLARVsbiWY8JQXMiBjNxUDJk'],['Hoa Chuông','1n33sv-qHw0mHvJV5N4ySWj2LuGTVCcAF'],['Hoa 5 Cánh','1nmtCNUQwFUbgCP9f20lS-C1EKL_SAhVh'],['Sao Bạc Đặc','1tilFkon56c6Es0H5SPFjO2LS8j9hs6K5']],
+  small: [['Nụ Hoa Mini','1xTzjtDRfO2UUvSEv5GsyvSNWA50f72Wa'],['Cườm Trắng Mờ','1-cZlmR7zK_S5inp7a02DtTLd5SJbMgIQ'],['Bánh Ngọc Xanh','1v8Yhu0G47fN8Q-n4dE4rfYsGNYOalmSP'],['Bi Đỏ 4mm','1dBiz8UYmtUHSnzhelmz5KgIAph9sRtau'],['Bi Cẩm Thạch','1FTmUtZrsI_-PQ1J7dCe4MOUsOVHVyt1u'],['Đá Dăm Phối','1FsuOfTIPO1B_EN24eMLZEy9ImZcybKEo'],['Lá Xanh Trong','1nOuR1pW7inwhSsRqajpFGkqPj0aESw3f'],['Bi Thủy Tinh','1cI9a--cLSz1c_t2oxvtJNSSCKpRQqyZM']]
+};
+const GRID_IDS = { main:'gridMain', sub:'gridSub', small:'gridSmall' };
+
+const RULES = {
+  'Dây đeo': { label:'Dây đeo điện thoại', main:{min:1,max:2}, sub:{min:1,max:3}, small:{min:1,max:8}, totalMax:12 },
+  'Vòng tay': { label:'Vòng tay handmade', main:{min:1,max:2}, sub:{min:1,max:5}, small:{min:1,max:12}, totalMax:14 }
+};
+
+let state = { product:'Dây đeo', strap:'Dây sáp đan (Kem)', main:{}, sub:{}, small:{} };
+
+/* ---- Dựng giao diện ---- */
+const esc = s => s.replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');
+function cardHTML(name, label, id, extra){
+  return `<div class="card-item${extra.selected?' selected':''}" ${extra.attrs}>
+    <div class="img-wrapper"><img src="${IMG(id)}" alt="${esc(label)}"></div>
+    <div class="item-name">${esc(label)}</div>${extra.qty||''}</div>`;
+}
+document.getElementById('productGrid').innerHTML = PRODUCTS.map((p,i)=>cardHTML(p[0],p[1],p[2],{selected:i===0,attrs:`data-product="${esc(p[0])}"`})).join('');
+document.getElementById('strapGrid').innerHTML = STRAPS.map((p,i)=>cardHTML(p[0],p[1],p[2],{selected:i===0,attrs:`data-strap="${esc(p[0])}"`})).join('');
+Object.keys(CHARMS).forEach(g=>{
+  document.getElementById(GRID_IDS[g]).innerHTML = CHARMS[g].map(c=>cardHTML(c[0],c[0],c[1],{
+    attrs:`data-group="${g}" data-name="${esc(c[0])}"`,
+    qty:`<div class="qty-control"><button class="btn-qty" data-d="-1" aria-label="Giảm">-</button><span class="qty-num">0</span><button class="btn-qty" data-d="1" aria-label="Tăng">+</button></div>`
+  })).join('');
+});
+
+document.addEventListener('click', e=>{
+  const btn = e.target.closest('.btn-qty');
+  if (btn){ const card = btn.closest('.card-item'); changeQty(card.dataset.group, card.dataset.name, +btn.dataset.d, btn); return; }
+  const prod = e.target.closest('[data-product]');
+  if (prod){ chooseProduct(prod.dataset.product); return; }
+  const strap = e.target.closest('[data-strap]');
+  if (strap){ chooseStrap(strap, strap.dataset.strap); }
+});
+
+/* ---- Logic ---- */
+function resetCharms(){
+  state.main = {}; state.sub = {}; state.small = {};
+  document.querySelectorAll('.qty-num').forEach(el => el.innerText = '0');
+  document.querySelectorAll('[data-group]').forEach(el => el.classList.remove('selected'));
+}
+
+function chooseProduct(prod){
+  if (state.product === prod) return;
+  state.product = prod;
+  document.querySelectorAll('#productGrid .card-item').forEach(c => c.classList.toggle('selected', c.dataset.product === prod));
+  resetCharms();
+  updateUI();
+}
+
+function chooseStrap(element, strapName){
+  document.querySelectorAll('#strapGrid .card-item').forEach(c => c.classList.remove('selected'));
+  element.classList.add('selected');
+  state.strap = strapName;
+  updateUI();
+}
+
+const getGroupTotal = g => Object.values(state[g]).reduce((s,v)=>s+v,0);
+const getAllTotal = () => getGroupTotal('main') + getGroupTotal('sub') + getGroupTotal('small');
+const getGroupName = g => g === 'main' ? 'Charm chính' : g === 'sub' ? 'Charm phụ' : 'Charm nhỏ';
+
+function changeQty(group, name, delta, btnElement){
+  const rule = RULES[state.product];
+  const cur = state[group][name] || 0;
+  if (delta > 0){
+    if (getAllTotal() >= rule.totalMax){
+      alert(`Tổng số lượng tất cả các charm của ${rule.label} tối đa chỉ được ${rule.totalMax} cái (có bù trừ cho nhau).`); return;
+    }
+    if (getGroupTotal(group) >= rule[group].max){
+      alert(`Số lượng ${getGroupName(group)} tối đa là ${rule[group].max} cái đối với ${rule.label}.`); return;
+    }
+    state[group][name] = cur + 1;
+  } else if (cur > 0){
+    state[group][name] = cur - 1;
+    if (state[group][name] === 0) delete state[group][name];
+  }
+  const card = btnElement.closest('.card-item');
+  const n = state[group][name] || 0;
+  card.querySelector('.qty-num').innerText = n;
+  card.classList.toggle('selected', n > 0);
+  updateUI();
+}
+
+function formatGroupSummary(group){
+  const items = Object.entries(state[group]);
+  return items.length ? items.map(([n,q]) => `${n} (x${q})`).join(', ') : 'Chưa chọn';
+}
+
+function updateUI(){
+  const r = RULES[state.product];
+  document.getElementById('ruleBanner').innerHTML = `
+    <strong>Quy định phối charm cho ${r.label}:</strong><br>
+- Charm chính: <strong>${r.main.min} - ${r.main.max} cái</strong> |
+    Charm phụ: <strong>${r.sub.min} - ${r.sub.max} cái</strong> |
+    Charm nhỏ: <strong>${r.small.min} - ${r.small.max} cái</strong><br>
+- <strong>Tổng các loại charm tối đa ${r.totalMax} cái</strong> (được bù trừ số lượng cho nhau).`;
+  document.getElementById('counterMain').innerText = `${getGroupTotal('main')}/${r.main.max}`;
+  document.getElementById('counterSub').innerText = `${getGroupTotal('sub')}/${r.sub.max}`;
+  document.getElementById('counterSmall').innerText = `${getGroupTotal('small')}/${r.small.max}`;
+  document.getElementById('sumProduct').innerText = r.label;
+  document.getElementById('sumStrap').innerText = STRAPS.find(s=>s[0]===state.strap)[1];
+  document.getElementById('sumMain').innerText = formatGroupSummary('main');
+  document.getElementById('sumSub').innerText = formatGroupSummary('sub');
+  document.getElementById('sumSmall').innerText = formatGroupSummary('small');
+  const total = getAllTotal(), el = document.getElementById('sumTotal');
+  el.innerText = `${total} / ${r.totalMax} charm`;
+  el.className = 'total-badge ' + (total === r.totalMax ? 'full' : 'valid');
+}
+
+function showSuccessModal(payload){
+  document.getElementById('modalSummaryContent').innerHTML = `
+    <div><strong>Sản phẩm:</strong> ${esc(payload.product)}</div>
+    <div><strong>Loại dây:</strong> ${esc(payload.strap)}</div>
+    <div><strong>Tổng số charm:</strong> ${esc(payload.totalCount)}</div>
+    <div><strong>Liên hệ:</strong> ${esc(payload.contact)}</div>
+  `;
+  const modal = document.getElementById('successModal');
+  modal.classList.add('active');
+  setTimeout(() => {
+    document.getElementById('modalCard').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }, 60);
+}
+
+function continueDesigning(){
+  document.getElementById('successModal').classList.remove('active');
+  document.getElementById('custContact').value = '';
+  document.getElementById('custNote').value = '';
+  resetCharms();
+  updateUI();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function submitOrder(){
+  const r = RULES[state.product];
+  const mainCount = getGroupTotal('main'), subCount = getGroupTotal('sub'), smallCount = getGroupTotal('small'), totalCount = getAllTotal();
+  const contact = document.getElementById('custContact').value.trim();
+  const note = document.getElementById('custNote').value.trim();
+  const btn = document.querySelector('.btn-submit');
+
+  if (mainCount < r.main.min) return alert(`Bạn ơi, vui lòng chọn ít nhất ${r.main.min} Charm chính nhé!`);
+  if (subCount < r.sub.min) return alert(`Bạn ơi, vui lòng chọn ít nhất ${r.sub.min} Charm phụ nhé!`);
+  if (smallCount < r.small.min) return alert(`Bạn ơi, vui lòng chọn ít nhất ${r.small.min} Charm nhỏ nhé!`);
+  if (totalCount > r.totalMax) return alert(`Tổng số lượng charm hiện tại (${totalCount}) vượt quá mức tối đa ${r.totalMax} cái của ${r.label}.`);
+  if (!contact) return alert('Vui lòng nhập Tên và Số điện thoại/Zalo để LumiCraft liên hệ gửi ảnh mẫu hoàn thiện cho bạn nhé!');
+
+  const payload = {
+    product: r.label, strap: STRAPS.find(s=>s[0]===state.strap)[1],
+    mainCharms: formatGroupSummary('main'), subCharms: formatGroupSummary('sub'), smallCharms: formatGroupSummary('small'),
+    totalCount: `${totalCount} charm`, contact: contact, note: note
+  };
+
+  btn.innerText = "Đang gửi thông tin...";
+  btn.disabled = true;
+
+  fetch(SCRIPT_URL, { method:"POST", mode:"no-cors", headers:{ "Content-Type":"application/json" }, body: JSON.stringify(payload) })
+  .then(() => {
+    showSuccessModal(payload);
+  })
+  .catch(() => alert("Có lỗi xảy ra khi gửi, bạn vui lòng thử lại giúp shop nhé!"))
+  .finally(() => { btn.innerText = "Gửi Yêu Cầu Thiết Kế"; btn.disabled = false; });
+}
+
+/* ---- Mũi tên chuyển ---- */
+document.querySelectorAll('.grid-container').forEach(grid=>{
+  const wrap = document.createElement('div'); wrap.className = 'slider';
+  grid.parentNode.insertBefore(wrap, grid); wrap.appendChild(grid);
+  const prev = document.createElement('button'), next = document.createElement('button');
+  prev.className = 'nav-arrow prev'; next.className = 'nav-arrow next';
+  prev.innerHTML = '&#10094;'; next.innerHTML = '&#10095;';
+  prev.setAttribute('aria-label','Xem trước'); next.setAttribute('aria-label','Xem tiếp');
+  wrap.append(prev, next);
+  const step = () => Math.max(grid.clientWidth * 0.8, 200);
+  prev.onclick = () => grid.scrollBy({left:-step()});
+  next.onclick = () => grid.scrollBy({left:step()});
+  const sync = () => {
+    const max = grid.scrollWidth - grid.clientWidth;
+    prev.classList.toggle('show', max > 4 && grid.scrollLeft > 4);
+    next.classList.toggle('show', max > 4 && grid.scrollLeft < max - 4);
+  };
+  grid.addEventListener('scroll', sync, {passive:true});
+  window.addEventListener('resize', sync);
+  sync();
+});
+
+updateUI();
+</script>
+</body>
+</html>

@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sản Phẩm Theo Danh Mục - LumiCraft Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700;800&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  html, body {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100%;
+    background-color: #FFFDFB;
+    font-family: 'Nunito', sans-serif;
+    color: #58392E;
+    font-weight: 600;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 24px 20px 56px;
+  }
+
+  .page-header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  .header-tag {
+    display: inline-flex;
+    align-items: center;
+    background: #FFE8E2;
+    color: #A93322;
+    font-family: 'Comfortaa', cursive;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.6px;
+    padding: 5px 16px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    border: 1.5px solid #F8C8BD;
+    box-shadow: 0 2px 6px rgba(169, 51, 34, 0.08);
+  }
+
+  .page-header h1 {
+    font-family: 'Comfortaa', cursive;
+    font-size: 32px;
+    font-weight: 800;
+    color: #40241A;
+    margin-bottom: 10px;
+  }
+
+  .page-header p {
+    font-size: 16px;
+    color: #6E493D;
+    max-width: 620px;
+    margin: 0 auto;
+  }
+
+  .catalog-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin-bottom: 45px;
+    position: sticky;
+    top: 10px;
+    z-index: 99;
+  }
+
+  .category-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    background: rgba(255, 253, 251, 0.95);
+    padding: 12px 18px;
+    border-radius: 20px;
+    border: 1.5px solid #F3DDD5;
+    box-shadow: 0 6px 20px rgba(135, 75, 60, 0.06);
+    backdrop-filter: blur(8px);
+  }
+
+  .cat-btn {
+    background: #FFFFFF;
+    color: #58392E;
+    font-family: 'Comfortaa', cursive;
+    font-size: 13.5px;
+    font-weight: 800;
+    padding: 9px 18px;
+    border-radius: 12px;
+    border: 1.5px solid #EED8CF;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .cat-btn:hover {
+    border-color: #DFBCB0;
+    color: #A93322;
+    transform: translateY(-2px);
+  }
+
+  .cat-btn.active {
+    background: #C85848;
+    color: #ffffff;
+    border-color: #C85848;
+    box-shadow: 0 4px 12px rgba(200, 88, 72, 0.28);
+  }
+
+  .search-bar-wrap {
+    display: flex;
+    justify-content: center;
+  }
+
+  .search-box {
+    width: 100%;
+    max-width: 450px;
+  }
+
+  .search-box input {
+    width: 100%;
+    padding: 10px 18px;
+    border-radius: 14px;
+    border: 1.5px solid #EED8CF;
+    font-family: 'Nunito', sans-serif;
+    font-size: 14px;
+    color: #40241A;
+    background: #FFFFFF;
+    outline: none;
+    box-shadow: 0 3px 10px rgba(135, 75, 60, 0.04);
+    transition: border-color 0.2s ease;
+  }
+
+  .search-box input:focus {
+    border-color: #C85848;
+  }
+
+  .category-block {
+    margin-bottom: 50px;
+    scroll-margin-top: 130px;
+  }
+
+  .category-block:last-child {
+    margin-bottom: 0;
+  }
+
+  .category-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #F5CFC5;
+  }
+
+  .category-header-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .category-header h2 {
+    font-family: 'Comfortaa', cursive;
+    font-size: 24px;
+    font-weight: 800;
+    color: #40241A;
+  }
+
+  .category-count {
+    font-family: 'Comfortaa', cursive;
+    font-size: 12px;
+    font-weight: 800;
+    color: #A93322;
+    background: #FFE8E2;
+    padding: 3px 10px;
+    border-radius: 10px;
+    border: 1px solid #F8C8BD;
+  }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 22px;
+  }
+
+  .product-card {
+    background: #FFFFFF;
+    border: 1.5px solid #EED8CF;
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    box-shadow: 0 4px 14px rgba(135, 75, 60, 0.03);
+  }
+
+  .product-card:hover {
+    transform: translateY(-5px);
+    border-color: #DFBCB0;
+    box-shadow: 0 12px 28px rgba(200, 88, 72, 0.12);
+  }
+
+  .product-thumb {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    background-color: #FFFFFF;
+    border-bottom: 1px solid #F5E6E0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .product-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 16px;
+    display: block;
+    --rot: 0deg;
+    --scale: 1;
+    transform: rotate(var(--rot)) scale(var(--scale));
+    transition: transform 0.4s ease;
+  }
+
+  .product-card:hover .product-thumb img {
+    --scale: 1.07;
+  }
+
+  .product-tag {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    font-family: 'Comfortaa', cursive;
+    font-size: 11px;
+    font-weight: 800;
+    color: #A93322;
+    background: rgba(255, 247, 243, 0.95);
+    padding: 3px 10px;
+    border-radius: 8px;
+    border: 1px solid #F8C8BD;
+    z-index: 2;
+  }
+
+  .product-details {
+    padding: 18px 16px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    background-color: #FFFFFF;
+  }
+
+  .product-title {
+    font-family: 'Comfortaa', cursive;
+    font-size: 16px;
+    font-weight: 800;
+    color: #40241A;
+    line-height: 1.4;
+    margin-bottom: 8px;
+  }
+
+  .product-desc {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #6E493D;
+    line-height: 1.5;
+    margin-bottom: 18px;
+    display: -webkit-box;
+    line-clamp: 2;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .product-bottom {
+    margin-top: auto;
+  }
+
+  .btn-fb-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background: #FFF7F3;
+    color: #A93322;
+    font-family: 'Comfortaa', cursive;
+    font-size: 13px;
+    font-weight: 800;
+    text-decoration: none;
+    padding: 10px 14px;
+    border-radius: 12px;
+    border: 1.5px solid #F5CFC5;
+    transition: all 0.25s ease;
+  }
+
+  .btn-fb-link:hover {
+    background: #C85848;
+    color: #FFFFFF;
+    border-color: #C85848;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(200, 88, 72, 0.25);
+  }
+
+  .load-more-wrap {
+    text-align: center;
+    margin-top: 28px;
+  }
+
+  .btn-load-more {
+    background: #FFFFFF;
+    color: #A93322;
+    font-family: 'Comfortaa', cursive;
+    font-size: 14px;
+    font-weight: 800;
+    padding: 11px 28px;
+    border-radius: 14px;
+    border: 2px solid #F5CFC5;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 12px rgba(135, 75, 60, 0.05);
+  }
+
+  .btn-load-more:hover {
+    background: #C85848;
+    color: #FFFFFF;
+    border-color: #C85848;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(200, 88, 72, 0.25);
+  }
+
+  .no-results {
+    text-align: center;
+    padding: 60px 20px;
+    color: #6E493D;
+    font-size: 16px;
+    display: none;
+  }
+
+  /* ===========================================
+     CHÂN TRANG 4 CỘT (LUMICRAFT FOOTER)
+  =========================================== */
+  .lumi-footer-fixed {
+    width: 100%;
+    background: linear-gradient(180deg, #FFF5F1 0%, #F9E5DE 100%);
+    border-top: 2px solid #EBC9BE;
+    padding: 48px 0 0;
+    font-family: 'Nunito', sans-serif;
+    color: #58392E;
+  }
+
+  .footer-inner-wrap {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .footer-4col-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr 0.95fr 1.05fr;
+    gap: 36px;
+    align-items: flex-start;
+    padding-bottom: 42px;
+  }
+
+  .f-heading {
+    font-family: 'Comfortaa', cursive;
+    font-size: 17.5px;
+    font-weight: 800;
+    color: #40241A;
+    margin-bottom: 20px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 32px;
+  }
+
+  .f-heading::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 34px;
+    height: 2.5px;
+    background: linear-gradient(90deg, #C85848, #F497A9);
+    border-radius: 3px;
+  }
+
+  .f-brand-title {
+    font-family: 'Comfortaa', cursive;
+    font-size: 26px;
+    font-weight: 800;
+    color: #40241A;
+    letter-spacing: 1.5px;
+    display: flex;
+    align-items: center;
+    height: 32px;
+    margin-bottom: 16px;
+  }
+
+  .f-brand-badge {
+    display: inline-block;
+    font-family: 'Comfortaa', cursive;
+    font-size: 11px;
+    font-weight: 800;
+    color: #A93322;
+    background: #FFFFFF;
+    border: 1px solid #F3CFC6;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-bottom: 12px;
+    box-shadow: 0 2px 6px rgba(200, 88, 72, 0.06);
+  }
+
+  .f-brand-text {
+    font-size: 14.5px;
+    line-height: 1.65;
+    color: #58392E;
+    margin-bottom: 22px;
+  }
+
+  .f-social-group {
+    display: flex;
+    gap: 12px;
+  }
+
+  .f-social-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #FFFFFF;
+    border: 1.5px solid #E8C7BC;
+    color: #40241A;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: all 0.25s ease;
+    box-shadow: 0 3px 10px rgba(135, 75, 60, 0.08);
+  }
+
+  .f-social-btn svg {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+  }
+
+  .f-social-btn:hover {
+    background: #C85848;
+    color: #FFFFFF;
+    border-color: #C85848;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 14px rgba(200, 88, 72, 0.28);
+  }
+
+  .f-menu-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .f-menu-list li a {
+    color: #58392E;
+    text-decoration: none;
+    font-size: 14.5px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .f-menu-list li a::before {
+    content: '•';
+    color: #C85848;
+    font-weight: 800;
+    transition: transform 0.2s ease;
+  }
+
+  .f-menu-list li a:hover {
+    color: #A93322;
+    transform: translateX(4px);
+  }
+
+  .f-store-info {
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+    font-size: 14px;
+    margin-bottom: 16px;
+  }
+
+  .f-store-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .f-store-badge {
+    background: #FFFFFF;
+    color: #A93322;
+    font-size: 11.5px;
+    font-weight: 800;
+    padding: 3px 9px;
+    border-radius: 7px;
+    white-space: nowrap;
+    border: 1px solid #F0C7BC;
+    box-shadow: 0 1px 4px rgba(135, 75, 60, 0.05);
+  }
+
+  .f-store-desc {
+    color: #58392E;
+    line-height: 1.45;
+  }
+
+  .f-map-box {
+    width: 100%;
+    height: 135px;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 3px solid #FFFFFF;
+    box-shadow: 0 5px 14px rgba(135, 75, 60, 0.1);
+  }
+
+  .f-map-box iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  .f-bottom-bar {
+    background: #F1D7CE;
+    border-top: 1px solid #E3C1B6;
+    padding: 15px 0;
+  }
+
+  .f-bottom-flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 13.5px;
+    color: #4E3127;
+  }
+
+  @media (max-width: 1024px) {
+    .products-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .footer-4col-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .products-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+    .category-tabs {
+      justify-content: flex-start;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      white-space: nowrap;
+    }
+    .page-header h1 {
+      font-size: 26px;
+    }
+    .footer-4col-grid {
+      grid-template-columns: 1fr;
+      gap: 26px;
+    }
+    .f-heading, .f-brand-title {
+      height: auto;
+    }
+    .f-bottom-flex {
+      flex-direction: column;
+      gap: 6px;
+      text-align: center;
+    }
+  }
+</style>
+</head>
+<body>
+
+  <div class="container">
+
+    <header class="page-header">
+      <span class="header-tag">LumiCraft Showroom</span>
+      <h1>Bộ Sưu Tập Phụ Kiện Thủ Công</h1>
+      <p>Khám phá các mẫu sản phẩm độc đáo được chia theo từng danh mục riêng biệt. Nhấn vào các danh mục bên dưới để di chuyển nhanh nhé!</p>
+    </header>
+
+    <div class="catalog-controls">
+      <div class="category-tabs">
+        <button class="cat-btn active" data-cat="all" onclick="scrollToCategory('all', this)">Tất Cả Mẫu</button>
+        <button class="cat-btn" data-cat="bracelet" onclick="scrollToCategory('bracelet', this)">Vòng Tay (21)</button>
+        <button class="cat-btn" data-cat="phone-charm" onclick="scrollToCategory('phone-charm', this)">Phone Charm (6)</button>
+        <button class="cat-btn" data-cat="crochet" onclick="scrollToCategory('crochet', this)">Đồ Len Móc (1)</button>
+        <button class="cat-btn" data-cat="crown" onclick="scrollToCategory('crown', this)">Vương Miện (3)</button>
+      </div>
+
+      <div class="search-bar-wrap">
+        <div class="search-box">
+          <input type="text" id="searchInput" placeholder="Tìm kiếm mẫu (ví dụ: cá, bướm, nơ, hoa, trăng, sao...)" oninput="handleSearch()">
+        </div>
+      </div>
+    </div>
+
+    <main id="sectionsContainer"></main>
+
+    <div id="noResults" class="no-results">
+      <p>Chưa tìm thấy mẫu phụ kiện nào phù hợp với từ khóa của bạn</p>
+    </div>
+
+  </div>
+
+  <!-- CHÂN TRANG 4 CỘT -->
+  <footer class="lumi-footer-fixed">
+    <div class="footer-inner-wrap">
+
+      <div class="footer-4col-grid">
+
+        <!-- CỘT 1: THƯƠNG HIỆU -->
+        <div>
+          <span class="f-brand-title">LUMICRAFT</span>
+          <span class="f-brand-badge">Craft Your Own Shine</span>
+          <p class="f-brand-text">Thương hiệu phụ kiện thủ công ngọt ngào. Nơi những hạt charm nhỏ bé lưu giữ phong cách và câu chuyện riêng biệt của bạn.</p>
+          
+          <div class="f-social-group">
+            <!-- Icon Facebook -->
+            <a href="https://www.facebook.com/profile.php?id=61594591964097" target="_blank" rel="noopener noreferrer" class="f-social-btn" aria-label="Facebook">
+              <svg viewBox="0 0 24 24"><path d="M14 13.5h2.5l1-4H14v-2c0-1.03 0-2 2-2h1.5V2.14c-.326-.043-1.557-.14-2.857-.14C11.928 2 10 3.657 10 6.7v2.8H7v4h3V22h4v-8.5z"/></svg>
+            </a>
+            <!-- Icon Instagram -->
+            <a href="https://www.facebook.com/profile.php?id=61594591964097" target="_blank" rel="noopener noreferrer" class="f-social-btn" aria-label="Instagram">
+              <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+            <!-- Icon TikTok -->
+            <a href="https://www.facebook.com/profile.php?id=61594591964097" target="_blank" rel="noopener noreferrer" class="f-social-btn" aria-label="TikTok">
+              <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- CỘT 2: VỀ LUMICRAFT -->
+        <div>
+          <h3 class="f-heading">Về LumiCraft</h3>
+          <ul class="f-menu-list">
+            <li><a href="https://sites.google.com/view/lumi-craft/blog/cau-chuyen-thuong-hieu" target="_blank" rel="noopener noreferrer">Câu chuyện thương hiệu</a></li>
+            <li><a href="https://sites.google.com/view/lumi-craft/s%E1%BA%A3n-ph%E1%BA%A9m" target="_blank" rel="noopener noreferrer">Bộ sưu tập mới nhất</a></li>
+            <li><a href="https://sites.google.com/view/lumi-craft/blog/huong-dan-do-co-tay-chon-size" target="_blank" rel="noopener noreferrer">Cẩm nang đo size &amp; bảo quản</a></li>
+            <li><a href="https://sites.google.com/view/lumi-craft/blog" target="_blank" rel="noopener noreferrer">Góc blog &amp; mẹo phối đồ</a></li>
+          </ul>
+        </div>
+
+        <!-- CỘT 3: DANH MỤC SẢN PHẨM -->
+        <div>
+          <h3 class="f-heading">Danh Mục Sản Phẩm</h3>
+          <ul class="f-menu-list">
+            <li><a href="https://sites.google.com/view/lumi-craft/s%E1%BA%A3n-ph%E1%BA%A9m" target="_blank" rel="noopener noreferrer">Vòng Tay Charm Thủ Công</a></li>
+            <li><a href="https://sites.google.com/view/lumi-craft/s%E1%BA%A3n-ph%E1%BA%A9m" target="_blank" rel="noopener noreferrer">Dây Treo Phone Charm</a></li>
+            <li><a href="https://sites.google.com/view/lumi-craft/s%E1%BA%A3n-ph%E1%BA%A9m" target="_blank" rel="noopener noreferrer">Phụ Kiện Đồ Len Móc</a></li>
+            <li><a href="https://sites.google.com/view/lumi-craft/s%E1%BA%A3n-ph%E1%BA%A9m" target="_blank" rel="noopener noreferrer">Vương Miện Handmade</a></li>
+            <li><a href="https://sites.google.com/view/lumi-craft/ch%E1%BB%8Dn-charm" target="_blank" rel="noopener noreferrer">Tự Phối Charm Mẫu Riêng</a></li>
+          </ul>
+        </div>
+
+        <!-- CỘT 4: CỬA HÀNG LUMICRAFT -->
+        <div>
+          <h3 class="f-heading">Cửa Hàng LumiCraft</h3>
+          <div class="f-store-info">
+            <div class="f-store-row">
+              <span class="f-store-badge">Địa chỉ</span>
+              <span class="f-store-desc">79 Hồ Tùng Mậu, Cầu Giấy, Hà Nội</span>
+            </div>
+            <div class="f-store-row">
+              <span class="f-store-badge">Hotline</span>
+              <span class="f-store-desc">0123 456 78910</span>
+            </div>
+            <div class="f-store-row">
+              <span class="f-store-badge">Email</span>
+              <a href="mailto:lumicraftvn@gmail.com" class="f-store-desc" style="color:#A93322; font-weight:700; text-decoration:none;">lumicraftvn@gmail.com</a>
+            </div>
+          </div>
+
+          <div class="f-map-box">
+            <iframe
+              src="https://www.google.com/maps?q=79%20H%E1%BB%93%20T%C3%B9ng%20M%E1%BA%ADu%2C%20H%C3%A0%20N%E1%BB%99i&output=embed"
+              loading="lazy"
+              allowfullscreen>
+            </iframe>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- THANH COPYRIGHT -->
+    <div class="f-bottom-bar">
+      <div class="footer-inner-wrap f-bottom-flex">
+        <span>© 2026 <strong>LUMICRAFT STUDIO</strong>. All rights reserved.</span>
+        <span>CRAFT YOUR OWN SHINE ♡</span>
+      </div>
+    </div>
+  </footer>
+
+<script>
+  const FB_FANPAGE_URL = "https://www.facebook.com/profile.php?id=61594591964097";
+
+  const categoriesDef = [
+    { id: 'bracelet', title: 'Vòng Tay', desc: 'Vòng tay thắt nút macrame phối hạt pha lê, charm gốm và charm bạc thủ công', initialLimit: 8 },
+    { id: 'phone-charm', title: 'Phone Charm', desc: 'Dây treo điện thoại đan tay kết hợp charm hoa bướm, trăng sao xinh xắn' },
+    { id: 'crochet', title: 'Đồ Len Móc', desc: 'Móc khóa len đan móc tay tỉ mỉ từ len cotton mịn mát' },
+    { id: 'crown', title: 'Vương Miện', desc: 'Vương miện kết hạt pha lê và nơ vải cho những dịp đặc biệt' }
+  ];
+
+  const expandedCategories = {
+    bracelet: false
+  };
+
+  const products = [
+    { id: 101, category: 'bracelet', tag: 'Best Seller', title: 'Vòng Tay Hoa Hồng Phấn', desc: 'Dây sáp kem đan tay phối charm hoa 5 cánh hồng pastel, hạt bướm hồng đào và lá xanh trong.', img: 'https://lh3.googleusercontent.com/d/13n8-d8WmwabdB4sL_zeV-Q8g4b-qCahe=w800', rotate: 0 },
+    { id: 102, category: 'bracelet', tag: 'Ocean Breeze', title: 'Vòng Tay Sao Biển Xanh', desc: 'Dây sáp kem phối charm sao biển nâu, hoa xanh biển nhạt và hạt cườm sắc màu biển cả.', img: 'https://lh3.googleusercontent.com/d/1X3OuWZrQuwAYMMEZq_tVbqW8MIC6s42L=w800', rotate: 0 },
+    { id: 103, category: 'bracelet', tag: 'Vibrant Pop', title: 'Vòng Tay Hoa Nắng & Sao', desc: 'Sự kết hợp nổi bật giữa hoa vàng tươi, hoa xanh cobalt, ngôi sao trong và charm sao bạc.', img: 'https://lh3.googleusercontent.com/d/15oWXdA9oTLNBBfqdY-BFILI8TAMdfjJT=w800', rotate: 0 },
+    { id: 104, category: 'bracelet', tag: 'Butterfly Dream', title: 'Vòng Tay Bướm Pha Lê', desc: 'Dây sáp kem thắt nút tỉ mỉ cùng đàn bướm thủy tinh trắng sữa, vàng hổ phách và khung bướm kim loại.', img: 'https://lh3.googleusercontent.com/d/10m2NoWEO5pdojlTUuKpjzwWnOaafpvUV=w800', rotate: 0 },
+    { id: 105, category: 'bracelet', tag: 'Mystic Moon', title: 'Vòng Tay Trăng Khuyết Tím', desc: 'Dây sáp kem phối charm trăng khuyết ánh xà cừ, trăng tím xanh và hoa 5 cánh tím lavender.', img: 'https://lh3.googleusercontent.com/d/1qY1ia0WXvhwfEL0pigin8g2r8-IGBGi0=w800', rotate: 0 },
+    { id: 106, category: 'bracelet', tag: 'Coquette Style', title: 'Vòng Tay Nơ Bạc Hoa Tím', desc: 'Dây sáp đen cá tính nổi bật với charm nơ bạc ở giữa, phối hoa tím và bướm pha lê.', img: 'https://lh3.googleusercontent.com/d/1UC_j6Y2M9fiY7ivgzvf7GcvrytFysHZI=w800', rotate: -90 },
+    { id: 107, category: 'bracelet', tag: 'Vintage Garden', title: 'Vòng Tay Hoa Đào Xà Cừ', desc: 'Dây sáp nâu trầm ấm phối hoa hồng đào, hoa pha lê ánh xà cừ rực rỡ và lá xanh non.', img: 'https://lh3.googleusercontent.com/d/1eanOSupYHwjlgE5SJVGCX9ShX_MDCmgA=w800', rotate: -90 },
+    { id: 108, category: 'bracelet', tag: 'Spring Meadow', title: 'Vòng Tay Bướm Bạc Hồng Cốm', desc: 'Dây sáp nâu phối charm khung bướm bạc thanh mảnh cùng hoa hồng phấn, hoa xanh cốm và sao nhỏ.', img: 'https://lh3.googleusercontent.com/d/1YbJSqg8Kx_lyeXMUrodDUIt60aegj_Sz=w800', rotate: 0 },
+    { id: 109, category: 'bracelet', tag: 'Jade Breeze', title: 'Vòng Tay Bướm Ngọc Bích', desc: 'Dây sáp nâu đan thủ công kết hợp bướm trắng sữa, hoa xanh ngọc dịu mát và hạt thủy tinh trong.', img: 'https://lh3.googleusercontent.com/d/1HoZudMbfMX80xrPjQN1ErnHPrq1sgGLX=w800', rotate: -90 },
+    { id: 110, category: 'bracelet', tag: 'Ice Blue', title: 'Vòng Tay Hoa Xanh Băng', desc: 'Dây sáp nâu phối hoa 5 cánh xanh biển băng giá, bướm xanh ngọc và lá xanh tươi mát.', img: 'https://lh3.googleusercontent.com/d/17YV367y0KxDhWOvdFi4MnW8OO_nLl_Pu=w800', rotate: 0 },
+    { id: 111, category: 'bracelet', tag: 'Starry Night', title: 'Vòng Tay Đêm Sao Bạc', desc: 'Dây sáp đen phối charm ngôi sao bạc rỗng – đặc cùng các hạt sao thủy tinh xanh rêu huyền bí.', img: 'https://lh3.googleusercontent.com/d/1aJCaQO2bJjIjghXJD8uaMHi9DJFkp1U9=w800', rotate: 0 },
+    { id: 112, category: 'bracelet', tag: 'Honey Glow', title: 'Vòng Tay Bướm Sao Vàng', desc: 'Dây sáp nâu phối bướm trắng ngọc, ngôi sao vàng mật ong ngọt ngào và hoa pha lê trong suốt.', img: 'https://lh3.googleusercontent.com/d/1lXEsm7aLmVM4uZqv4kO0JWrAYTqTPjc1=w800', rotate: 0 },
+    { id: 113, category: 'bracelet', tag: 'Coral Blossom', title: 'Vòng Tay Hoa San Hô', desc: 'Dây sáp nâu phối hoa đỏ san hô rực rỡ, khung bướm bạc rỗng, bướm vàng mật ong và lá xanh.', img: 'https://lh3.googleusercontent.com/d/1bDmGoy2-UJgGLwcha18GzHabgpNa7CNC=w800', rotate: -90 },
+    { id: 114, category: 'bracelet', tag: 'Sweet Ribbon', title: 'Vòng Tay Nơ Bạc Ruby', desc: 'Dây sáp kem đính charm nơ bạc ở giữa, hai bên là hoa 5 cánh đỏ ruby, quả dâu đỏ và hạt trong.', img: 'https://lh3.googleusercontent.com/d/1Brgjh4dYrBgxz67MqOJLWat2-f5tXZ_t=w800', rotate: 0 },
+    { id: 115, category: 'bracelet', tag: 'Fresh Mint', title: 'Vòng Tay Hoa Xanh Bơ', desc: 'Dây sáp trắng tinh khôi phối hoa 5 cánh xanh bơ – xanh cốm, bướm xanh ngọc và lá xanh tươi.', img: 'https://lh3.googleusercontent.com/d/1QM4_WdOu72o_eLQ9WnFzyvdl9NPjA1mg=w800', rotate: -90 },
+    { id: 116, category: 'bracelet', tag: 'Sky Cloud', title: 'Vòng Tay Hoa Thiên Thanh', desc: 'Dây sáp trắng phối hoa 5 cánh xanh da trời, hoa xanh băng giá, sao xanh nhạt và hạt thủy tinh.', img: 'https://lh3.googleusercontent.com/d/1g6UDEAfD2BFGI98MxTOAq7oeAp2gvQvL=w800', rotate: -90 },
+    { id: 117, category: 'bracelet', tag: 'Little Fish', title: 'Vòng Tay Cá Gốm Hồng', desc: 'Dây sáp trắng đan tay phối charm cá gốm hồng pastel, ngôi sao hồng phấn và hạt pha lê trong.', img: 'https://lh3.googleusercontent.com/d/18-bXJ5QbbAiLSMXaINTibesdUHEaBsKC=w800', rotate: 0 },
+    { id: 118, category: 'bracelet', tag: 'Lavender Fish', title: 'Vòng Tay Cá Gốm Tím', desc: 'Dây sáp kem phối charm cá gốm tím lavender, ngôi sao tím nhạt và hạt thủy tinh trong suốt.', img: 'https://lh3.googleusercontent.com/d/1yMlTHdTpdnQHaSiA3Kcu4yxjE3XPCs7l=w800', rotate: 0 },
+    { id: 119, category: 'bracelet', tag: 'Midnight Fish', title: 'Vòng Tay Cá Gốm Đen', desc: 'Dây sáp đen tối giản phối charm cá gốm đen huyền bí, ngôi sao trắng ngà và hạt pha lê trong.', img: 'https://lh3.googleusercontent.com/d/1iUcF07fnnOW0LXqZdaAGidZbM6f1Wxf6=w800', rotate: -90 },
+    { id: 120, category: 'bracelet', tag: 'Earthy Fish', title: 'Vòng Tay Cá Gốm Kem Nâu', desc: 'Dây sáp nâu trầm ấm phối charm cá gốm kem vân nâu, hoa 5 cánh xanh cốm và sao vàng nhạt.', img: 'https://lh3.googleusercontent.com/d/13905_hptxs1RUaDRN3kkzImZ89gQ1bir=w800', rotate: -90 },
+    { id: 121, category: 'bracelet', tag: 'Minimalist Cream', title: 'Vòng Tay Cá Gốm Trắng Sữa', desc: 'Dây sáp kem nhẹ nhàng phối charm cá gốm trắng sữa, sao trắng ngà và hạt pha lê trong suốt.', img: 'https://lh3.googleusercontent.com/d/1LHDXM3QLqhU7qQuDz1RvG3pSspfa_C1I=w800', rotate: -90 },
+    { id: 201, category: 'phone-charm', tag: 'Ruby Blossom', title: 'Phone Charm Chuông Hoa Đỏ', desc: 'Dây sáp nâu đan thủ công phối hoa pha lê đỏ ruby, hạt dâu đỏ, lá xanh và tua rua chuông hoa đôi.', img: 'https://lh3.googleusercontent.com/d/1dZp-JMJexc0esnXJmtIodxyvMBKoOHWl=w800', rotate: 0 },
+    { id: 202, category: 'phone-charm', tag: 'Ocean Star', title: 'Phone Charm Hoa Sao Biển', desc: 'Dây sáp trắng phối hoa 5 cánh xanh thiên thanh, lá xanh tươi và hai nhánh ngôi sao xanh dịu mát.', img: 'https://lh3.googleusercontent.com/d/1nerElZ7MfSYN3OHkjU2mw7aTIdFo0GUo=w800', rotate: 0 },
+    { id: 203, category: 'phone-charm', tag: 'Moonlight Purple', title: 'Phone Charm Trăng Sao Tím', desc: 'Dây sáp đen phối charm trăng khuyết ánh xà cừ, hoa 5 cánh tím biếc và tua rua chuông hoa – sao tím.', img: 'https://lh3.googleusercontent.com/d/1Rkwlt2QTNL3IjZblQH8A7sS6CdXxTirb=w800', rotate: -90 },
+    { id: 204, category: 'phone-charm', tag: 'Fairy Pastel', title: 'Phone Charm Bướm Hoa Hồng', desc: 'Dây sáp trắng ngọt ngào phối charm bướm trắng sữa, hoa hồng phấn, lá xanh và chuông hoa pastel.', img: 'https://lh3.googleusercontent.com/d/17w8JwUR4VBu2dIK_28lAvg9mBhlEZhj0=w800', rotate: -90 },
+    { id: 205, category: 'phone-charm', tag: 'Sweet Honey', title: 'Phone Charm Bướm Chuông Vàng', desc: 'Dây sáp nâu phối charm bướm trắng ngọc, hoa pha lê trong suốt và tua rua chuông hoa vàng mật ong.', img: 'https://lh3.googleusercontent.com/d/156z26TY46XiroV89XYohLIvgZVgBuXv4=w800', rotate: 0 },
+    { id: 206, category: 'phone-charm', tag: 'Berry Star', title: 'Phone Charm Bướm Vàng Cherry', desc: 'Dây sáp kem phối ngôi sao trắng ngà, bướm vàng hổ phách, hạt cherry đỏ và nhánh sao – chuông hoa rủ đôi.', img: 'https://lh3.googleusercontent.com/d/1jxTBZnw5Xg_aO9_n7IsOZ8--FetfXmhs=w800', rotate: -80 },
+    { id: 301, category: 'crochet', tag: 'Handmade Crochet', title: 'Móc Khóa Len Quả Bơ', desc: 'Sợi len milk cotton móc tay mịn màng, làm điểm nhấn xinh xắn cho túi xách hoặc chùm chìa khóa.', img: 'https://drive.google.com/thumbnail?id=1nHYKEfc6pfQZfZPk3aRai9VaOiWrYoCc&sz=w800', rotate: 0 },
+    { id: 401, category: 'crown', tag: 'Princess Style', title: 'Vương Miện Sweet Princess 🎀', desc: 'Vương miện handmade nổi bật với gam màu hồng pastel và xanh baby nhẹ nhàng, kết hợp charm trang trí xinh xắn cùng chi tiết ren và nơ satin. Điểm nhấn gấu bông đáng yêu tạo nên vẻ ngọt ngào, phù hợp cho tiệc sinh nhật và những khoảnh khắc đặc biệt.', img: 'https://drive.google.com/thumbnail?id=10-8lt-DHOKYCcBUTfU0n12I76ecapuDp&sz=w800', rotate: 0 },
+    { id: 402, category: 'crown', tag: 'Handmade Tiara', title: 'Vương Miện Pastel Dream 🌷', desc: 'Thiết kế vương miện handmade với sự kết hợp hài hòa giữa sắc vàng pastel và hồng dịu dàng. Những chiếc nơ satin, hạt trang trí và lớp ren mềm mại tạo nên vẻ đẹp tinh tế, nữ tính. Có thể tùy chỉnh màu sắc và phụ kiện theo sở thích.', img: 'https://drive.google.com/thumbnail?id=1y9lbfhWyHFlA5cAwSlhebSN6QImp8v-e&sz=w800', rotate: 0 },
+    { id: 403, category: 'crown', tag: 'Birthday Crown', title: 'Vương Miện Starry Birthday ⭐', desc: 'Vương miện sinh nhật handmade nổi bật với ba chóp vương miện điểm ngôi sao xanh baby, kết hợp sắc hồng pastel, ren trắng và những chiếc nơ nhỏ xinh. Thiết kế đáng yêu, nổi bật khi chụp ảnh, giúp nàng thêm rạng rỡ trong ngày sinh nhật.', img: 'https://drive.google.com/thumbnail?id=1OvkLKabxog3U79o-7DOaSRFzVDV79yM8&sz=w800', rotate: 0 }
+  ];
+
+  let searchQuery = '';
+
+  function toggleExpandCategory(catId) {
+    expandedCategories[catId] = !expandedCategories[catId];
+    renderCategorySections();
+  }
+
+  function renderCategorySections() {
+    const mainContainer = document.getElementById('sectionsContainer');
+    const noResults = document.getElementById('noResults');
+    let hasAnyMatches = false;
+    let htmlOutput = '';
+
+    categoriesDef.forEach(cat => {
+      const catProducts = products.filter(p => {
+        const matchCat = p.category === cat.id;
+        const matchSearch = searchQuery === '' || 
+          p.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
+          p.desc.toLowerCase().includes(searchQuery.toLowerCase());
+        return matchCat && matchSearch;
+      });
+
+      if (catProducts.length > 0) {
+        hasAnyMatches = true;
+        let visibleProducts = catProducts;
+        let showLoadMoreBtn = false;
+
+        if (cat.initialLimit && searchQuery === '' && !expandedCategories[cat.id]) {
+          if (catProducts.length > cat.initialLimit) {
+            visibleProducts = catProducts.slice(0, cat.initialLimit);
+            showLoadMoreBtn = true;
+          }
+        }
+
+        htmlOutput += `
+          <section class="category-block" id="sec-${cat.id}">
+            <div class="category-header">
+              <div class="category-header-title">
+                <h2>${cat.title}</h2>
+                <span class="category-count">${catProducts.length} mẫu</span>
+              </div>
+            </div>
+
+            <div class="products-grid">
+              ${visibleProducts.map(p => `
+                <div class="product-card">
+                  <div class="product-thumb">
+                    <span class="product-tag">${p.tag}</span>
+                    <img src="${p.img}" alt="${p.title}" loading="lazy" style="--rot: ${p.rotate || 0}deg;">
+                  </div>
+                  <div class="product-details">
+                    <div class="product-title">${p.title}</div>
+                    <p class="product-desc">${p.desc}</p>
+                    <div class="product-bottom">
+                      <a href="${FB_FANPAGE_URL}" target="_blank" rel="noopener noreferrer" class="btn-fb-link">
+                        <span>Xem trên Facebook</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+
+            ${showLoadMoreBtn ? `
+              <div class="load-more-wrap">
+                <button class="btn-load-more" onclick="toggleExpandCategory('${cat.id}')">
+                  Xem thêm các mẫu vòng tay khác (${catProducts.length - cat.initialLimit} mẫu nữa)
+                </button>
+              </div>
+            ` : ''}
+
+            ${cat.initialLimit && searchQuery === '' && expandedCategories[cat.id] ? `
+              <div class="load-more-wrap">
+                <button class="btn-load-more" onclick="toggleExpandCategory('${cat.id}')">
+                  Thu gọn danh sách vòng tay
+                </button>
+              </div>
+            ` : ''}
+          </section>
+        `;
+      }
+    });
+
+    mainContainer.innerHTML = htmlOutput;
+    noResults.style.display = hasAnyMatches ? 'none' : 'block';
+  }
+
+  function scrollToCategory(catId, btnEl) {
+    document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+    if (btnEl) btnEl.classList.add('active');
+
+    if (catId === 'all') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      const targetSec = document.getElementById(`sec-${catId}`);
+      if (targetSec) {
+        targetSec.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  }
+
+  function handleSearch() {
+    searchQuery = document.getElementById('searchInput').value.trim();
+    renderCategorySections();
+  }
+
+  function autoSelectIncomingCategory() {
+    let targetCat = null;
+
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('cat')) {
+      targetCat = params.get('cat');
+    }
+
+    if (!targetCat) {
+      try {
+        const savedCat = localStorage.getItem('lumi_selected_cat');
+        const savedTime = parseInt(localStorage.getItem('lumi_selected_time') || '0', 10);
+        if (savedCat && (Date.now() - savedTime < 15000)) {
+          targetCat = savedCat;
+          localStorage.removeItem('lumi_selected_cat');
+        }
+      } catch (e) {}
+    }
+
+    if (targetCat && targetCat !== 'all') {
+      const matchingBtn = document.querySelector(`.cat-btn[data-cat="${targetCat}"]`);
+      setTimeout(() => {
+        scrollToCategory(targetCat, matchingBtn);
+      }, 200);
+    }
+  }
+
+  renderCategorySections();
+  autoSelectIncomingCategory();
+</script>
+
+</body>
+</html>

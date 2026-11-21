@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LumiCraft – Vòng tay, dây treo điện thoại, vương miện, đồ móc len handmade</title>
+<meta name="description" content="LumiCraft – shop phụ kiện handmade: vòng tay handmade, dây treo điện thoại handmade, vương miện sinh nhật handmade và đồ móc len handmade. Nhận custom theo ý bạn.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700;800&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  html, body {
+    margin: 0 !important; padding: 0 !important; width: 100%;
+    background-color: #FFFDFB; font-family: 'Nunito', sans-serif;
+    color: #58392E; font-weight: 600; overflow-x: hidden; -webkit-font-smoothing: antialiased;
+  }
+  .container { max-width: 1140px; margin: 0 auto; padding: 24px 20px 56px; }
+  h1, h2, h3 { font-family: 'Comfortaa', cursive; font-weight: 800; color: #40241A; }
+  p { line-height: 1.8; color: #6E493D; font-size: 15.5px; }
+  .tag {
+    display: inline-flex; background: #FFE8E2; color: #A93322;
+    font-family: 'Comfortaa', cursive; font-size: 12px; font-weight: 800;
+    letter-spacing: 0.6px; padding: 5px 16px; border-radius: 12px;
+    border: 1.5px solid #F8C8BD; box-shadow: 0 2px 6px rgba(169,51,34,.08);
+  }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    font-family: 'Comfortaa', cursive; font-size: 14px; font-weight: 800;
+    text-decoration: none; padding: 12px 24px; border-radius: 14px;
+    border: 2px solid #C85848; transition: all .25s ease;
+  }
+  .btn-primary { background: #C85848; color: #fff; box-shadow: 0 4px 12px rgba(200,88,72,.28); }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(200,88,72,.35); }
+  .btn-soft { background: #fff; color: #A93322; border-color: #F5CFC5; }
+  .btn-soft:hover { background: #FFF7F3; border-color: #C85848; transform: translateY(-2px); }
+  .photo {
+    background: #fff; border: 1.5px solid #EED8CF; border-radius: 20px;
+    overflow: hidden; box-shadow: 0 4px 14px rgba(135,75,60,.05);
+  }
+  .photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  /* HERO */
+  .hero { display: grid; grid-template-columns: 1.1fr 1fr; gap: 36px; align-items: center; padding: 20px 0 50px; }
+  .hero h1 { font-size: 36px; line-height: 1.3; margin: 14px 0 14px; }
+  .hero h1 span { display: block; font-size: 20px; color: #C85848; margin-top: 4px; }
+  .hero .lead { font-family: 'Comfortaa', cursive; font-weight: 800; font-size: 17px; color: #40241A; margin-bottom: 10px; max-width: 540px; }
+  .hero p.sub { max-width: 540px; }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+  .hero-photos { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .hero-photos .photo { aspect-ratio: 1/1; }
+  .hero-photos .photo:nth-child(even) { transform: translateY(18px); }
+
+  /* SECTIONS */
+  section { margin-bottom: 56px; scroll-margin-top: 20px; }
+  .section-head { margin-bottom: 24px; padding-bottom: 12px; border-bottom: 2px solid #F5CFC5; display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap; }
+  .section-head h2 { font-size: 24px; line-height: 1.35; }
+
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: start; }
+  .two.mid { align-items: center; }
+  .two p { margin-bottom: 14px; }
+  .two p:last-child { margin-bottom: 0; }
+  .duo { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .duo .photo { aspect-ratio: 3/4; }
+  .duo .photo:last-child { transform: translateY(24px); }
+
+  .intro { max-width: none; margin-bottom: 26px; }
+  .grid-4 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
+  .card {
+    background: #fff; border: 1.5px solid #EED8CF; border-radius: 20px; overflow: hidden;
+    display: flex; flex-direction: row; align-items: stretch; box-shadow: 0 4px 14px rgba(135,75,60,.03);
+    transition: all .3s cubic-bezier(.2,.8,.2,1); text-decoration: none;
+  }
+  .card:hover { transform: translateY(-5px); border-color: #DFBCB0; box-shadow: 0 12px 28px rgba(200,88,72,.12); }
+  .card .thumb { position: relative; flex: 0 0 42%; aspect-ratio: 1/1; border-right: 1px solid #F5E6E0; background: #FFF7F3; }
+  .card .thumb img { width: 100%; height: 100%; object-fit: contain; padding: 12px; border-radius: 18px; display: block; }
+  .slides { position: relative; }
+  .slides img { position: absolute; inset: 0; opacity: 0; animation: fadeslide 9s infinite; }
+  .slides img:nth-child(2) { animation-delay: 3s; }
+  .slides img:nth-child(3) { animation-delay: 6s; }
+  @keyframes fadeslide { 0% { opacity: 0; } 6% { opacity: 1; } 33% { opacity: 1; } 39% { opacity: 0; } 100% { opacity: 0; } }
+  @media (prefers-reduced-motion: reduce) { .slides img { animation: none; } .slides img:first-child { opacity: 1; } }
+  .card-body { display: flex; flex-direction: column; justify-content: center; padding: 18px 20px; min-width: 0; }
+  .card-body h3 { font-size: 15.5px; line-height: 1.4; margin-bottom: 6px; color: #40241A; }
+  .card-body p { font-size: 13.5px; line-height: 1.55; color: #6E493D; }
+  .card-meta { margin-top: 10px; font-family: 'Comfortaa', cursive; font-size: 12px; font-weight: 800; color: #C85848; }
+
+  .shots { display: flex; justify-content: center; align-items: center; padding: 18px 0 34px; margin-bottom: 10px; }
+  .shot { padding: 26px 12px 12px; position: relative; width: auto; box-shadow: 0 10px 26px rgba(135,75,60,.18); transition: transform .35s cubic-bezier(.2,.8,.2,1); }
+  .shot::before {
+    content: ""; position: absolute; left: 14px; top: 10px; width: 8px; height: 8px; border-radius: 50%;
+    background: #F8C8BD; box-shadow: 14px 0 #F9E7E2, 28px 0 #EED8CF;
+  }
+  .shot:first-child { transform: rotate(-7deg) translateX(22px); z-index: 1; }
+  .shot:last-child { width: auto; transform: rotate(6deg) translate(-22px, 16px); z-index: 2; margin-left: -56px; }
+  .shot:hover { transform: rotate(0) translateY(-8px); z-index: 3; }
+  .shot .in { border-radius: 10px; overflow: hidden; background: #FFE8E2; }
+  .shot img { width: auto; max-width: none; height: clamp(210px, 24vw, 270px); object-fit: contain; display: block; }
+
+  .panel { background: #FFF7F3; border: 1.5px solid #F5CFC5; border-radius: 20px; padding: 24px; }
+  .quote { font-family: 'Comfortaa', cursive; font-weight: 800; font-size: 17px; line-height: 1.5; color: #40241A; padding-left: 16px; border-left: 3px solid #C85848; margin-bottom: 16px; }
+  .panel ul { list-style: none; }
+  .panel li { padding: 10px 0 10px 22px; position: relative; font-size: 14.5px; line-height: 1.6; border-top: 1px dashed #F0C9BE; color: #58392E; }
+  .panel li:first-of-type { border-top: none; }
+  .panel li::before { content: ""; position: absolute; left: 0; top: 18px; width: 9px; height: 9px; border-radius: 50%; background: #C85848; }
+
+  .values { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 22px; }
+  .value { background: #fff; border: 1.5px solid #EED8CF; border-radius: 20px; padding: 20px 18px; }
+  .value b { display: flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 50%; background: #FFE8E2; color: #C85848; font-size: 17px; margin-bottom: 10px; }
+  .value h3 { font-size: 15.5px; margin-bottom: 6px; line-height: 1.4; }
+  .value p { font-size: 13.5px; line-height: 1.55; }
+
+  .cta { background: #FFE8E2; border: 1.5px solid #F8C8BD; border-radius: 24px; text-align: center; padding: 34px 24px; }
+  .faces { display: flex; justify-content: center; margin-bottom: 18px; }
+  .faces .photo { width: 64px; height: 64px; border-radius: 50%; border: 3px solid #fff; margin-left: -10px; }
+  .faces .photo:first-child { margin-left: 0; }
+  .cta h2 { font-size: 22px; line-height: 1.4; max-width: 640px; margin: 0 auto 18px; }
+
+  /* ===========================================
+     CHÂN TRANG 4 CỘT (LUMICRAFT FOOTER)
+  =========================================== */
+  .lumi-footer-fixed {
+    width: 100%;
+    background: linear-gradient(180deg, #FFF5F1 0%, #F9E5DE 100%);
+    border-top: 2px solid #EBC9BE;
+    padding: 48px 0 0;
+    font-family: 'Nunito', sans-serif;
+    color: #58392E;
+  }
+
+  .footer-inner-wrap {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .footer-4col-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr 0.95fr 1.05fr;
+    gap: 36px;
+    align-items: flex-start;
+    padding-bottom: 42px;
+  }
+
+  .f-heading {
+    font-family: 'Comfortaa', cursive;
+    font-size: 17.5px;
+    font-weight: 800;
+    color: #40241A;
+    margin-bottom: 20px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 32px;
+  }
+
+  .f-heading::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 34px;
+    height: 2.5px;
+    background: linear-gradient(90deg, #C85848, #F497A9);
+    border-radius: 3px;
+  }
+
+  .f-brand-title {
+    font-family: 'Comfortaa', cursive;
+    font-size: 26px;
+    font-weight: 800;
+    color: #40241A;
+    letter-spacing: 1.5px;
+    display: flex;
+    align-items: center;
+    height: 32px;
+    margin-bottom: 16px;
+  }
+
+  .f-brand-badge {
+    display: inline-block;
+    font-family: 'Comfortaa', cursive;
+    font-size: 11px;
+    font-weight: 800;
+    color: #A93322;
+    background: #FFFFFF;
+    border: 1px solid #F3CFC6;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-bottom: 12px;
+    box-shadow: 0 2px 6px rgba(200, 88, 72, 0.06);
+  }
+
+  .f-brand-text {
+    font-size: 14.5px;
+    line-height: 1.65;
+    color: #58392E;
+    margin-bottom: 22px;
+  }
+
+  .f-social-group {
+    display: flex;
+    gap: 12px;
+  }
+
+  .f-social-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #FFFFFF;
+    border: 1.5px solid #E8C7BC;
+    color: #40241A;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: all 0.25s ease;
+    box-shadow: 0 3px 10px rgba(135, 75, 60, 0.08);
+  }
+
+  .f-social-btn svg {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+  }
+
+  .f-social-btn:hover {
+    background: #C85848;
+    color: #FFFFFF;
+    border-color: #C85848;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 14px rgba(200, 88, 72, 0.28);
+  }
+
+  .f-menu-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .f-menu-list li a {
+    color: #58392E;
+    text-decoration: none;
+    font-size: 14.5px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .f-menu-list li a::before {
+    content: '•';
+    color: #C85848;
+    font-weight: 800;
+    transition: transform 0.2s ease;
+  }
+
+  .f-menu-list li a:hover {
+    color: #A93322;
+    transform: translateX(4px);
+  }
+
+  .f-store-info {
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+    font-size: 14px;
+    margin-bottom: 16px;
+  }
+
+  .f-store-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .f-store-badge {
+    background: #FFFFFF;
+    color: #A93322;
+    font-size: 11.5px;
+    font-weight: 800;
+    padding: 3px 9px;
+    border-radius: 7px;
+    white-space: nowrap;
+    border: 1px solid #F0C7BC;
+    box-shadow: 0 1px 4px rgba(135, 75, 60, 0.05);
+  }
+
+  .f-store-desc {
+    color: #58392E;
+    line-height: 1.45;
+  }
+
+  .f-map-box {
+    width: 100%;
+    height: 135px;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 3px solid #FFFFFF;
+    box-shadow: 0 5px 14px rgba(135, 75, 60, 0.1);
+  }
+
+  .f-map-box iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  .f-bottom-bar {
+    background: #F1D7CE;
+    border-top: 1px solid #E3C1B6;
+    padding: 15px 0;
+  }
+
+  .f-bottom-flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 13.5px;
+    color: #4E3127;
+  }
+
+  @media (max-width: 1024px) {
+    .footer-4col-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+    }
+  }
+
+  @media (max-width: 999px) {
+    .grid-4 { grid-template-columns: 1fr; gap: 16px; }
+    .card .thumb { flex-basis: 34%; max-width: 240px; }
+  }
+  @media (max-width: 768px) {
+    .hero, .two { grid-template-columns: 1fr; }
+    .shot img { height: clamp(150px, 40vw, 210px); }
+    .shot:last-child { margin-left: -34px; }
+    .hero h1 { font-size: 28px; }
+    .hero-photos .photo:nth-child(even), .duo .photo:last-child { transform: none; }
+    .values { grid-template-columns: 1fr 1fr; }
+    .footer-4col-grid {
+      grid-template-columns: 1fr;
+      gap: 26px;
+    }
+    .f-heading, .f-brand-title {
+      height: auto;
+    }
+    .f-bottom-flex {
+      flex-direction: column;
+      gap: 6px;
+      text-align: center;
+    }
+  }
+  @media (max-width: 560px) {
+    .card { flex-direction: column; }
+    .card .thumb { flex-basis: auto; max-width: none; border-right: none; border-bottom: 1px solid #F5E6E0; }
+  }
+  @media (max-width: 480px) { .values { grid-template-columns: 1fr; } }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
+</style>
+<script>
+  function openProductCat(catId) {
+    try {
+      localStorage.setItem('lumi_selected_cat', catId);
+      localStorage.setItem('lumi_selected_time', Date.now().toString());
+    } catch (e) {}
+  }
+</script>
+</head>
+<body>
+<div class="container">
+
+  <header class="hero">
+    <div>
+      <span class="tag">Handmade · Phụ kiện · Custom</span>
+      <h1>LumiCraft <span>Phụ kiện handmade</span></h1>
+      <p class="lead">Shop phụ kiện handmade: vòng tay, dây treo điện thoại, vương miện sinh nhật và đồ móc len.</p>
+      <p class="sub">Điểm chạm tinh tế, sắc màu cá tính. LumiCraft làm vòng tay handmade, dây treo điện thoại handmade, đồ móc len handmade và vương miện sinh nhật handmade, nhỏ xinh nhưng mang theo cảm xúc lớn của thế hệ trẻ. Mẫu nào cũng có thể custom theo ý bạn.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="https://www.facebook.com/profile.php?id=61594591964097" target="_blank" rel="noopener noreferrer">Nhắn tin đặt hàng</a>
+        <a class="btn btn-soft" href="https://sites.google.com/view/lumi-craft/s%E1%BA%A3n-ph%E1%BA%A9m" onclick="openProductCat('all')" target="_blank" rel="noopener noreferrer">Xem sản phẩm</a>
+      </div>
+    </div>
+    <div class="hero-photos">
+      <div class="photo"><img src="https://drive.google.com/thumbnail?id=19iC0y4PPvAEGlUQ6ZhfhwCGtWMSd2pKI&sz=w1000" alt="Phụ kiện handmade LumiCraft 1"></div>
+      <div class="photo"><img src="https://drive.google.com/thumbnail?id=16CEW_RVgeXUimYrgj5RrKCcTBrsldp0_&sz=w1000" alt="Phụ kiện handmade LumiCraft 2"></div>
+      <div class="photo"><img src="https://drive.google.com/thumbnail?id=1cKZc8oGrVaOSGjZ6weaADX6HqxDH1p6c&sz=w1000" alt="Phụ kiện handmade LumiCraft 3"></div>
+      <div class="photo"><img src="https://drive.google.com/thumbnail?id=11mU2p5QSx7mUb-VDmpldNoQxZumrf1oy&sz=w1000" alt="Phụ kiện handmade LumiCraft 4"></div>
+    </div>
+  </header>
+
+  <section id="cau-chuyen">
+    <div class="section-head"><h2>LumiCraft – thương hiệu phụ kiện handmade từ niềm đam mê nghệ thuật thủ công</h2></div>
+    <div class="two">
+      <div>
+        <p>Lumi Craft không đơn thuần là một cửa hàng, mà là kết tinh của khát vọng mang đến làn gió mới cho phong cách sống của thế hệ trẻ. Bắt đầu từ tình yêu dành cho những món đồ thủ công nhỏ bé nhưng giàu cảm xúc, Lumi Craft tin rằng: vẻ đẹp thực sự nằm ở sự độc bản và cách mỗi người tự tin khẳng định chất riêng qua từng món đồ gắn liền mỗi ngày.</p>
+        <p>Từ những ý tưởng phác thảo đầu tiên, Lumi Craft từng bước mở rộng thành một không gian sáng tạo với nhiều dòng sản phẩm handmade – nơi mỗi món đồ thể hiện cá tính, gu thẩm mỹ và câu chuyện rất riêng của người sở hữu.</p>
+      </div>
+      <div class="duo">
+        <div class="photo"><img src="https://drive.google.com/thumbnail?id=1DTi9_jwxaYmzH43uy5d4ixtvJPVqAbSf&sz=w1000" alt="LumiCraft thương hiệu phụ kiện handmade 1" loading="lazy"></div>
+        <div class="photo"><img src="https://drive.google.com/thumbnail?id=1ukNhQgIelWwkxWL_DAwR3javS_b2U099&sz=w1000" alt="Sản phẩm handmade LumiCraft 2" loading="lazy"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="san-pham">
+    <div class="section-head">
+      <h2>Phụ kiện handmade tinh tuyển chất liệu, thiết kế độc bản</h2>
+      <a class="btn btn-soft" href="https://sites.google.com/view/lumi-craft/s%E1%BA%A3n-ph%E1%BA%A9m" onclick="openProductCat('all')" target="_blank" rel="noopener noreferrer" style="padding: 8px 18px; font-size: 13px;">Mở danh mục đầy đủ ➔</a>
+    </div>
+    <p class="intro">Lumi Craft tuyển chọn khắt khe từng nguyên liệu đầu vào: hạt gốm, hạt pha lê, charm, sợi sáp, len cotton và nhiều vật liệu thủ công khác. Mỗi mẫu đều có thể custom tone màu hoặc phối charm theo sở thích của bạn.</p>
+    <div class="grid-4">
+      <!-- THẺ 1: MỞ ĐÚNG TAB VÒNG TAY -->
+      <a class="card" href="https://sites.google.com/view/lumi-craft/s%E1%BA%A3n-ph%E1%BA%A9m?cat=bracelet" onclick="openProductCat('bracelet')" target="_blank" rel="noopener noreferrer">
+        <div class="thumb"><img src="https://drive.google.com/thumbnail?id=13n8-d8WmwabdB4sL_zeV-Q8g4b-qCahe&sz=w800" alt="Vòng tay handmade LumiCraft" loading="lazy"></div>
+        <div class="card-body">
+          <h3>Vòng tay handmade (21 mẫu)</h3>
+          <p>Vòng tay thắt nút macrame phối hạt pha lê, charm gốm, nơ bạc và hạt hoa đan theo yêu cầu.</p>
+          <span class="card-meta">Xem dòng Vòng tay →</span>
+        </div>
+      </a>
+      <!-- THẺ 2: MỞ ĐÚNG TAB PHONE CHARM -->
+      <a class="card" href="https://sites.google.com/view/lumi-craft/s%E1%BA%A3n-ph%E1%BA%A9m?cat=phone-charm" onclick="openProductCat('phone-charm')" target="_blank" rel="noopener noreferrer">
+        <div class="thumb"><img src="https://drive.google.com/thumbnail?id=1dZp-JMJexc0esnXJmtIodxyvMBKoOHWl&sz=w800" alt="Dây treo điện thoại handmade" loading="lazy"></div>
+        <div class="card-body">
+          <h3>Dây treo điện thoại (6 mẫu)</h3>
+          <p>Phone charm đan tay kết hợp charm hoa bướm, trăng sao, chuông hoa và cá gốm xinh xắn.</p>
+          <span class="card-meta">Xem dòng Phone Charm →</span>
+        </div>
+      </a>
+      <!-- THẺ 3: MỞ ĐÚNG TAB ĐỒ LEN MÓC -->
+      <a class="card" href="https://sites.google.com/view/lumi-craft/s%E1%BA%A3n-ph%E1%BA%A9m?cat=crochet" onclick="openProductCat('crochet')" target="_blank" rel="noopener noreferrer">
+        <div class="thumb"><img src="https://drive.google.com/thumbnail?id=1nHYKEfc6pfQZfZPk3aRai9VaOiWrYoCc&sz=w800" alt="Đồ móc len handmade" loading="lazy"></div>
+        <div class="card-body">
+          <h3>Đồ len móc handmade (1 mẫu)</h3>
+          <p>Móc khóa len quả bơ đan móc tay tỉ mỉ từ sợi len milk cotton mịn mát, làm điểm nhấn cho túi xách.</p>
+          <span class="card-meta">Xem dòng Đồ len móc →</span>
+        </div>
+      </a>
+      <!-- THẺ 4: MỞ ĐÚNG TAB VƯƠNG MIỆN -->
+      <a class="card" href="https://sites.google.com/view/lumi-craft/s%E1%BA%A3n-ph%E1%BA%A9m?cat=crown" onclick="openProductCat('crown')" target="_blank" rel="noopener noreferrer">
+        <div class="thumb slides">
+          <img src="https://drive.google.com/thumbnail?id=10-8lt-DHOKYCcBUTfU0n12I76ecapuDp&sz=w800" alt="Vương miện Sweet Princess" loading="lazy">
+          <img src="https://drive.google.com/thumbnail?id=1y9lbfhWyHFlA5cAwSlhebSN6QImp8v-e&sz=w800" alt="Vương miện Pastel Dream" loading="lazy">
+          <img src="https://drive.google.com/thumbnail?id=1OvkLKabxog3U79o-7DOaSRFzVDV79yM8&sz=w800" alt="Vương miện Starry Birthday" loading="lazy">
+        </div>
+        <div class="card-body">
+          <h3>Vương miện handmade (3 mẫu)</h3>
+          <p>Các mẫu Sweet Princess, Pastel Dream và Starry Birthday kết ren, nơ satin và charm trang trí cho tiệc sinh nhật.</p>
+          <span class="card-meta">Xem dòng Vương miện →</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <section id="kenh-ban-hang">
+    <div class="section-head"><h2>Mua phụ kiện handmade LumiCraft qua mạng xã hội và website</h2></div>
+    <div class="two mid">
+      <div>
+        <p>Lumi Craft xây dựng hệ thống kênh đa nền tảng từ Facebook, Website đến các kênh mạng xã hội. Mỗi hình ảnh sản phẩm, video quy trình làm thủ công hay góc phối đồ đều được đầu tư chỉn chu, mang đến cảm giác chân thực và gần gũi.</p>
+        <p>Không ngừng lắng nghe xu hướng, Lumi Craft liên tục cập nhật bộ sưu tập mới theo mùa và chủ đề, để bạn trẻ ở bất kỳ đâu cũng dễ dàng sở hữu những món đồ handmade dẫn đầu xu hướng.</p>
+      </div>
+      <div class="shots">
+        <div class="photo shot"><div class="in"><img src="https://drive.google.com/thumbnail?id=19zNXtbykyVAQxzpPvlM_MXvIbJbhFV0O&sz=w800" alt="Trang TikTok LumiCraft" loading="lazy"></div></div>
+        <div class="photo shot"><div class="in"><img src="https://drive.google.com/thumbnail?id=1WzBpuw__I9rrOYpgQ4By9pBiXMBD3Fvx&sz=w800" alt="Fanpage Facebook LumiCraft" loading="lazy"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="dich-vu">
+    <div class="section-head"><h2>Dịch vụ tận tâm cho từng đơn phụ kiện handmade</h2></div>
+    <div class="two">
+      <div class="panel">
+        <div class="quote">“Mỗi khách hàng đều xứng đáng với những tạo tác chỉn chu nhất.”</div>
+        <ul>
+          <li>Đóng gói tinh tế với hộp quà pastel, túi zip bảo quản và thiệp cảm ơn kèm hướng dẫn bảo quản.</li>
+          <li>Đội ngũ tư vấn nhiệt tình: hỗ trợ chọn mẫu, phối màu, đo size (với vòng tay) và lên ý tưởng thiết kế riêng.</li>
+          <li>Hỗ trợ bảo hành, chỉnh sửa và thay mới chi tiết linh hoạt cho các sản phẩm handmade.</li>
+        </ul>
+      </div>
+      <div class="duo">
+        <div class="photo"><img src="https://drive.google.com/thumbnail?id=1WrQKF5oQEZ12kODEm2OUwOz-NuL2xppA&sz=w1000" alt="Dịch vụ tận tâm LumiCraft 1" loading="lazy"></div>
+        <div class="photo"><img src="https://drive.google.com/thumbnail?id=1pbl3G4t1yULxPxT_cqFeUXNL_F54nGnD&sz=w1000" alt="Dịch vụ tận tâm LumiCraft 2" loading="lazy"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="van-hoa">
+    <div class="section-head"><h2>Văn hóa LumiCraft</h2></div>
+    <p class="intro" style="margin-bottom:0">Văn hóa không chỉ là những điều được viết ra, mà còn là cách chúng mình làm việc, sáng tạo và đồng hành cùng khách hàng. Mỗi sản phẩm handmade đều được tạo nên bằng sự chỉn chu, trách nhiệm và tinh thần luôn muốn học hỏi.</p>
+    <div class="values">
+      <div class="value"><b>♡</b><h3>Hướng tới khách hàng</h3><p>Luôn lắng nghe nhu cầu, chăm chút từng sản phẩm và cố gắng mang đến trải nghiệm tốt nhất.</p></div>
+      <div class="value"><b>♡</b><h3>Chính trực và trách nhiệm</h3><p>Làm bằng sự nghiêm túc, rõ ràng và trách nhiệm với những gì LumiCraft đã cam kết.</p></div>
+      <div class="value"><b>♡</b><h3>Sẵn sàng thay đổi và học hỏi</h3><p>Không ngừng thử ý tưởng mới, cải thiện từng chi tiết và học hỏi từ mỗi trải nghiệm.</p></div>
+      <div class="value"><b>♡</b><h3>Hợp tác, yêu thương</h3><p>Những điều đẹp nhất được tạo nên khi mọi người cùng hỗ trợ, chia sẻ và đồng hành.</p></div>
+      <div class="value"><b>♡</b><h3>Hướng tới sự bền vững</h3><p>Tạo nên những sản phẩm có giá trị, được chăm chút để đồng hành cùng khách hàng lâu dài.</p></div>
+    </div>
+  </section>
+
+  <section id="lien-he" style="margin-bottom:0;">
+    <div class="cta">
+      <div class="faces" aria-hidden="true">
+        <div class="photo"><img src="https://drive.google.com/thumbnail?id=1uvviXjKrIPK68W_iYSfR-7S5M6MvlnIM&sz=w200" alt="" onerror="this.remove()"></div>
+        <div class="photo"><img src="https://drive.google.com/thumbnail?id=1x_FpmDy6zgbpKUmPIAGeGAxAYOYqeAgv&sz=w200" alt="" onerror="this.remove()"></div>
+        <div class="photo"><img src="https://drive.google.com/thumbnail?id=1QiZIKJDStHQ23tym1jK1VdfxdF6eCOxC&sz=w200" alt="" onerror="this.remove()"></div>
+        <div class="photo"><img src="https://drive.google.com/thumbnail?id=1gHFx1njafAv3uUjFDqB_1gJSDgCoIvsn&sz=w200" alt="" onerror="this.remove()"></div>
+      </div>
+      <h2>Follow page để đón chờ thêm nhiều món handmade mới của Lumi nhen</h2>
+      <a class="btn btn-primary" href="https://www.facebook.com/profile.php?id=61594591964097" target="_blank" rel="noopener noreferrer">Khám phá ngay</a>
+    </div>
+  </section>
+
+</div>
+
+  <!-- CHÂN TRANG 4 CỘT -->
+  <footer class="lumi-footer-fixed">
+    <div class="footer-inner-wrap">
+
+      <div class="footer-4col-grid">
+
+        <!-- CỘT 1: THƯƠNG HIỆU -->
+        <div>
+          <span class="f-brand-title">LUMICRAFT</span>
+          <span class="f-brand-badge">Craft Your Own Shine</span>
+          <p class="f-brand-text">Thương hiệu phụ kiện thủ công ngọt ngào. Nơi những hạt charm nhỏ bé lưu giữ phong cách và câu chuyện riêng biệt của bạn.</p>
+          
+          <div class="f-social-group">
+            <!-- Icon Facebook -->
+            <a href="https://www.facebook.com/profile.php?id=61594591964097" target="_blank" rel="noopener noreferrer" class="f-social-btn" aria-label="Facebook">
+              <svg viewBox="0 0 24 24"><path d="M14 13.5h2.5l1-4H14v-2c0-1.03 0-2 2-2h1.5V2.14c-.326-.043-1.557-.14-2.857-.14C11.928 2 10 3.657 10 6.7v2.8H7v4h3V22h4v-8.5z"/></svg>
+            </a>
+            <!-- Icon Instagram -->
+            <a href="https://www.facebook.com/profile.php?id=61594591964097" target="_blank" rel="noopener noreferrer" class="f-social-btn" aria-label="Instagram">
+              <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+            <!-- Icon TikTok -->
+            <a href="https://www.facebook.com/profile.php?id=61594591964097" target="_blank" rel="noopener noreferrer" class="f-social-btn" aria-label="TikTok">
+              <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- CỘT 2: VỀ LUMICRAFT -->
+        <div>
+          <h3 class="f-heading">Về LumiCraft</h3>
+          <ul class="f-menu-list">
+            <li><a href="https://sites.google.com/view/lumi-craft/blog/cau-chuyen-thuong-hieu" target="_blank" rel="noopener noreferrer">Câu chuyện thương hiệu</a></li>
+            <li><a href="https://sites.google.com/view/lumi-craft/s%E1%BA%A3n-ph%E1%BA%A9m" target="_blank" rel="noopener noreferrer">Bộ sưu tập mới nhất</a></li>
+            <li><a href="https://sites.google.com/view/lumi-craft/blog/huong-dan-do-co-tay-chon-size" target="_blank" rel="noopener noreferrer">Cẩm nang đo size &amp; bảo quản</a></li>
+            <li><a href="https://sites.google.com/view/lumi-craft/blog" target="_blank" rel="noopener noreferrer">Góc blog &amp; mẹo phối đồ</a></li>
+          </ul>
+        </div>
+
+        <!-- CỘT 3: DANH MỤC SẢN PHẨM -->
+        <div>
+          <h3 class="f-heading">Danh Mục Sản Phẩm</h3>
+          <ul class="f-menu-list">
+            <li><a href="https://sites.google.com/view/lumi-craft/s%E1%BA%A3n-ph%E1%BA%A9m" target="_blank" rel="noopener noreferrer">Vòng Tay Charm Thủ Công</a></li>
+            <li><a href="https://sites.google.com/view/lumi-craft/s%E1%BA%A3n-ph%E1%BA%A9m" target="_blank" rel="noopener noreferrer">Dây Treo Phone Charm</a></li>
+            <li><a href="https://sites.google.com/view/lumi-craft/s%E1%BA%A3n-ph%E1%BA%A9m" target="_blank" rel="noopener noreferrer">Phụ Kiện Đồ Len Móc</a></li>
+            <li><a href="https://sites.google.com/view/lumi-craft/s%E1%BA%A3n-ph%E1%BA%A9m" target="_blank" rel="noopener noreferrer">Vương Miện Handmade</a></li>
+            <li><a href="https://sites.google.com/view/lumi-craft/ch%E1%BB%8Dn-charm" target="_blank" rel="noopener noreferrer">Tự Phối Charm Mẫu Riêng</a></li>
+          </ul>
+        </div>
+
+        <!-- CỘT 4: CỬA HÀNG LUMICRAFT -->
+        <div>
+          <h3 class="f-heading">Cửa Hàng LumiCraft</h3>
+          <div class="f-store-info">
+            <div class="f-store-row">
+              <span class="f-store-badge">Địa chỉ</span>
+              <span class="f-store-desc">79 Hồ Tùng Mậu, Cầu Giấy, Hà Nội</span>
+            </div>
+            <div class="f-store-row">
+              <span class="f-store-badge">Hotline</span>
+              <span class="f-store-desc">0123 456 78910</span>
+            </div>
+            <div class="f-store-row">
+              <span class="f-store-badge">Email</span>
+              <a href="mailto:lumicraftvn@gmail.com" class="f-store-desc" style="color:#A93322; font-weight:700; text-decoration:none;">lumicraftvn@gmail.com</a>
+            </div>
+          </div>
+
+          <div class="f-map-box">
+            <iframe
+              src="https://www.google.com/maps?q=79%20H%E1%BB%93%20T%C3%B9ng%20M%E1%BA%ADu%2C%20H%C3%A0%20N%E1%BB%99i&output=embed"
+              loading="lazy"
+              allowfullscreen>
+            </iframe>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- THANH COPYRIGHT -->
+    <div class="f-bottom-bar">
+      <div class="footer-inner-wrap f-bottom-flex">
+        <span>© 2026 <strong>LUMICRAFT STUDIO</strong>. All rights reserved.</span>
+        <span>CRAFT YOUR OWN SHINE ♡</span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

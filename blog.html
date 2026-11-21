@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog &amp; Cẩm Nang - LumiCraft Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700;800&family=Nunito:wght@600;700;800&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    html, body {
+      margin: 0 !important;
+      padding: 0 !important;
+      width: 100%;
+      background-color: #FFFDFC;
+      font-family: 'Quicksand', sans-serif;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    .clickable-card { cursor: pointer; }
+
+    /* ===========================================
+       CHÂN TRANG 4 CỘT (LUMICRAFT FOOTER)
+    =========================================== */
+    .lumi-footer-fixed {
+      width: 100%;
+      background: linear-gradient(180deg, #FFF5F1 0%, #F9E5DE 100%);
+      border-top: 2px solid #EBC9BE;
+      padding: 48px 0 0;
+      font-family: 'Nunito', sans-serif;
+      color: #58392E;
+      box-sizing: border-box;
+    }
+
+    .lumi-footer-fixed *, .lumi-footer-fixed *::before, .lumi-footer-fixed *::after {
+      box-sizing: border-box;
+    }
+
+    .footer-inner-wrap {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .footer-4col-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr 0.95fr 1.05fr;
+      gap: 36px;
+      align-items: flex-start;
+      padding-bottom: 42px;
+    }
+
+    .f-heading {
+      font-family: 'Comfortaa', cursive;
+      font-size: 17.5px;
+      font-weight: 800;
+      color: #40241A;
+      margin: 0 0 20px 0;
+      position: relative;
+      display: flex;
+      align-items: center;
+      height: 32px;
+    }
+
+    .f-heading::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 34px;
+      height: 2.5px;
+      background: linear-gradient(90deg, #C85848, #F497A9);
+      border-radius: 3px;
+    }
+
+    .f-brand-title {
+      font-family: 'Comfortaa', cursive;
+      font-size: 26px;
+      font-weight: 800;
+      color: #40241A;
+      letter-spacing: 1.5px;
+      display: flex;
+      align-items: center;
+      height: 32px;
+      margin: 0 0 16px 0;
+    }
+
+    .f-brand-badge {
+      display: inline-block;
+      font-family: 'Comfortaa', cursive;
+      font-size: 11px;
+      font-weight: 800;
+      color: #A93322;
+      background: #FFFFFF;
+      border: 1px solid #F3CFC6;
+      padding: 3px 10px;
+      border-radius: 20px;
+      margin-bottom: 12px;
+      box-shadow: 0 2px 6px rgba(200, 88, 72, 0.06);
+    }
+
+    .f-brand-text {
+      font-size: 14.5px;
+      line-height: 1.65;
+      color: #58392E;
+      margin: 0 0 22px 0;
+      font-weight: 600;
+    }
+
+    .f-social-group {
+      display: flex;
+      gap: 12px;
+    }
+
+    .f-social-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #FFFFFF;
+      border: 1.5px solid #E8C7BC;
+      color: #40241A;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      box-shadow: 0 3px 10px rgba(135, 75, 60, 0.08);
+    }
+
+    .f-social-btn svg {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+    }
+
+    .f-social-btn:hover {
+      background: #C85848;
+      color: #FFFFFF;
+      border-color: #C85848;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 14px rgba(200, 88, 72, 0.28);
+    }
+
+    .f-menu-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .f-menu-list li a {
+      color: #58392E;
+      text-decoration: none;
+      font-size: 14.5px;
+      font-weight: 600;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .f-menu-list li a::before {
+      content: '•';
+      color: #C85848;
+      font-weight: 800;
+      transition: transform 0.2s ease;
+    }
+
+    .f-menu-list li a:hover {
+      color: #A93322;
+      transform: translateX(4px);
+    }
+
+    .f-store-info {
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+      font-size: 14px;
+      margin-bottom: 16px;
+      font-weight: 600;
+    }
+
+    .f-store-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .f-store-badge {
+      background: #FFFFFF;
+      color: #A93322;
+      font-size: 11.5px;
+      font-weight: 800;
+      padding: 3px 9px;
+      border-radius: 7px;
+      white-space: nowrap;
+      border: 1px solid #F0C7BC;
+      box-shadow: 0 1px 4px rgba(135, 75, 60, 0.05);
+    }
+
+    .f-store-desc {
+      color: #58392E;
+      line-height: 1.45;
+    }
+
+    .f-map-box {
+      width: 100%;
+      height: 135px;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 3px solid #FFFFFF;
+      box-shadow: 0 5px 14px rgba(135, 75, 60, 0.1);
+    }
+
+    .f-map-box iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .f-bottom-bar {
+      background: #F1D7CE;
+      border-top: 1px solid #E3C1B6;
+      padding: 15px 0;
+    }
+
+    .f-bottom-flex {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 13.5px;
+      color: #4E3127;
+      font-weight: 600;
+    }
+
+    @media (max-width: 1024px) {
+      .footer-4col-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .footer-4col-grid {
+        grid-template-columns: 1fr;
+        gap: 26px;
+      }
+      .f-heading, .f-brand-title {
+        height: auto;
+      }
+      .f-bottom-flex {
+        flex-direction: column;
+        gap: 6px;
+        text-align: center;
+      }
+    }
+  </style>
+  <script>
+    function goToPost(url) {
+      window.open(url, '_blank');
+    }
+  </script>
+</head>
+<body class="text-[#4A3E3D] bg-[#FFFDFC]">
+
+  <div class="max-w-6xl mx-auto px-3 sm:px-6 pt-6 pb-14 space-y-14">
+
+    <!-- ==================== PHẦN 1: HERO SPOTLIGHT ==================== -->
+    <section class="grid grid-cols-1 md:grid-cols-12 gap-6 lg:gap-8 items-start">
+      
+      <!-- CỘT TRÁI: BÀI 2 TIÊU ĐIỂM (ĐO SIZE TAY) -->
+      <article onclick="goToPost('https://sites.google.com/view/lumi-craft/blog/huong-dan-do-co-tay-chon-size')" class="clickable-card md:col-span-7 flex flex-col justify-between group">
+        <div class="space-y-3.5">
+          <div class="w-full aspect-[16/9] bg-[#FFF5F7] border border-[#F8D2DA] rounded-xl overflow-hidden group-hover:border-[#E27389] transition-all shadow-xs">
+            <img src="https://lh3.googleusercontent.com/d/1pgORsU1jjh1jsiKm7aJhSQ1L87uag7F3=w1600" 
+                 alt="Hướng dẫn đo cổ tay và chọn size vòng" 
+                 class="w-full h-full object-cover object-center block">
+          </div>
+
+          <div class="space-y-2">
+            <div class="flex items-center space-x-2">
+              <span class="text-[10px] font-bold uppercase tracking-wider text-[#E27389] bg-[#FFEAEF] px-2 py-0.5 rounded">
+                SIZE GUIDE
+              </span>
+              <span class="text-xs text-[#A08886] font-medium">3 phút đọc</span>
+            </div>
+
+            <h1 class="text-xl sm:text-2xl lg:text-3xl font-bold text-[#4A3E3D] group-hover:text-[#E27389] transition-colors leading-[1.35]">
+              Hướng Dẫn Đo Cổ Tay &amp; Chọn Size Vòng Handmade Chuẩn Xác
+            </h1>
+
+            <p class="text-xs sm:text-sm text-[#7A6260] font-medium leading-[1.6]">
+              Mẹo 2 bước đo đơn giản tại nhà bằng thước dây hoặc dải giấy giúp bạn chọn đúng kích thước vòng tay ôm vừa vặn và thoải mái nhất.
+            </p>
+          </div>
+        </div>
+
+        <div class="pt-3 flex items-center space-x-2.5 text-xs font-bold text-[#4A3E3D]">
+          <div class="w-7 h-7 rounded-full bg-[#FFEAEF] border border-[#F8D2DA] flex items-center justify-center text-[11px] text-[#E27389]">
+            HN
+          </div>
+          <span>Hoàng Nam · <span class="text-[#A08886] font-normal">Cẩm nang phụ kiện</span></span>
+        </div>
+      </article>
+
+      <!-- CỘT PHẢI: TRENDING VÀ 3 BÀI CÒN LẠI (BÀI 3, 4, 5) -->
+      <div class="md:col-span-5 space-y-4">
+        
+        <!-- BANNER TRENDING -->
+        <div class="w-full bg-[#FFF5F7] border border-[#F8D2DA] rounded-xl p-4 sm:p-5 shadow-xs">
+          <span class="text-[9px] font-bold tracking-widest uppercase text-[#E27389] block">CẨM NANG HỮU ÍCH</span>
+          <h3 class="text-base sm:text-lg font-bold text-[#4A3E3D] tracking-tight mt-0.5">Trending on LumiCraft</h3>
+          <p class="text-[11px] text-[#7A6260] font-medium mt-1">Những chia sẻ hữu ích nhất giúp bạn chọn và chăm sóc phụ kiện handmade</p>
+        </div>
+
+        <!-- 3 BÀI NHỎ (BÀI 3, BÀI 4, BÀI 5) -->
+        <div class="flex flex-col space-y-3 divide-y divide-[#F8D2DA]/50">
+          
+          <!-- BÀI 3: BẢO QUẢN -->
+          <article onclick="goToPost('https://sites.google.com/view/lumi-craft/blog/cach-bao-quan-vong-tay-handmade')" class="clickable-card pt-3 first:pt-0 group flex items-center space-x-3 sm:space-x-4">
+            <div class="w-28 sm:w-32 aspect-[4/3] flex-shrink-0 bg-[#FFF5F7] border border-[#F8D2DA] rounded-lg overflow-hidden group-hover:border-[#E27389] transition-all shadow-xs">
+              <img src="https://lh3.googleusercontent.com/d/1PpEMHN_4nwkAuXbPp_KyK58pwVe2r_rt=w1600" 
+                   alt="Bảo quản vòng tay" 
+                   class="w-full h-full object-cover object-center block">
+            </div>
+            <div class="space-y-1 flex-1 min-w-0">
+              <span class="text-[9px] font-bold uppercase tracking-wider text-[#E27389] bg-[#FFEAEF] px-1.5 py-0.5 rounded">
+                CARE TIPS
+              </span>
+              <h4 class="text-xs sm:text-sm font-bold text-[#4A3E3D] group-hover:text-[#E27389] transition-colors leading-[1.35] line-clamp-2">
+                Cách Bảo Quản Vòng Tay Handmade Luôn Sáng Bóng Bền Đẹp
+              </h4>
+              <p class="text-[10px] text-[#A08886] font-medium">Như Nguyệt · 4 phút đọc</p>
+            </div>
+          </article>
+
+          <!-- BÀI 4: PHỐI VÒNG & QUÀ TẶNG -->
+          <article onclick="goToPost('https://sites.google.com/view/lumi-craft/blog/goi-y-phoi-vong-tay-phong-cach-qua-tang')" class="clickable-card pt-3 group flex items-center space-x-3 sm:space-x-4">
+            <div class="w-28 sm:w-32 aspect-[4/3] flex-shrink-0 bg-[#FFF5F7] border border-[#F8D2DA] rounded-lg overflow-hidden group-hover:border-[#E27389] transition-all shadow-xs">
+              <img src="https://lh3.googleusercontent.com/d/17XBvsvHurktweVvVlyMfs6IPz4IP_vRL=w1600" 
+                   alt="Phối vòng phong cách" 
+                   class="w-full h-full object-cover object-center block">
+            </div>
+            <div class="space-y-1 flex-1 min-w-0">
+              <span class="text-[9px] font-bold uppercase tracking-wider text-[#E27389] bg-[#FFEAEF] px-1.5 py-0.5 rounded">
+                STYLING &amp; GIFT
+              </span>
+              <h4 class="text-xs sm:text-sm font-bold text-[#4A3E3D] group-hover:text-[#E27389] transition-colors leading-[1.35] line-clamp-2">
+                Gợi Ý Phối Vòng Tay Theo Phong Cách &amp; Quà Tặng Bạn Thân
+              </h4>
+              <p class="text-[10px] text-[#A08886] font-medium">Thảo Quỳnh · 4 phút đọc</p>
+            </div>
+          </article>
+
+          <!-- BÀI 5: HẬU TRƯỜNG -->
+          <article onclick="goToPost('https://sites.google.com/view/lumi-craft/blog/hau-truong-lam-vong-tay-lumicraft')" class="clickable-card pt-3 group flex items-center space-x-3 sm:space-x-4">
+            <div class="w-28 sm:w-32 aspect-[4/3] flex-shrink-0 bg-[#FFF5F7] border border-[#F8D2DA] rounded-lg overflow-hidden group-hover:border-[#E27389] transition-all shadow-xs">
+              <img src="https://lh3.googleusercontent.com/d/1rNvJMEDQqN3FKazrW8jj5N0RDG6hRX00=w1600" 
+                   alt="Hậu trường làm vòng tay" 
+                   class="w-full h-full object-cover object-center block">
+            </div>
+            <div class="space-y-1 flex-1 min-w-0">
+              <span class="text-[9px] font-bold uppercase tracking-wider text-[#E27389] bg-[#FFEAEF] px-1.5 py-0.5 rounded">
+                BEHIND THE SCENES
+              </span>
+              <h4 class="text-xs sm:text-sm font-bold text-[#4A3E3D] group-hover:text-[#E27389] transition-colors leading-[1.35] line-clamp-2">
+                Hậu Trường: Một Chiếc Vòng Tay LumiCraft Được Hoàn Thiện Thế Nào?
+              </h4>
+              <p class="text-[10px] text-[#A08886] font-medium">Lumi Team · 4 phút đọc</p>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ==================== PHẦN 2: MOST POPULAR POSTS ==================== -->
+    <section class="space-y-8 pt-8 border-t border-[#F8D2DA]/60">
+      <div class="flex items-center justify-between">
+        <div>
+          <h2 class="text-xl sm:text-2xl font-bold text-[#4A3E3D] uppercase tracking-tight">
+            Most Popular Posts
+          </h2>
+          <p class="text-xs text-[#7A6260] font-medium mt-1">Những bài viết được bạn đọc LumiCraft quan tâm và chia sẻ nhiều nhất</p>
+        </div>
+        <span class="text-xs font-bold text-[#E27389] uppercase tracking-wider hidden sm:inline-block">Lumi Editors' Pick</span>
+      </div>
+
+      <!-- LƯỚI 5 KHỐI (BÀI 5 + HỘP EMAIL + BÀI 2 + BÀI 3 + BÀI 4) -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 items-start">
+        
+        <!-- BÀI 5: HẬU TRƯỜNG -->
+        <article onclick="goToPost('https://sites.google.com/view/lumi-craft/blog/hau-truong-lam-vong-tay-lumicraft')" class="clickable-card group block space-y-3">
+          <div class="w-full aspect-[16/10] bg-[#FFF5F7] border border-[#F8D2DA] rounded-xl overflow-hidden group-hover:border-[#E27389] transition-all shadow-xs">
+            <img src="https://lh3.googleusercontent.com/d/1rNvJMEDQqN3FKazrW8jj5N0RDG6hRX00=w1600" 
+                 alt="Hậu trường làm vòng tay" 
+                 class="w-full h-full object-cover object-center block">
+          </div>
+          <div class="space-y-1.5">
+            <span class="text-[10px] font-bold uppercase tracking-wider text-[#E27389] bg-[#FFEAEF] px-2 py-0.5 rounded">
+              BEHIND THE SCENES
+            </span>
+            <h3 class="text-base font-bold text-[#4A3E3D] group-hover:text-[#E27389] transition-colors leading-[1.35] line-clamp-2">
+              Hậu Trường: Một Chiếc Vòng Tay LumiCraft Được Hoàn Thiện Thế Nào?
+            </h3>
+            <p class="text-xs text-[#7A6260] font-medium leading-[1.6] line-clamp-2">
+              Quy trình tuyển chọn hạt cườm, tỉ mỉ đan từng nút thắt và kiểm tra độ bền trước khi gửi đi.
+            </p>
+            <div class="pt-1 flex items-center justify-between text-xs">
+              <span class="text-[11px] text-[#A08886]">Lumi Team</span>
+              <span class="font-bold text-[#E27389] group-hover:underline">Đọc tiếp →</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- HỘP EMAIL TỰ ĐỘNG GỬI VOUCHER -->
+        <div class="border border-[#F8D2DA] bg-[#FFF5F7] p-5 sm:p-6 rounded-xl shadow-xs space-y-3.5 self-start">
+          <div class="space-y-1">
+            <div class="w-7 h-7 bg-white border border-[#F8D2DA] rounded-md flex items-center justify-center text-[#E27389] text-xs font-bold shadow-xs">
+              ✉
+            </div>
+            <h3 class="text-base font-bold text-[#4A3E3D] leading-snug">
+              Nhận Voucher Giảm 10% &amp; Mẫu Mới
+            </h3>
+            <p class="text-xs text-[#7A6260] font-medium leading-[1.5]">
+              Cập nhật sớm nhất các bộ sưu tập giới hạn và nhận ngay mã ưu đãi 10% gửi thẳng vào hộp thư.
+            </p>
+          </div>
+
+          <!-- Iframe ngầm nhận kết quả mà không chuyển hướng trang -->
+          <iframe name="hidden_submit_iframe" id="hidden_submit_iframe" style="display:none;" onload="if(submitted){onEmailSuccess();}"></iframe>
+
+          <form id="lumiEmailForm" 
+                action="https://script.google.com/macros/s/AKfycbx4G5dpJ2B44jD84vfyGXFCecT6gTW3MRfI0F7xxb7MzpnD8PX_-kVnFujjyOvr2DE/exec" 
+                method="POST" 
+                target="hidden_submit_iframe" 
+                onsubmit="submitted=true; document.getElementById('submitBtn').innerText='ĐANG GỬI MÃ...'; document.getElementById('submitBtn').disabled=true;">
+            
+            <div class="space-y-2 pt-1">
+              <input type="email" name="email" id="emailInput" placeholder="Nhập địa chỉ email của bạn..." required 
+                     class="w-full border border-[#F8D2DA] bg-white rounded-md px-3 py-2 text-xs text-[#4A3E3D] font-medium focus:outline-none focus:border-[#E27389] transition-colors">
+              <button type="submit" id="submitBtn" 
+                      class="w-full py-2.5 text-xs font-bold uppercase tracking-widest text-white bg-gradient-to-r from-[#F497A9] to-[#E27389] hover:from-[#E27389] hover:to-[#D25870] rounded-md shadow-xs transition-all cursor-pointer">
+                ĐĂNG KÝ NGAY
+              </button>
+            </div>
+          </form>
+
+          <div id="formMsg" class="hidden text-center text-xs font-bold p-3 rounded-md shadow-xs"></div>
+        </div>
+
+        <!-- BÀI 2: ĐO SIZE TAY -->
+        <article onclick="goToPost('https://sites.google.com/view/lumi-craft/blog/huong-dan-do-co-tay-chon-size')" class="clickable-card group block space-y-3">
+          <div class="w-full aspect-[16/10] bg-[#FFF5F7] border border-[#F8D2DA] rounded-xl overflow-hidden group-hover:border-[#E27389] transition-all shadow-xs">
+            <img src="https://lh3.googleusercontent.com/d/1pgORsU1jjh1jsiKm7aJhSQ1L87uag7F3=w1600" 
+                 alt="Đo size tay" 
+                 class="w-full h-full object-cover object-center block">
+          </div>
+          <div class="space-y-1.5">
+            <span class="text-[10px] font-bold uppercase tracking-wider text-[#E27389] bg-[#FFEAEF] px-2 py-0.5 rounded">
+              SIZE GUIDE
+            </span>
+            <h3 class="text-base font-bold text-[#4A3E3D] group-hover:text-[#E27389] transition-colors leading-[1.35] line-clamp-2">
+              Hướng Dẫn Đo Cổ Tay &amp; Chọn Size Vòng Tay Handmade
+            </h3>
+            <p class="text-xs text-[#7A6260] font-medium leading-[1.6] line-clamp-2">
+              Cách đo đơn giản bằng thước dây hoặc dải giấy giúp chiếc vòng luôn ôm vừa cổ tay nhất.
+            </p>
+            <div class="pt-1 flex items-center justify-between text-xs">
+              <span class="text-[11px] text-[#A08886]">Hoàng Nam</span>
+              <span class="font-bold text-[#E27389] group-hover:underline">Đọc tiếp →</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- BÀI 3: BẢO QUẢN -->
+        <article onclick="goToPost('https://sites.google.com/view/lumi-craft/blog/cach-bao-quan-vong-tay-handmade')" class="clickable-card group block space-y-3">
+          <div class="w-full aspect-[16/10] bg-[#FFF5F7] border border-[#F8D2DA] rounded-xl overflow-hidden group-hover:border-[#E27389] transition-all shadow-xs">
+            <img src="https://lh3.googleusercontent.com/d/1PpEMHN_4nwkAuXbPp_KyK58pwVe2r_rt=w1600" 
+                 alt="Bảo quản vòng tay" 
+                 class="w-full h-full object-cover object-center block">
+          </div>
+          <div class="space-y-1.5">
+            <span class="text-[10px] font-bold uppercase tracking-wider text-[#E27389] bg-[#FFEAEF] px-2 py-0.5 rounded">
+              CARE TIPS
+            </span>
+            <h3 class="text-base font-bold text-[#4A3E3D] group-hover:text-[#E27389] transition-colors leading-[1.35] line-clamp-2">
+              Cách Bảo Quản Vòng Tay Handmade Luôn Sáng Bóng Bền Đẹp
+            </h3>
+            <p class="text-xs text-[#7A6260] font-medium leading-[1.6] line-clamp-2">
+              Những nguyên tắc giữ cho dây sáp bền chắc và hạt charm không bị xước hay mờ màu.
+            </p>
+            <div class="pt-1 flex items-center justify-between text-xs">
+              <span class="text-[11px] text-[#A08886]">Như Nguyệt</span>
+              <span class="font-bold text-[#E27389] group-hover:underline">Đọc tiếp →</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- BÀI 4: PHỐI VÒNG -->
+        <article onclick="goToPost('https://sites.google.com/view/lumi-craft/blog/goi-y-phoi-vong-tay-phong-cach-qua-tang')" class="clickable-card group block space-y-3">
+          <div class="w-full aspect-[16/10] bg-[#FFF5F7] border border-[#F8D2DA] rounded-xl overflow-hidden group-hover:border-[#E27389] transition-all shadow-xs">
+            <img src="https://lh3.googleusercontent.com/d/17XBvsvHurktweVvVlyMfs6IPz4IP_vRL=w1600" 
+                 alt="Phối vòng phong cách" 
+                 class="w-full h-full object-cover object-center block">
+          </div>
+          <div class="space-y-1.5">
+            <span class="text-[10px] font-bold uppercase tracking-wider text-[#E27389] bg-[#FFEAEF] px-2 py-0.5 rounded">
+              STYLING &amp; GIFT
+            </span>
+            <h3 class="text-base font-bold text-[#4A3E3D] group-hover:text-[#E27389] transition-colors leading-[1.35] line-clamp-2">
+              Gợi Ý Phối Vòng Tay Theo Phong Cách &amp; Quà Tặng Bạn Thân
+            </h3>
+            <p class="text-xs text-[#7A6260] font-medium leading-[1.6] line-clamp-2">
+              Ý tưởng phối combo vòng tay cùng phone charm đồng điệu làm quà tặng ý nghĩa.
+            </p>
+            <div class="pt-1 flex items-center justify-between text-xs">
+              <span class="text-[11px] text-[#A08886]">Thảo Quỳnh</span>
+              <span class="font-bold text-[#E27389] group-hover:underline">Đọc tiếp →</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ==================== PHẦN 3: BANNER CTA CHỌN CHARM ==================== -->
+    <section class="pt-2">
+      <div class="relative w-full overflow-hidden border border-[#F8D2DA] bg-[#FFF5F7] rounded-xl min-h-[260px] sm:min-h-[300px] flex items-center justify-center p-6 sm:p-10 shadow-xs">
+        
+        <div class="absolute inset-0 bg-gradient-to-r from-[#FFF5F7]/95 via-[#FFFDFC]/90 to-[#FFEAEF]/85"></div>
+
+        <div class="relative z-10 max-w-2xl mx-auto text-center space-y-3.5">
+          <span class="inline-block text-[10px] font-bold tracking-widest uppercase text-[#E27389] bg-white border border-[#F8D2DA] px-3.5 py-1 rounded shadow-xs">
+            LUMICRAFT ATELIER STUDIO
+          </span>
+          
+          <h2 class="text-xl sm:text-3xl font-bold text-[#4A3E3D] uppercase tracking-tight leading-[1.3]">
+            Tự Tay Sáng Tạo Chuỗi Charm Độc Bản Của Riêng Bạn
+          </h2>
+          
+          <p class="text-xs sm:text-sm text-[#7A6260] font-medium leading-[1.6] max-w-lg mx-auto">
+            Khám phá khay nguyên liệu phong phú từ hoa charm, bướm pastel đến hạt gốm thủ công. Phối theo ý thích và duyệt ảnh thật trước khi giao hàng.
+          </p>
+
+          <div class="pt-2">
+            <button onclick="goToPost('https://sites.google.com/view/lumi-craft/ch%E1%BB%8Dn-charm')" class="cursor-pointer py-3 px-8 text-xs font-bold uppercase tracking-widest text-white bg-gradient-to-r from-[#F497A9] to-[#E27389] hover:from-[#E27389] hover:to-[#D25870] rounded-md shadow-xs hover:scale-105 transition-all">
+              BẮT ĐẦU TỰ THIẾT KẾ CHARM NGAY →
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ==================== CHÂN TRANG 4 CỘT ==================== -->
+  <footer class="lumi-footer-fixed">
+    <div class="footer-inner-wrap">
+
+      <div class="footer-4col-grid">
+
+        <!-- CỘT 1: THƯƠNG HIỆU -->
+        <div>
+          <span class="f-brand-title">LUMICRAFT</span>
+          <span class="f-brand-badge">Craft Your Own Shine</span>
+          <p class="f-brand-text">Thương hiệu phụ kiện thủ công ngọt ngào. Nơi những hạt charm nhỏ bé lưu giữ phong cách và câu chuyện riêng biệt của bạn.</p>
+          
+          <div class="f-social-group">
+            <!-- Icon Facebook -->
+            <a href="https://www.facebook.com/profile.php?id=61594591964097" target="_blank" rel="noopener noreferrer" class="f-social-btn" aria-label="Facebook">
+              <svg viewBox="0 0 24 24"><path d="M14 13.5h2.5l1-4H14v-2c0-1.03 0-2 2-2h1.5V2.14c-.326-.043-1.557-.14-2.857-.14C11.928 2 10 3.657 10 6.7v2.8H7v4h3V22h4v-8.5z"/></svg>
+            </a>
+            <!-- Icon Instagram -->
+            <a href="https://www.facebook.com/profile.php?id=61594591964097" target="_blank" rel="noopener noreferrer" class="f-social-btn" aria-label="Instagram">
+              <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+            <!-- Icon TikTok -->
+            <a href="https://www.facebook.com/profile.php?id=61594591964097" target="_blank" rel="noopener noreferrer" class="f-social-btn" aria-label="TikTok">
+              <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- CỘT 2: VỀ LUMICRAFT -->
+        <div>
+          <h3 class="f-heading">Về LumiCraft</h3>
+          <ul class="f-menu-list">
+            <li><a href="https://sites.google.com/view/lumi-craft/blog/cau-chuyen-thuong-hieu" target="_blank" rel="noopener noreferrer">Câu chuyện thương hiệu</a></li>
+            <li><a href="https://sites.google.com/view/lumi-craft/s%E1%BA%A3n-ph%E1%BA%A9m" target="_blank" rel="noopener noreferrer">Bộ sưu tập mới nhất</a></li>
+            <li><a href="https://sites.google.com/view/lumi-craft/blog/huong-dan-do-co-tay-chon-size" target="_blank" rel="noopener noreferrer">Cẩm nang đo size &amp; bảo quản</a></li>
+            <li><a href="https://sites.google.com/view/lumi-craft/blog" target="_blank" rel="noopener noreferrer">Góc blog &amp; mẹo phối đồ</a></li>
+          </ul>
+        </div>
+
+        <!-- CỘT 3: DANH MỤC SẢN PHẨM -->
+        <div>
+          <h3 class="f-heading">Danh Mục Sản Phẩm</h3>
+          <ul class="f-menu-list">
+            <li><a href="https://sites.google.com/view/lumi-craft/s%E1%BA%A3n-ph%E1%BA%A9m" target="_blank" rel="noopener noreferrer">Vòng Tay Charm Thủ Công</a></li>
+            <li><a href="https://sites.google.com/view/lumi-craft/s%E1%BA%A3n-ph%E1%BA%A9m" target="_blank" rel="noopener noreferrer">Dây Treo Phone Charm</a></li>
+            <li><a href="https://sites.google.com/view/lumi-craft/s%E1%BA%A3n-ph%E1%BA%A9m" target="_blank" rel="noopener noreferrer">Phụ Kiện Đồ Len Móc</a></li>
+            <li><a href="https://sites.google.com/view/lumi-craft/s%E1%BA%A3n-ph%E1%BA%A9m" target="_blank" rel="noopener noreferrer">Vương Miện Handmade</a></li>
+            <li><a href="https://sites.google.com/view/lumi-craft/ch%E1%BB%8Dn-charm" target="_blank" rel="noopener noreferrer">Tự Phối Charm Mẫu Riêng</a></li>
+          </ul>
+        </div>
+
+        <!-- CỘT 4: CỬA HÀNG LUMICRAFT -->
+        <div>
+          <h3 class="f-heading">Cửa Hàng LumiCraft</h3>
+          <div class="f-store-info">
+            <div class="f-store-row">
+              <span class="f-store-badge">Địa chỉ</span>
+              <span class="f-store-desc">79 Hồ Tùng Mậu, Cầu Giấy, Hà Nội</span>
+            </div>
+            <div class="f-store-row">
+              <span class="f-store-badge">Hotline</span>
+              <span class="f-store-desc">0123 456 78910</span>
+            </div>
+            <div class="f-store-row">
+              <span class="f-store-badge">Email</span>
+              <a href="mailto:lumicraftvn@gmail.com" class="f-store-desc" style="color:#A93322; font-weight:700; text-decoration:none;">lumicraftvn@gmail.com</a>
+            </div>
+          </div>
+
+          <div class="f-map-box">
+            <iframe
+              src="https://www.google.com/maps?q=79%20H%E1%BB%93%20T%C3%B9ng%20M%E1%BA%ADu%2C%20H%C3%A0%20N%E1%BB%99i&output=embed"
+              loading="lazy"
+              allowfullscreen>
+            </iframe>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- THANH COPYRIGHT -->
+    <div class="f-bottom-bar">
+      <div class="footer-inner-wrap f-bottom-flex">
+        <span>© 2026 <strong>LUMICRAFT STUDIO</strong>. All rights reserved.</span>
+        <span>CRAFT YOUR OWN SHINE ♡</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPT THEO DÕI TRẠNG THÁI GỬI FORM VÀ THÔNG BÁO -->
+  <script>
+    var submitted = false;
+
+    function onEmailSuccess() {
+      document.getElementById('lumiEmailForm').classList.add('hidden');
+      var msg = document.getElementById('formMsg');
+      msg.className = "text-center text-xs font-bold text-[#E27389] bg-white border border-[#F8D2DA] p-3 rounded-md shadow-xs";
+      msg.innerText = "✨ Đã gửi voucher thành công! Bạn hãy kiểm tra hòm thư (hoặc mục Spam/Quảng cáo) nhé.";
+      msg.classList.remove('hidden');
+    }
+  </script>
+
+</body>
+</html>
