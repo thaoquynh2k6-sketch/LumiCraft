@@ -4,231 +4,813 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gợi ý phối vòng tay charm và phone charm làm quà tặng đẹp, ý nghĩa | LumiCraft</title>
+  <link rel="icon" type="image/png" href="https://lh3.googleusercontent.com/d/1sRIhHNCFd9Ei4ZxAus-AAQmxS9ClYlFL">
+  <link rel="apple-touch-icon" href="https://lh3.googleusercontent.com/d/1sRIhHNCFd9Ei4ZxAus-AAQmxS9ClYlFL">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500;600;700;800&family=Nunito:wght@400;500;600;700;800&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    html { scroll-behavior: smooth; }
-    body { font-family: 'Quicksand', sans-serif; background-color: #FFFDFC; }
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    html, body {
+      margin: 0 !important;
+      padding: 0 !important;
+      width: 100%;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background-color: #FFFDFC;
+      color: #4A3E3D;
+    }
+
+    /* ===========================================
+       THANH ĐIỀU HƯỚNG GIÃN ĐỀU & RESPONSIVE (HEADER)
+    =========================================== */
+    .lumi-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      width: 100%;
+      background-color: rgba(255, 253, 251, 0.97);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1.5px solid #F3DDD5;
+      box-shadow: 0 4px 18px rgba(135, 75, 60, 0.05);
+      font-family: 'Nunito', sans-serif;
+    }
+
+    .header-inner {
+      max-width: 1260px;
+      margin: 0 auto;
+      padding: 10px 36px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+    }
+
+    .h-logo {
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+      flex-shrink: 0;
+      transition: transform 0.25s ease;
+    }
+
+    .h-logo:hover {
+      transform: scale(1.03);
+    }
+
+    .h-logo-img {
+      height: 52px;
+      width: auto;
+      max-width: 200px;
+      object-fit: contain;
+      display: block;
+    }
+
+    .h-nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 26px;
+      flex: 1;
+    }
+
+    .h-link {
+      text-decoration: none;
+      font-family: 'Comfortaa', cursive;
+      font-size: 14.5px;
+      font-weight: 800;
+      color: #58392E !important;
+      padding: 9px 18px;
+      border-radius: 12px;
+      transition: all 0.22s ease;
+      white-space: nowrap;
+    }
+
+    .h-link:hover {
+      background-color: #FFF2EE;
+      color: #A93322 !important;
+    }
+
+    .h-link.active {
+      background-color: #FFE8E2;
+      color: #A93322 !important;
+      border: 1px solid #F8C8BD;
+    }
+
+    .h-action {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+    }
+
+    .h-cta {
+      text-decoration: none !important;
+      font-family: 'Comfortaa', cursive;
+      font-size: 14.5px;
+      font-weight: 800;
+      background-color: #C85848 !important;
+      color: #FFFFFF !important;
+      padding: 10px 22px;
+      border-radius: 14px;
+      box-shadow: 0 4px 12px rgba(200, 88, 72, 0.25);
+      transition: all 0.22s ease;
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .h-cta:hover {
+      background-color: #A93322 !important;
+      color: #FFFFFF !important;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 14px rgba(169, 51, 34, 0.3);
+    }
+
+    .h-toggle {
+      display: none;
+      background-color: #FFF7F3;
+      border: 1.5px solid #EED8CF;
+      color: #40241A;
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      font-size: 21px;
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s ease;
+    }
+
+    .h-toggle:hover {
+      background-color: #FFE8E2;
+    }
+
+    @media (max-width: 1040px) {
+      .header-inner {
+        padding: 10px 22px;
+        gap: 16px;
+      }
+      .h-nav {
+        gap: 12px;
+      }
+      .h-link {
+        font-size: 14px;
+        padding: 8px 13px;
+      }
+      .h-cta {
+        font-size: 14px;
+        padding: 9px 16px;
+      }
+    }
+
+    @media (max-width: 860px) {
+      .header-inner {
+        padding: 10px 18px;
+      }
+      .h-toggle {
+        display: inline-flex;
+      }
+      .h-logo-img {
+        height: 46px;
+      }
+      .h-action {
+        display: none;
+      }
+      .h-nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: #FFFDFB;
+        border-bottom: 1.5px solid #EBC9BE;
+        padding: 14px 20px 20px;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+        box-shadow: 0 14px 28px rgba(135, 75, 60, 0.12);
+      }
+      .h-nav.open {
+        display: flex;
+      }
+      .h-link {
+        text-align: center;
+        font-size: 15.5px;
+        padding: 12px 16px;
+      }
+      .h-nav .h-cta-mobile {
+        display: inline-flex;
+        justify-content: center;
+        font-size: 15.5px;
+        padding: 13px 20px;
+        margin-top: 4px;
+      }
+    }
+
+    @media (min-width: 861px) {
+      .h-cta-mobile {
+        display: none !important;
+      }
+    }
+
+    /* ===========================================
+       CHÂN TRANG 4 CỘT (LUMICRAFT FOOTER)
+    =========================================== */
+    .lumi-footer-fixed {
+      width: 100%;
+      background: linear-gradient(180deg, #FFF5F1 0%, #F9E5DE 100%);
+      border-top: 2px solid #EBC9BE;
+      padding: 48px 0 0;
+      font-family: 'Nunito', sans-serif;
+      color: #58392E;
+      font-weight: 600;
+    }
+
+    .footer-inner-wrap {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .footer-4col-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr 0.95fr 1.05fr;
+      gap: 36px;
+      align-items: flex-start;
+      padding-bottom: 42px;
+    }
+
+    .f-heading {
+      font-family: 'Comfortaa', cursive;
+      font-size: 17.5px;
+      font-weight: 800;
+      color: #40241A;
+      margin-bottom: 20px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      height: 50px;
+    }
+
+    .f-heading::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 34px;
+      height: 2.5px;
+      background: linear-gradient(90deg, #C85848, #F497A9);
+      border-radius: 3px;
+    }
+
+    .f-brand-title {
+      display: flex;
+      align-items: center;
+      height: 50px;
+      margin-bottom: 14px;
+    }
+
+    .f-brand-logo {
+      height: 50px;
+      width: auto;
+      max-width: 200px;
+      object-fit: contain;
+      display: block;
+    }
+
+    .f-brand-badge {
+      display: inline-block;
+      font-family: 'Comfortaa', cursive;
+      font-size: 11px;
+      font-weight: 800;
+      color: #A93322;
+      background-color: #FFFFFF;
+      border: 1px solid #F3CFC6;
+      padding: 3px 10px;
+      border-radius: 20px;
+      margin-bottom: 12px;
+      box-shadow: 0 2px 6px rgba(200, 88, 72, 0.06);
+    }
+
+    .f-brand-text {
+      font-size: 14.5px;
+      line-height: 1.65;
+      color: #58392E;
+      margin-bottom: 22px;
+    }
+
+    .f-social-group {
+      display: flex;
+      gap: 12px;
+    }
+
+    .f-social-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: #FFFFFF;
+      border: 1.5px solid #E8C7BC;
+      color: #40241A !important;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      box-shadow: 0 3px 10px rgba(135, 75, 60, 0.08);
+    }
+
+    .f-social-btn svg {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+    }
+
+    .f-social-btn:hover {
+      background-color: #C85848 !important;
+      color: #FFFFFF !important;
+      border-color: #C85848;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 14px rgba(200, 88, 72, 0.28);
+    }
+
+    .f-menu-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding: 0;
+      margin: 0;
+    }
+
+    .f-menu-list li a {
+      color: #58392E !important;
+      text-decoration: none;
+      font-size: 14.5px;
+      font-weight: 600;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .f-menu-list li a::before {
+      content: '•';
+      color: #C85848;
+      font-weight: 800;
+      transition: transform 0.2s ease;
+    }
+
+    .f-menu-list li a:hover {
+      color: #A93322 !important;
+      transform: translateX(4px);
+    }
+
+    .f-store-info {
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+
+    .f-store-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .f-store-badge {
+      background-color: #FFFFFF;
+      color: #A93322;
+      font-size: 11.5px;
+      font-weight: 800;
+      padding: 3px 9px;
+      border-radius: 7px;
+      white-space: nowrap;
+      border: 1px solid #F0C7BC;
+      box-shadow: 0 1px 4px rgba(135, 75, 60, 0.05);
+    }
+
+    .f-store-desc {
+      color: #58392E;
+      line-height: 1.45;
+    }
+
+    .f-map-box {
+      width: 100%;
+      height: 135px;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 3px solid #FFFFFF;
+      box-shadow: 0 5px 14px rgba(135, 75, 60, 0.1);
+    }
+
+    .f-map-box iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .f-bottom-bar {
+      background-color: #F1D7CE;
+      border-top: 1px solid #E3C1B6;
+      padding: 15px 0;
+    }
+
+    .f-bottom-flex {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 13.5px;
+      color: #4E3127;
+    }
+
+    @media (max-width: 1024px) {
+      .footer-4col-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .footer-4col-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+      .f-heading, .f-brand-title {
+        height: auto;
+        padding-bottom: 8px;
+      }
+      .f-bottom-flex {
+        flex-direction: column;
+        gap: 6px;
+        text-align: center;
+      }
+    }
   </style>
 </head>
-<body class="p-3 sm:p-8 text-[#4A3E3D] bg-[#FFFDFC]">
+<body class="text-[#4A3E3D] bg-[#FFFDFC]">
 
-  <article class="max-w-3xl mx-auto space-y-8">
-
-    <!-- ==================== HEADER BÀI VIẾT (DANH MỤC + H1 + SAPO 1.8 DÒNG ĐẦU) ==================== -->
-    <header class="space-y-3.5 border-b border-[#F8D2DA]/60 pb-6">
-      <div class="flex flex-wrap items-center gap-2 text-xs">
-        <a href="https://sites.google.com/view/lumi-craft/blog" target="_blank" rel="noopener noreferrer" class="text-[11px] font-bold uppercase tracking-wider text-[#E27389] bg-[#FFEAEF] hover:bg-[#FAD6DF] px-3 py-1 rounded-full transition-colors">
-          Danh mục: Phối Đồ &amp; Quà Tặng
-        </a>
-        <span class="text-[#A08886] font-medium">· 4 phút đọc</span>
-      </div>
-
-      <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#4A3E3D] leading-[1.3]">
-        Gợi Ý Phối Vòng Tay Charm Và Phone Charm Theo Phong Cách Làm Quà Tặng Ý Nghĩa
-      </h1>
-
-      <!-- ĐOẠN MÔ TẢ NGAY DƯỚI TIÊU ĐỀ (1.8 DÒNG ĐẦU TÓM GỌN Ý & CHỨA TỪ KHÓA IN ĐẬM) -->
-      <p class="text-sm sm:text-[15px] text-[#5C4947] font-medium leading-[1.65]">
-        Bí quyết kết hợp đồng điệu <strong class="text-[#4A3E3D] font-bold">vòng tay charm</strong> đan tay cùng <strong class="text-[#4A3E3D] font-bold">phone charm</strong> theo từng phong cách cá nhân để tạo nên set <strong class="text-[#4A3E3D] font-bold">quà tặng handmade</strong> ý nghĩa.
-      </p>
-
-      <div class="flex items-center space-x-3 pt-1 text-xs font-bold text-[#4A3E3D]">
-        <div class="w-8 h-8 rounded-full bg-[#FFEAEF] border border-[#F8D2DA] flex items-center justify-center text-xs text-[#E27389]">
-          TQ
-        </div>
-        <div>
-          <p>Thảo Quỳnh</p>
-          <p class="text-[10px] text-[#A08886] font-normal">Stylist &amp; Cố vấn phong cách LumiCraft</p>
-        </div>
-      </div>
-    </header>
-
-    <!-- ==================== ẢNH 1: THUMBNAIL ĐẦU BÀI (CÓ URL KHI HOVER + MÔ TẢ + NGUỒN) ==================== -->
-    <figure class="space-y-2">
-      <a href="https://sites.google.com/view/lumi-craft/s%E1%BA%A3n-ph%E1%BA%A9m" target="_blank" rel="noopener noreferrer" title="Xem bộ sưu tập vòng tay charm và phone charm tại LumiCraft" class="block w-full bg-[#FFF5F7] border border-[#F8D2DA] rounded-xl overflow-hidden shadow-xs hover:border-[#E27389] transition-all">
-        <img src="https://lh3.googleusercontent.com/d/17XBvsvHurktweVvVlyMfs6IPz4IP_vRL=w1600" 
-             alt="Gợi ý phối vòng tay charm và phone charm làm quà tặng ý nghĩa" 
-             class="w-full h-auto block">
+  <!-- THANH ĐIỀU HƯỚNG (HEADER) -->
+  <header class="lumi-header" id="lumiHeader">
+    <div class="header-inner">
+      <a href="index.html" class="h-logo" title="Trang chủ LumiCraft Studio">
+        <img src="https://lh3.googleusercontent.com/d/1sRIhHNCFd9Ei4ZxAus-AAQmxS9ClYlFL" alt="Logo LumiCraft Studio" class="h-logo-img">
       </a>
-      <figcaption class="text-[11px] text-[#8E7370] italic text-center">
-        Hình 1: Set phụ kiện đồng điệu giữa <strong class="font-semibold">vòng tay charm</strong> và <strong class="font-semibold">phone charm</strong> giúp nàng tự tin thể hiện phong cách — Nguồn: <a href="https://sites.google.com/view/lumi-craft" target="_blank" rel="noopener noreferrer" class="underline text-[#E27389]">LumiCraft Atelier</a>
-      </figcaption>
-    </figure>
 
-    <!-- ĐOẠN MỞ BÀI CHI TIẾT -->
-    <div class="text-xs sm:text-sm text-[#6E5654] leading-[1.75] space-y-3">
-      <p>
-        Một chiếc <strong class="text-[#4A3E3D]">vòng tay charm</strong> đan tay phối cùng sợi <strong class="text-[#4A3E3D]">phone charm</strong> treo điện thoại tone-sur-tone là cách đơn giản nhất để tạo điểm nhấn gọn gàng cho trang phục hàng ngày. Không chỉ để đeo đôi cùng điện thoại của mình, các set phụ kiện dây đan mộc mạc này còn là gợi ý <strong class="text-[#4A3E3D]">quà tặng handmade</strong> nhỏ xinh, ý nghĩa dành cho bạn thân hoặc bạn gái.
-      </p>
+      <button class="h-toggle" id="lumiMenuBtn" type="button" aria-label="Mở menu điều hướng" aria-expanded="false" onclick="toggleLumiMenu()">
+        ☰
+      </button>
+
+      <nav class="h-nav" id="lumiNav" aria-label="Điều hướng chính">
+        <a href="index.html" class="h-link">Trang Chủ</a>
+        <a href="gioi-thieu.html" class="h-link">Giới Thiệu</a>
+        <a href="san-pham.html" class="h-link">Sản Phẩm</a>
+        <a href="blog.html" class="h-link active">Blog</a>
+        <a href="chon-charm.html" class="h-cta h-cta-mobile">Chọn Charm ✨</a>
+      </nav>
+
+      <div class="h-action">
+        <a href="chon-charm.html" class="h-cta">Chọn Charm ✨</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- NỘI DUNG BÀI VIẾT BLOG -->
+  <main class="px-4 py-7 sm:px-6 sm:py-12">
+    <article class="max-w-3xl mx-auto space-y-7 sm:space-y-8">
+
+      <!-- ==================== HEADER BÀI VIẾT (DANH MỤC + H1 + SAPO 1.8 DÒNG ĐẦU) ==================== -->
+      <header class="space-y-3.5 border-b border-[#F8D2DA]/60 pb-6">
+        <div class="flex flex-wrap items-center gap-2 text-xs">
+          <a href="blog.html" class="text-[11px] font-bold uppercase tracking-wider text-[#E27389] bg-[#FFEAEF] hover:bg-[#FAD6DF] px-3 py-1 rounded-full transition-colors">
+            Danh mục: Phối Đồ &amp; Quà Tặng
+          </a>
+          <span class="text-[#A08886] font-medium">· 4 phút đọc</span>
+        </div>
+
+        <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#4A3E3D] leading-[1.3]">
+          Gợi Ý Phối Vòng Tay Charm Và Phone Charm Theo Phong Cách Làm Quà Tặng Ý Nghĩa
+        </h1>
+
+        <!-- ĐOẠN MÔ TẢ NGAY DƯỚI TIÊU ĐỀ (1.8 DÒNG ĐẦU TÓM GỌN Ý & CHỨA TỪ KHÓA IN ĐẬM) -->
+        <p class="text-sm sm:text-[15px] text-[#5C4947] font-medium leading-[1.65]">
+          Bí quyết kết hợp đồng điệu <strong class="text-[#4A3E3D] font-bold">vòng tay charm</strong> đan tay cùng <strong class="text-[#4A3E3D] font-bold">phone charm</strong> theo từng phong cách cá nhân để tạo nên set <strong class="text-[#4A3E3D] font-bold">quà tặng handmade</strong> ý nghĩa.
+        </p>
+
+        <div class="flex items-center space-x-3 pt-1 text-xs font-bold text-[#4A3E3D]">
+          <div class="w-8 h-8 rounded-full bg-[#FFEAEF] border border-[#F8D2DA] flex items-center justify-center text-xs text-[#E27389] shrink-0">
+            TQ
+          </div>
+          <div>
+            <p>Thảo Quỳnh</p>
+            <p class="text-[10px] text-[#A08886] font-normal">Stylist &amp; Cố vấn phong cách LumiCraft</p>
+          </div>
+        </div>
+      </header>
+
+      <!-- ==================== ẢNH 1: THUMBNAIL ĐẦU BÀI ==================== -->
+      <figure class="space-y-2">
+        <a href="san-pham.html" title="Xem bộ sưu tập vòng tay charm và phone charm tại LumiCraft" class="block w-full bg-[#FFF5F7] border border-[#F8D2DA] rounded-xl overflow-hidden shadow-sm hover:border-[#E27389] transition-all">
+          <img src="https://lh3.googleusercontent.com/d/17XBvsvHurktweVvVlyMfs6IPz4IP_vRL=w1600" 
+               alt="Gợi ý phối vòng tay charm và phone charm làm quà tặng ý nghĩa" 
+               class="w-full h-auto block">
+        </a>
+        <figcaption class="text-[11px] text-[#8E7370] italic text-center px-2">
+          Hình 1: Set phụ kiện đồng điệu giữa <strong class="font-semibold">vòng tay charm</strong> và <strong class="font-semibold">phone charm</strong> giúp nàng tự tin thể hiện phong cách — Nguồn: <a href="index.html" class="underline text-[#E27389]">LumiCraft Atelier</a>
+        </figcaption>
+      </figure>
+
+      <!-- ĐOẠN MỞ BÀI CHI TIẾT -->
+      <div class="text-xs sm:text-sm text-[#6E5654] leading-[1.75] space-y-3">
+        <p>
+          Một chiếc <strong class="text-[#4A3E3D]">vòng tay charm</strong> đan tay phối cùng sợi <strong class="text-[#4A3E3D]">phone charm</strong> treo điện thoại tone-sur-tone là cách đơn giản nhất để tạo điểm nhấn gọn gàng cho trang phục hàng ngày. Không chỉ để đeo đôi cùng điện thoại của mình, các set phụ kiện dây đan mộc mạc này còn là gợi ý <strong class="text-[#4A3E3D]">quà tặng handmade</strong> nhỏ xinh, ý nghĩa dành cho bạn thân hoặc bạn gái.
+        </p>
+      </div>
+
+      <!-- ==================== MỤC 1: HAI MẪU PHỐI VÒNG TAY & PHONE CHARM ==================== -->
+      <section class="space-y-5">
+        <h2 class="text-lg sm:text-2xl font-bold text-[#4A3E3D]">1. Lumi mách bạn hai mẫu phối vòng tay handmade cùng dây treo điện thoại</h2>
+        <p class="text-xs sm:text-sm text-[#6E5654] leading-[1.7]">
+          Thay vì đeo riêng lẻ, việc chọn một chiếc <strong class="text-[#4A3E3D]">vòng tay handmade</strong> và sợi <strong class="text-[#4A3E3D]">dây treo điện thoại</strong> có cùng kiểu hạt hoặc màu dây sẽ giúp tổng thể trông chỉn chu và hút mắt hơn hẳn. Tùy vào sở thích, bạn có thể tham khảo 2 cách phối hạt dưới đây:
+        </p>
+
+        <!-- COMBO 1: HOA ĐỎ -->
+        <div class="space-y-3 pt-2">
+          <h3 class="text-base sm:text-lg font-bold text-[#E27389]">Phối combo hoa đỏ tươi tắn</h3>
+          
+          <!-- ẢNH 2: COMBO HOA ĐỎ -->
+          <figure class="space-y-2">
+            <a href="san-pham.html" title="Xem mẫu vòng tay hoa đỏ và phone charm tại LumiCraft" class="block w-full bg-[#FFF5F7] border border-[#F8D2DA] rounded-xl overflow-hidden shadow-sm hover:border-[#E27389] transition-all">
+              <img src="https://lh3.googleusercontent.com/d/1TVH8eCNQ7yVBY-u17R5ecv4FUAzrBEPH=w1600" 
+                   alt="Phối combo vòng tay hoa đỏ tươi tắn cùng phone charm" 
+                   class="w-full h-auto block">
+            </a>
+            <figcaption class="text-[11px] text-[#8E7370] italic text-center px-2">
+              Hình 2: Sắc đỏ nổi bật đan xen tone dây kem sáng mang lại năng lượng trẻ trung — Nguồn: <a href="san-pham.html" class="underline text-[#E27389]">LumiCraft Showroom</a>
+            </figcaption>
+          </figure>
+
+          <div class="space-y-2 text-xs sm:text-sm text-[#6E5654] leading-[1.75] pt-1">
+            <p>
+              Set phụ kiện này tạo điểm nhấn rực rỡ nhưng vẫn giữ được nét nhẹ nhàng nhờ sự bù trừ giữa tone dây kem sáng và dây nâu sẫm. Chiếc vòng tay sử dụng sợi chỉ thắt màu be sữa sáng cổ tay, đính hoa đỏ trong suốt cùng hạt nơ bạc và lá xanh nhỏ nhắn.
+            </p>
+            <p>
+              Đi kèm là sợi <a href="san-pham.html" class="font-bold text-[#E27389] underline hover:text-[#D25870]">phone charm</a> dây nâu chắc chắn, đồng điệu với hạt hoa đỏ ở giữa và thả nhẹ hai hạt hoa chuông vàng hồng ở đuôi. Combo này hợp nhất khi bạn diện cùng áo phông, váy trắng, be, kem hoặc đồ denim, đồng thời sợi charm sẽ nổi bật nhất khi gắn vào các mẫu ốp lưng trong suốt hoặc ốp trắng viền đỏ.
+            </p>
+          </div>
+        </div>
+
+        <!-- COMBO 2: CÁ ĐEN -->
+        <div class="space-y-3 pt-4">
+          <h3 class="text-base sm:text-lg font-bold text-[#E27389]">Phối combo cá đen tối giản</h3>
+
+          <!-- ẢNH 3: COMBO CÁ ĐEN -->
+          <figure class="space-y-2">
+            <a href="san-pham.html" title="Xem bộ sưu tập vòng tay hạt cườm cá đen tại LumiCraft" class="block w-full bg-[#FFF5F7] border border-[#F8D2DA] rounded-xl overflow-hidden shadow-sm hover:border-[#E27389] transition-all">
+              <img src="https://lh3.googleusercontent.com/d/1UibdFQbXC1eKGCvd5-IbE_8s1Ru3BTHc=w1600" 
+                   alt="Phối combo vòng tay hạt cườm cá đen tối giản và dây treo điện thoại" 
+                   class="w-full h-auto block">
+            </a>
+            <figcaption class="text-[11px] text-[#8E7370] italic text-center px-2">
+              Hình 3: Thiết kế <strong class="font-semibold">vòng tay hạt cườm</strong> tone đen tối giản, bền bỉ cho phong cách unisex — Nguồn: <a href="san-pham.html" class="underline text-[#E27389]">LumiCraft Showroom</a>
+            </figcaption>
+          </figure>
+
+          <div class="space-y-2 text-xs sm:text-sm text-[#6E5654] leading-[1.75] pt-1">
+            <p>
+              Nếu bạn chuộng phong cách cá tính, sạch sẽ và ít màu mè thì set cá đen này là lựa chọn cực kỳ vừa vặn. Chiếc <strong class="text-[#4A3E3D]">vòng tay charm</strong> được thắt bằng dây sáp đen bền bỉ, điểm xuyết hạt gốm hình chú cá sẫm màu, sao biển đen và các viên hạt cườm trong suốt đan xen.
+            </p>
+            <p>
+              Sợi <strong class="text-[#4A3E3D]">dây treo điện thoại</strong> đi kèm cũng tiệp màu dây đen, phối cùng hạt cá mắt đen, hạt trái tim trong suốt và charm ngôi sao bạc đồng bộ. Mẫu <strong class="text-[#4A3E3D]">vòng tay hạt cườm</strong> tone đen này rất gọn nhẹ, không lo bám bẩn hay vướng víu, dễ đeo cho cả nam lẫn nữ khi đi học hay đi làm mỗi ngày.
+            </p>
+          </div>
+        </div>
+
+        <!-- H3: TỰ PHỐI CHARM VÀ LÀM VÒNG CUSTOM -->
+        <div class="border border-[#F8D2DA] bg-[#FFF5F7]/60 p-4 sm:p-5 rounded-xl space-y-2.5 mt-4">
+          <h3 class="text-base font-bold text-[#4A3E3D]">Tự phối charm và làm vòng custom theo ý thích</h3>
+          <p class="text-xs sm:text-sm text-[#6E5654] leading-[1.7]">
+            Bên cạnh 2 set phối sẵn, nếu bạn chưa ưng ý hoặc muốn sở hữu một món đồ mang dấu ấn riêng, bạn hoàn toàn có thể tự tay chọn màu dây đan (kem, be, nâu, đen) và phối các hình charm khác như hoa năm cánh, cánh bướm, vầng trăng khuyết hay đá vụn tự nhiên theo gu của mình.
+          </p>
+          <p class="text-xs sm:text-sm text-[#6E5654] leading-[1.7]">
+            Tự tay mix chiếc vòng hoặc sợi phone charm độc nhất vô nhị: <a href="chon-charm.html" class="font-bold text-[#E27389] underline hover:text-[#D25870]">Trang chọn charm làm vòng custom tại đây</a>.
+          </p>
+          <p class="text-xs sm:text-sm text-[#6E5654] leading-[1.7]">
+            Từ những công thức phối xinh xắn này, bạn có thể biến tấu ngay thành một set <a href="#qua-tang-handmade" class="font-bold text-[#E27389] underline hover:text-[#D25870]">quà tặng handmade</a> ý nghĩa cho từng người ở phần tiếp theo!
+          </p>
+        </div>
+      </section>
+
+      <!-- ==================== MỤC 2: GỢI Ý CHỌN SET PHỤ KIỆN LÀM QUÀ TẶNG ==================== -->
+      <section id="qua-tang-handmade" class="space-y-5 scroll-mt-24">
+        <h2 class="text-lg sm:text-2xl font-bold text-[#4A3E3D]">2. Gợi ý chọn set phụ kiện làm quà tặng handmade</h2>
+        <p class="text-xs sm:text-sm text-[#6E5654] leading-[1.7]">
+          Điểm đáng quý nhất của một món <strong class="text-[#4A3E3D]">quà tặng handmade</strong> là sự tỉ mỉ của từng nút thắt và từng hạt charm được chọn riêng cho người nhận. Từ các phong cách phối hạt ở trên, bạn có thể dễ dàng chọn quà theo 2 gợi ý dưới đây:
+        </p>
+
+        <!-- QUÀ TẶNG BẠN THÂN -->
+        <div class="space-y-3 pt-2">
+          <h3 class="text-base sm:text-lg font-bold text-[#E27389]">Chọn set charm đôi làm quà tặng bạn thân</h3>
+
+          <!-- ẢNH 4: QUÀ TẶNG BẠN THÂN -->
+          <figure class="space-y-2">
+            <a href="san-pham.html" title="Xem các set quà tặng bạn thân tại LumiCraft" class="block w-full bg-[#FFF5F7] border border-[#F8D2DA] rounded-xl overflow-hidden shadow-sm hover:border-[#E27389] transition-all">
+              <img src="https://lh3.googleusercontent.com/d/1D8HDAvK9xbcXfagdiq66N4oHLBaRujyj=w1600" 
+                   alt="Set charm đôi làm quà tặng bạn thân ý nghĩa" 
+                   class="w-full h-auto block">
+            </a>
+            <figcaption class="text-[11px] text-[#8E7370] italic text-center px-2">
+              Hình 4: Món <strong class="font-semibold">quà tặng bạn thân</strong> gắn kết với những chi tiết charm đôi đồng điệu — Nguồn: <a href="san-pham.html" class="underline text-[#E27389]">LumiCraft Atelier</a>
+            </figcaption>
+          </figure>
+
+          <div class="space-y-2 text-xs sm:text-sm text-[#6E5654] leading-[1.75] pt-1">
+            <p>
+              Khi tìm <a href="san-pham.html" class="font-bold text-[#E27389] underline hover:text-[#D25870]">quà tặng bạn thân</a> vào dịp sinh nhật hay kỷ niệm, bạn không cần chọn món đồ quá đắt đỏ mà nên ưu tiên tính gắn kết. Hai bạn có thể cùng chọn mẫu charm cá may mắn nhưng khác màu dây, như một người dùng bản dây đen cá tính còn một người đeo bản dây kem ngọt ngào.
+            </p>
+            <p>
+              Một ý tưởng thú vị khác là chia đôi công dụng: một bạn đeo vòng tay, bạn còn lại gắn <strong class="text-[#4A3E3D]">dây treo điện thoại</strong> có cùng họa tiết để làm dấu hiệu nhận diện thân thiết mỗi khi đi cùng nhau.
+            </p>
+          </div>
+        </div>
+
+        <!-- QUÀ TẶNG BẠN GÁI -->
+        <div class="space-y-3 pt-4">
+          <h3 class="text-base sm:text-lg font-bold text-[#E27389]">Chọn combo hoa lá nhẹ nhàng làm quà tặng bạn gái</h3>
+
+          <!-- ẢNH 5: QUÀ TẶNG BẠN GÁI -->
+          <figure class="space-y-2">
+            <a href="san-pham.html" title="Chọn hộp quà tặng bạn gái handmade tại LumiCraft" class="block w-full bg-[#FFF5F7] border border-[#F8D2DA] rounded-xl overflow-hidden shadow-sm hover:border-[#E27389] transition-all">
+              <img src="https://lh3.googleusercontent.com/d/1uMr1la-QliH-nlVrFk12YnUqRm0ONS_1=w1600" 
+                   alt="Combo hoa lá nhẹ nhàng làm quà tặng bạn gái" 
+                   class="w-full h-auto block">
+            </a>
+            <figcaption class="text-[11px] text-[#8E7370] italic text-center px-2">
+              Hình 5: Hộp <strong class="font-semibold">quà tặng bạn gái</strong> nhỏ xinh đong đầy sự quan tâm và tinh tế — Nguồn: <a href="san-pham.html" class="underline text-[#E27389]">LumiCraft Atelier</a>
+            </figcaption>
+          </figure>
+
+          <div class="space-y-2 text-xs sm:text-sm text-[#6E5654] leading-[1.75] pt-1">
+            <p>
+              Một set phụ kiện gồm vòng tay hoa đỏ dây kem hoặc charm hoa năm cánh, cánh bướm tone pastel ngọt ngào sẽ là món <strong class="text-[#4A3E3D]">quà tặng bạn gái</strong> vừa tinh tế vừa thiết thực. Chất liệu dây sáp và chỉ đan thủ công rất êm tay, lại có nút rút dễ dàng điều chỉnh kích cỡ nên bạn không cần lo lắng vòng bị chật hay rộng.
+            </p>
+            <p>
+              Chỉ cần đặt chiếc vòng cùng sợi charm điện thoại đồng bộ vào chiếc hộp giấy nhỏ buộc nơ, kèm vài dòng thiệp nhắn gửi là đã đủ làm nàng xiêu lòng.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== KẾT BÀI ==================== -->
+      <section class="space-y-3 border-t border-[#F8D2DA]/60 pt-6 text-xs sm:text-sm text-[#6E5654] leading-[1.75]">
+        <h2 class="text-lg sm:text-xl font-bold text-[#4A3E3D]">Lời kết</h2>
+        <p>
+          Sự ăn ý giữa một chiếc <strong class="text-[#4A3E3D]">vòng tay charm</strong> trên tay và sợi <strong class="text-[#4A3E3D]">phone charm</strong> nơi góc máy sẽ giúp trang phục hàng ngày thêm phần thú vị. Dù là mua để tự mix đồ hay chuẩn bị một món <strong class="text-[#4A3E3D]">quà tặng handmade</strong> cho bạn bè, những sợi dây đan thủ công mộc mạc luôn mang lại sự gần gũi và đáng yêu.
+        </p>
+        <p>
+          Ghé thăm bộ sưu tập <a href="san-pham.html" class="font-bold text-[#E27389] underline hover:text-[#D25870]">vòng tay handmade</a> mới nhất của Lumi để chọn cho mình và bạn bè set phụ kiện ưng ý nhé!
+        </p>
+      </section>
+
+      <!-- ==================== CALL TO ACTION CUỐI BÀI ==================== -->
+      <section class="border border-[#F8D2DA] bg-[#FFF5F7] rounded-2xl p-6 sm:p-8 text-center space-y-4 shadow-sm">
+        <span class="inline-block text-[10px] font-bold tracking-widest uppercase text-[#E27389] bg-white border border-[#F8D2DA] px-3.5 py-1 rounded shadow-sm">
+          LUMICRAFT ATELIER STUDIO
+        </span>
+        <h3 class="text-lg sm:text-2xl font-bold text-[#4A3E3D]">
+          Tự Phối Combo Vòng Tay &amp; Phone Charm Độc Bản Dành Riêng Cho Bạn!
+        </h3>
+        <p class="text-xs sm:text-sm text-[#7A6260] max-w-lg mx-auto leading-[1.6]">
+          Chọn ngay màu dây yêu thích, kết hợp các mẫu charm hoa, bướm, cá gốm độc đáo để tạo nên set quà tặng ý nghĩa cho chính mình hoặc người thương.
+        </p>
+        <div class="pt-2">
+          <a href="chon-charm.html" style="background-color: #E27389; color: #FFFFFF;" class="inline-block py-3.5 px-6 sm:px-8 text-xs font-bold uppercase tracking-widest bg-gradient-to-r from-[#F497A9] to-[#E27389] hover:from-[#E27389] hover:to-[#D25870] rounded-lg shadow-md hover:scale-105 transition-all">
+            BẮT ĐẦU TỰ THIẾT KẾ CHARM NGAY →
+          </a>
+        </div>
+      </section>
+
+    </article>
+  </main>
+
+  <!-- CHÂN TRANG 4 CỘT -->
+  <footer class="lumi-footer-fixed">
+    <div class="footer-inner-wrap">
+      <div class="footer-4col-grid">
+
+        <div>
+          <a href="index.html" class="f-brand-title" title="Trang chủ LumiCraft Studio">
+            <img src="https://lh3.googleusercontent.com/d/1sRIhHNCFd9Ei4ZxAus-AAQmxS9ClYlFL" alt="Logo LumiCraft Studio" class="f-brand-logo" loading="lazy">
+          </a>
+          <span class="f-brand-badge">Craft Your Own Shine</span>
+          <p class="f-brand-text">Thương hiệu phụ kiện thủ công ngọt ngào. Nơi những hạt charm nhỏ bé lưu giữ phong cách và câu chuyện riêng biệt của bạn.</p>
+          <div class="f-social-group">
+            <a href="https://www.facebook.com/profile.php?id=61594591964097" target="_blank" rel="noopener noreferrer" class="f-social-btn" aria-label="Fanpage Facebook LumiCraft">
+              <svg viewBox="0 0 24 24"><path d="M14 13.5h2.5l1-4H14v-2c0-1.03 0-2 2-2h1.5V2.14c-.326-.043-1.557-.14-2.857-.14C11.928 2 10 3.657 10 6.7v2.8H7v4h3V22h4v-8.5z"/></svg>
+            </a>
+            <a href="https://www.facebook.com/profile.php?id=61594591964097" target="_blank" rel="noopener noreferrer" class="f-social-btn" aria-label="Instagram LumiCraft">
+              <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+            <a href="https://www.facebook.com/profile.php?id=61594591964097" target="_blank" rel="noopener noreferrer" class="f-social-btn" aria-label="TikTok LumiCraft">
+              <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="f-heading">Về LumiCraft</h3>
+          <ul class="f-menu-list">
+            <li><a href="gioi-thieu.html">Câu chuyện thương hiệu</a></li>
+            <li><a href="san-pham.html">Bộ sưu tập mới nhất</a></li>
+            <li><a href="https://sites.google.com/view/lumi-craft/blog/huong-dan-do-co-tay-chon-size" target="_blank" rel="noopener noreferrer">Cẩm nang đo size &amp; bảo quản</a></li>
+            <li><a href="blog.html">Góc blog &amp; mẹo phối đồ</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="f-heading">Danh Mục Sản Phẩm</h3>
+          <ul class="f-menu-list">
+            <li><a href="san-pham.html">Vòng Tay Charm Thủ Công</a></li>
+            <li><a href="san-pham.html">Dây Treo Phone Charm</a></li>
+            <li><a href="san-pham.html">Phụ Kiện Đồ Len Móc</a></li>
+            <li><a href="san-pham.html">Vương Miện Handmade</a></li>
+            <li><a href="chon-charm.html">Tự Phối Charm Mẫu Riêng</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="f-heading">Cửa Hàng LumiCraft</h3>
+          <div class="f-store-info">
+            <div class="f-store-row">
+              <span class="f-store-badge">Địa chỉ</span>
+              <span class="f-store-desc">79 Hồ Tùng Mậu, Cầu Giấy, Hà Nội</span>
+            </div>
+            <div class="f-store-row">
+              <span class="f-store-badge">Hotline</span>
+              <span class="f-store-desc">0123 456 78910</span>
+            </div>
+            <div class="f-store-row">
+              <span class="f-store-badge">Email</span>
+              <a href="mailto:lumicraftvn@gmail.com" class="f-store-desc" style="color:#A93322; font-weight:700; text-decoration:none;">lumicraftvn@gmail.com</a>
+            </div>
+          </div>
+
+          <div class="f-map-box">
+            <iframe
+              title="Bản đồ cửa hàng LumiCraft 79 Hồ Tùng Mậu"
+              src="https://www.google.com/maps?q=79%20H%E1%BB%93%20T%C3%B9ng%20M%E1%BA%ADu%2C%20H%C3%A0%20N%E1%BB%99i&output=embed"
+              loading="lazy"
+              allowfullscreen>
+            </iframe>
+          </div>
+        </div>
+
+      </div>
     </div>
 
-    <!-- ==================== MỤC 1: HAI MẪU PHỐI VÒNG TAY & PHONE CHARM ==================== -->
-    <section class="space-y-5">
-      <h2 class="text-xl sm:text-2xl font-bold text-[#4A3E3D]">1. Lumi mách bạn hai mẫu phối vòng tay handmade cùng dây treo điện thoại</h2>
-      <p class="text-xs sm:text-sm text-[#6E5654] leading-[1.7]">
-        Thay vì đeo riêng lẻ, việc chọn một chiếc <strong class="text-[#4A3E3D]">vòng tay handmade</strong> và sợi <strong class="text-[#4A3E3D]">dây treo điện thoại</strong> có cùng kiểu hạt hoặc màu dây sẽ giúp tổng thể trông chỉn chu và hút mắt hơn hẳn. Tùy vào sở thích, bạn có thể tham khảo 2 cách phối hạt dưới đây:
-      </p>
-
-      <!-- COMBO 1: HOA ĐỎ -->
-      <div class="space-y-3 pt-2">
-        <h3 class="text-base sm:text-lg font-bold text-[#E27389]">Phối combo hoa đỏ tươi tắn</h3>
-        
-        <!-- ẢNH 2: COMBO HOA ĐỎ -->
-        <figure class="space-y-2">
-          <a href="https://sites.google.com/view/lumi-craft/s%E1%BA%A3n-ph%E1%BA%A9m" target="_blank" rel="noopener noreferrer" title="Xem mẫu vòng tay hoa đỏ và phone charm tại LumiCraft" class="block w-full bg-[#FFF5F7] border border-[#F8D2DA] rounded-xl overflow-hidden shadow-xs hover:border-[#E27389] transition-all">
-            <img src="https://lh3.googleusercontent.com/d/1TVH8eCNQ7yVBY-u17R5ecv4FUAzrBEPH=w1600" 
-                 alt="Phối combo vòng tay hoa đỏ tươi tắn cùng phone charm" 
-                 class="w-full h-auto block">
-          </a>
-          <figcaption class="text-[11px] text-[#8E7370] italic text-center">
-            Hình 2: Sắc đỏ nổi bật đan xen tone dây kem sáng mang lại năng lượng trẻ trung — Nguồn: <a href="https://sites.google.com/view/lumi-craft/s%E1%BA%A3n-ph%E1%BA%A9m" target="_blank" rel="noopener noreferrer" class="underline text-[#E27389]">LumiCraft Showroom</a>
-          </figcaption>
-        </figure>
-
-        <div class="space-y-2 text-xs sm:text-sm text-[#6E5654] leading-[1.75] pt-1">
-          <p>
-            Set phụ kiện này tạo điểm nhấn rực rỡ nhưng vẫn giữ được nét nhẹ nhàng nhờ sự bù trừ giữa tone dây kem sáng và dây nâu sẫm. Chiếc vòng tay sử dụng sợi chỉ thắt màu be sữa sáng cổ tay, đính hoa đỏ trong suốt cùng hạt nơ bạc và lá xanh nhỏ nhắn.
-          </p>
-          <p>
-            Đi kèm là sợi <a href="https://sites.google.com/view/lumi-craft/s%E1%BA%A3n-ph%E1%BA%A9m" target="_blank" rel="noopener noreferrer" class="font-bold text-[#E27389] underline hover:text-[#D25870]">phone charm</a> dây nâu chắc chắn, đồng điệu với hạt hoa đỏ ở giữa và thả nhẹ hai hạt hoa chuông vàng hồng ở đuôi. Combo này hợp nhất khi bạn diện cùng áo phông, váy trắng, be, kem hoặc đồ denim, đồng thời sợi charm sẽ nổi bật nhất khi gắn vào các mẫu ốp lưng trong suốt hoặc ốp trắng viền đỏ.
-          </p>
-        </div>
+    <div class="f-bottom-bar">
+      <div class="footer-inner-wrap f-bottom-flex">
+        <span>© 2026 <strong>LUMICRAFT STUDIO</strong>. All rights reserved.</span>
+        <span>CRAFT YOUR OWN SHINE ♡</span>
       </div>
+    </div>
+  </footer>
 
-      <!-- COMBO 2: CÁ ĐEN -->
-      <div class="space-y-3 pt-4">
-        <h3 class="text-base sm:text-lg font-bold text-[#E27389]">Phối combo cá đen tối giản</h3>
+  <script>
+    function toggleLumiMenu() {
+      const nav = document.getElementById('lumiNav');
+      const btn = document.getElementById('lumiMenuBtn');
+      const isOpen = nav.classList.toggle('open');
+      btn.setAttribute('aria-expanded', isOpen);
+      btn.textContent = isOpen ? '✕' : '☰';
+    }
 
-        <!-- ẢNH 3: COMBO CÁ ĐEN -->
-        <figure class="space-y-2">
-          <a href="https://sites.google.com/view/lumi-craft/s%E1%BA%A3n-ph%E1%BA%A9m" target="_blank" rel="noopener noreferrer" title="Xem bộ sưu tập vòng tay hạt cườm cá đen tại LumiCraft" class="block w-full bg-[#FFF5F7] border border-[#F8D2DA] rounded-xl overflow-hidden shadow-xs hover:border-[#E27389] transition-all">
-            <img src="https://lh3.googleusercontent.com/d/1UibdFQbXC1eKGCvd5-IbE_8s1Ru3BTHc=w1600" 
-                 alt="Phối combo vòng tay hạt cườm cá đen tối giản và dây treo điện thoại" 
-                 class="w-full h-auto block">
-          </a>
-          <figcaption class="text-[11px] text-[#8E7370] italic text-center">
-            Hình 3: Thiết kế <strong class="font-semibold">vòng tay hạt cườm</strong> tone đen tối giản, bền bỉ cho phong cách unisex — Nguồn: <a href="https://sites.google.com/view/lumi-craft/s%E1%BA%A3n-ph%E1%BA%A9m" target="_blank" rel="noopener noreferrer" class="underline text-[#E27389]">LumiCraft Showroom</a>
-          </figcaption>
-        </figure>
-
-        <div class="space-y-2 text-xs sm:text-sm text-[#6E5654] leading-[1.75] pt-1">
-          <p>
-            Nếu bạn chuộng phong cách cá tính, sạch sẽ và ít màu mè thì set cá đen này là lựa chọn cực kỳ vừa vặn. Chiếc <strong class="text-[#4A3E3D]">vòng tay charm</strong> được thắt bằng dây sáp đen bền bỉ, điểm xuyết hạt gốm hình chú cá sẫm màu, sao biển đen và các viên hạt cườm trong suốt đan xen.
-          </p>
-          <p>
-            Sợi <strong class="text-[#4A3E3D]">dây treo điện thoại</strong> đi kèm cũng tiệp màu dây đen, phối cùng hạt cá mắt đen, hạt trái tim trong suốt và charm ngôi sao bạc đồng bộ. Mẫu <strong class="text-[#4A3E3D]">vòng tay hạt cườm</strong> tone đen này rất gọn nhẹ, không lo bám bẩn hay vướng víu, dễ đeo cho cả nam lẫn nữ khi đi học hay đi làm mỗi ngày.
-          </p>
-        </div>
-      </div>
-
-      <!-- H3: TỰ PHỐI CHARM VÀ LÀM VÒNG CUSTOM -->
-      <div class="border border-[#F8D2DA] bg-[#FFF5F7]/60 p-5 rounded-xl space-y-2.5 mt-4">
-        <h3 class="text-base font-bold text-[#4A3E3D]">Tự phối charm và làm vòng custom theo ý thích</h3>
-        <p class="text-xs sm:text-sm text-[#6E5654] leading-[1.7]">
-          Bên cạnh 2 set phối sẵn, nếu bạn chưa ưng ý hoặc muốn sở hữu một món đồ mang dấu ấn riêng, bạn hoàn toàn có thể tự tay chọn màu dây đan (kem, be, nâu, đen) và phối các hình charm khác như hoa năm cánh, cánh bướm, vầng trăng khuyết hay đá vụn tự nhiên theo gu của mình.
-        </p>
-        <p class="text-xs sm:text-sm text-[#6E5654] leading-[1.7]">
-          Tự tay mix chiếc vòng hoặc sợi phone charm độc nhất vô nhị: <a href="https://sites.google.com/view/lumi-craft/ch%E1%BB%8Dn-charm" target="_blank" rel="noopener noreferrer" class="font-bold text-[#E27389] underline hover:text-[#D25870]">Trang chọn charm làm vòng custom tại đây</a>.
-        </p>
-        <p class="text-xs sm:text-sm text-[#6E5654] leading-[1.7]">
-          Từ những công thức phối xinh xắn này, bạn có thể biến tấu ngay thành một set <a href="#qua-tang-handmade" class="font-bold text-[#E27389] underline hover:text-[#D25870]">quà tặng handmade</a> ý nghĩa cho từng người ở phần tiếp theo!
-        </p>
-      </div>
-    </section>
-
-    <!-- ==================== MỤC 2: GỢI Ý CHỌN SET PHỤ KIỆN LÀM QUÀ TẶNG ==================== -->
-    <section id="qua-tang-handmade" class="space-y-5 scroll-mt-8">
-      <h2 class="text-xl sm:text-2xl font-bold text-[#4A3E3D]">2. Gợi ý chọn set phụ kiện làm quà tặng handmade</h2>
-      <p class="text-xs sm:text-sm text-[#6E5654] leading-[1.7]">
-        Điểm đáng quý nhất của một món <strong class="text-[#4A3E3D]">quà tặng handmade</strong> là sự tỉ mỉ của từng nút thắt và từng hạt charm được chọn riêng cho người nhận. Từ các phong cách phối hạt ở trên, bạn có thể dễ dàng chọn quà theo 2 gợi ý dưới đây:
-      </p>
-
-      <!-- QUÀ TẶNG BẠN THÂN -->
-      <div class="space-y-3 pt-2">
-        <h3 class="text-base sm:text-lg font-bold text-[#E27389]">Chọn set charm đôi làm quà tặng bạn thân</h3>
-
-        <!-- ẢNH 4: QUÀ TẶNG BẠN THÂN -->
-        <figure class="space-y-2">
-          <a href="https://sites.google.com/view/lumi-craft/s%E1%BA%A3n-ph%E1%BA%A9m" target="_blank" rel="noopener noreferrer" title="Xem các set quà tặng bạn thân tại LumiCraft" class="block w-full bg-[#FFF5F7] border border-[#F8D2DA] rounded-xl overflow-hidden shadow-xs hover:border-[#E27389] transition-all">
-            <img src="https://lh3.googleusercontent.com/d/1D8HDAvK9xbcXfagdiq66N4oHLBaRujyj=w1600" 
-                 alt="Set charm đôi làm quà tặng bạn thân ý nghĩa" 
-                 class="w-full h-auto block">
-          </a>
-          <figcaption class="text-[11px] text-[#8E7370] italic text-center">
-            Hình 4: Món <strong class="font-semibold">quà tặng bạn thân</strong> gắn kết với những chi tiết charm đôi đồng điệu — Nguồn: <a href="https://sites.google.com/view/lumi-craft/s%E1%BA%A3n-ph%E1%BA%A9m" target="_blank" rel="noopener noreferrer" class="underline text-[#E27389]">LumiCraft Atelier</a>
-          </figcaption>
-        </figure>
-
-        <div class="space-y-2 text-xs sm:text-sm text-[#6E5654] leading-[1.75] pt-1">
-          <p>
-            Khi tìm <a href="https://sites.google.com/view/lumi-craft/s%E1%BA%A3n-ph%E1%BA%A9m" target="_blank" rel="noopener noreferrer" class="font-bold text-[#E27389] underline hover:text-[#D25870]">quà tặng bạn thân</a> vào dịp sinh nhật hay kỷ niệm, bạn không cần chọn món đồ quá đắt đỏ mà nên ưu tiên tính gắn kết. Hai bạn có thể cùng chọn mẫu charm cá may mắn nhưng khác màu dây, như một người dùng bản dây đen cá tính còn một người đeo bản dây kem ngọt ngào.
-          </p>
-          <p>
-            Một ý tưởng thú vị khác là chia đôi công dụng: một bạn đeo vòng tay, bạn còn lại gắn <strong class="text-[#4A3E3D]">dây treo điện thoại</strong> có cùng họa tiết để làm dấu hiệu nhận diện thân thiết mỗi khi đi cùng nhau.
-          </p>
-        </div>
-      </div>
-
-      <!-- QUÀ TẶNG BẠN GÁI -->
-      <div class="space-y-3 pt-4">
-        <h3 class="text-base sm:text-lg font-bold text-[#E27389]">Chọn combo hoa lá nhẹ nhàng làm quà tặng bạn gái</h3>
-
-        <!-- ẢNH 5: QUÀ TẶNG BẠN GÁI -->
-        <figure class="space-y-2">
-          <a href="https://sites.google.com/view/lumi-craft/s%E1%BA%A3n-ph%E1%BA%A9m" target="_blank" rel="noopener noreferrer" title="Chọn hộp quà tặng bạn gái handmade tại LumiCraft" class="block w-full bg-[#FFF5F7] border border-[#F8D2DA] rounded-xl overflow-hidden shadow-xs hover:border-[#E27389] transition-all">
-            <img src="https://lh3.googleusercontent.com/d/1uMr1la-QliH-nlVrFk12YnUqRm0ONS_1=w1600" 
-                 alt="Combo hoa lá nhẹ nhàng làm quà tặng bạn gái" 
-                 class="w-full h-auto block">
-          </a>
-          <figcaption class="text-[11px] text-[#8E7370] italic text-center">
-            Hình 5: Hộp <strong class="font-semibold">quà tặng bạn gái</strong> nhỏ xinh đong đầy sự quan tâm và tinh tế — Nguồn: <a href="https://sites.google.com/view/lumi-craft/s%E1%BA%A3n-ph%E1%BA%A9m" target="_blank" rel="noopener noreferrer" class="underline text-[#E27389]">LumiCraft Atelier</a>
-          </figcaption>
-        </figure>
-
-        <div class="space-y-2 text-xs sm:text-sm text-[#6E5654] leading-[1.75] pt-1">
-          <p>
-            Một set phụ kiện gồm vòng tay hoa đỏ dây kem hoặc charm hoa năm cánh, cánh bướm tone pastel ngọt ngào sẽ là món <strong class="text-[#4A3E3D]">quà tặng bạn gái</strong> vừa tinh tế vừa thiết thực. Chất liệu dây sáp và chỉ đan thủ công rất êm tay, lại có nút rút dễ dàng điều chỉnh kích cỡ nên bạn không cần lo lắng vòng bị chật hay rộng.
-          </p>
-          <p>
-            Chỉ cần đặt chiếc vòng cùng sợi charm điện thoại đồng bộ vào chiếc hộp giấy nhỏ buộc nơ, kèm vài dòng thiệp nhắn gửi là đã đủ làm nàng xiêu lòng.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ==================== KẾT BÀI ==================== -->
-    <section class="space-y-3 border-t border-[#F8D2DA]/60 pt-6 text-xs sm:text-sm text-[#6E5654] leading-[1.75]">
-      <h2 class="text-lg sm:text-xl font-bold text-[#4A3E3D]">Lời kết</h2>
-      <p>
-        Sự ăn ý giữa một chiếc <strong class="text-[#4A3E3D]">vòng tay charm</strong> trên tay và sợi <strong class="text-[#4A3E3D]">phone charm</strong> nơi góc máy sẽ giúp trang phục hàng ngày thêm phần thú vị. Dù là mua để tự mix đồ hay chuẩn bị một món <strong class="text-[#4A3E3D]">quà tặng handmade</strong> cho bạn bè, những sợi dây đan thủ công mộc mạc luôn mang lại sự gần gũi và đáng yêu.
-      </p>
-      <p>
-        Ghé thăm bộ sưu tập <a href="https://sites.google.com/view/lumi-craft/s%E1%BA%A3n-ph%E1%BA%A9m" target="_blank" rel="noopener noreferrer" class="font-bold text-[#E27389] underline hover:text-[#D25870]">vòng tay handmade</a> mới nhất của Lumi để chọn cho mình và bạn bè set phụ kiện ưng ý nhé!
-      </p>
-    </section>
-
-    <!-- ==================== CALL TO ACTION CUỐI BÀI ==================== -->
-    <section class="border border-[#F8D2DA] bg-[#FFF5F7] rounded-2xl p-6 sm:p-8 text-center space-y-4 shadow-sm">
-      <span class="inline-block text-[10px] font-bold tracking-widest uppercase text-[#E27389] bg-white border border-[#F8D2DA] px-3.5 py-1 rounded shadow-xs">
-        LUMICRAFT ATELIER STUDIO
-      </span>
-      <h3 class="text-xl sm:text-2xl font-bold text-[#4A3E3D]">
-        Tự Phối Combo Vòng Tay &amp; Phone Charm Độc Bản Dành Riêng Cho Bạn!
-      </h3>
-      <p class="text-xs sm:text-sm text-[#7A6260] max-w-lg mx-auto leading-[1.6]">
-        Chọn ngay màu dây yêu thích, kết hợp các mẫu charm hoa, bướm, cá gốm độc đáo để tạo nên set quà tặng ý nghĩa cho chính mình hoặc người thương.
-      </p>
-      <div class="pt-2">
-        <a href="https://sites.google.com/view/lumi-craft/ch%E1%BB%8Dn-charm" target="_blank" rel="noopener noreferrer" class="inline-block py-3 px-8 text-xs font-bold uppercase tracking-widest text-white bg-gradient-to-r from-[#F497A9] to-[#E27389] hover:from-[#E27389] hover:to-[#D25870] rounded-md shadow-xs hover:scale-105 transition-all">
-          BẮT ĐẦU TỰ THIẾT KẾ CHARM NGAY →
-        </a>
-      </div>
-    </section>
-
-  </article>
+    document.addEventListener('click', function (e) {
+      const header = document.getElementById('lumiHeader');
+      const nav = document.getElementById('lumiNav');
+      const btn = document.getElementById('lumiMenuBtn');
+      if (header && nav && nav.classList.contains('open') && !header.contains(e.target)) {
+        nav.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+        btn.textContent = '☰';
+      }
+    });
+  </script>
 
 </body>
 </html>
