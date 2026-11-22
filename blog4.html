@@ -4,213 +4,795 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hậu Trường Làm Vòng Tay Thủ Công LumiCraft Ra Đời Như Thế Nào?</title>
+  <link rel="icon" type="image/png" href="https://lh3.googleusercontent.com/d/1sRIhHNCFd9Ei4ZxAus-AAQmxS9ClYlFL">
+  <link rel="apple-touch-icon" href="https://lh3.googleusercontent.com/d/1sRIhHNCFd9Ei4ZxAus-AAQmxS9ClYlFL">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500;600;700;800&family=Nunito:wght@400;500;600;700;800&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    html { scroll-behavior: smooth; }
-    body { font-family: 'Quicksand', sans-serif; background-color: #FFFDFC; }
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    html, body {
+      margin: 0 !important;
+      padding: 0 !important;
+      width: 100%;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background-color: #FFFDFC;
+      color: #4A3E3D;
+    }
+
+    /* ===========================================
+       THANH ĐIỀU HƯỚNG GIÃN ĐỀU & RESPONSIVE (HEADER)
+    =========================================== */
+    .lumi-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      width: 100%;
+      background-color: rgba(255, 253, 251, 0.97);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1.5px solid #F3DDD5;
+      box-shadow: 0 4px 18px rgba(135, 75, 60, 0.05);
+      font-family: 'Nunito', sans-serif;
+    }
+
+    .header-inner {
+      max-width: 1260px;
+      margin: 0 auto;
+      padding: 10px 36px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+    }
+
+    .h-logo {
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+      flex-shrink: 0;
+      transition: transform 0.25s ease;
+    }
+
+    .h-logo:hover {
+      transform: scale(1.03);
+    }
+
+    .h-logo-img {
+      height: 52px;
+      width: auto;
+      max-width: 200px;
+      object-fit: contain;
+      display: block;
+    }
+
+    .h-nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 26px;
+      flex: 1;
+    }
+
+    .h-link {
+      text-decoration: none;
+      font-family: 'Comfortaa', cursive;
+      font-size: 14.5px;
+      font-weight: 800;
+      color: #58392E !important;
+      padding: 9px 18px;
+      border-radius: 12px;
+      transition: all 0.22s ease;
+      white-space: nowrap;
+    }
+
+    .h-link:hover {
+      background-color: #FFF2EE;
+      color: #A93322 !important;
+    }
+
+    .h-link.active {
+      background-color: #FFE8E2;
+      color: #A93322 !important;
+      border: 1px solid #F8C8BD;
+    }
+
+    .h-action {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+    }
+
+    .h-cta {
+      text-decoration: none !important;
+      font-family: 'Comfortaa', cursive;
+      font-size: 14.5px;
+      font-weight: 800;
+      background-color: #C85848 !important;
+      color: #FFFFFF !important;
+      padding: 10px 22px;
+      border-radius: 14px;
+      box-shadow: 0 4px 12px rgba(200, 88, 72, 0.25);
+      transition: all 0.22s ease;
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .h-cta:hover {
+      background-color: #A93322 !important;
+      color: #FFFFFF !important;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 14px rgba(169, 51, 34, 0.3);
+    }
+
+    .h-toggle {
+      display: none;
+      background-color: #FFF7F3;
+      border: 1.5px solid #EED8CF;
+      color: #40241A;
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      font-size: 21px;
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s ease;
+    }
+
+    .h-toggle:hover {
+      background-color: #FFE8E2;
+    }
+
+    @media (max-width: 1040px) {
+      .header-inner {
+        padding: 10px 22px;
+        gap: 16px;
+      }
+      .h-nav {
+        gap: 12px;
+      }
+      .h-link {
+        font-size: 14px;
+        padding: 8px 13px;
+      }
+      .h-cta {
+        font-size: 14px;
+        padding: 9px 16px;
+      }
+    }
+
+    @media (max-width: 860px) {
+      .header-inner {
+        padding: 10px 18px;
+      }
+      .h-toggle {
+        display: inline-flex;
+      }
+      .h-logo-img {
+        height: 46px;
+      }
+      .h-action {
+        display: none;
+      }
+      .h-nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: #FFFDFB;
+        border-bottom: 1.5px solid #EBC9BE;
+        padding: 14px 20px 20px;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+        box-shadow: 0 14px 28px rgba(135, 75, 60, 0.12);
+      }
+      .h-nav.open {
+        display: flex;
+      }
+      .h-link {
+        text-align: center;
+        font-size: 15.5px;
+        padding: 12px 16px;
+      }
+      .h-nav .h-cta-mobile {
+        display: inline-flex;
+        justify-content: center;
+        font-size: 15.5px;
+        padding: 13px 20px;
+        margin-top: 4px;
+      }
+    }
+
+    @media (min-width: 861px) {
+      .h-cta-mobile {
+        display: none !important;
+      }
+    }
+
+    /* ===========================================
+       CHÂN TRANG 4 CỘT (LUMICRAFT FOOTER)
+    =========================================== */
+    .lumi-footer-fixed {
+      width: 100%;
+      background: linear-gradient(180deg, #FFF5F1 0%, #F9E5DE 100%);
+      border-top: 2px solid #EBC9BE;
+      padding: 48px 0 0;
+      font-family: 'Nunito', sans-serif;
+      color: #58392E;
+      font-weight: 600;
+    }
+
+    .footer-inner-wrap {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .footer-4col-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr 0.95fr 1.05fr;
+      gap: 36px;
+      align-items: flex-start;
+      padding-bottom: 42px;
+    }
+
+    .f-heading {
+      font-family: 'Comfortaa', cursive;
+      font-size: 17.5px;
+      font-weight: 800;
+      color: #40241A;
+      margin-bottom: 20px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      height: 50px;
+    }
+
+    .f-heading::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 34px;
+      height: 2.5px;
+      background: linear-gradient(90deg, #C85848, #F497A9);
+      border-radius: 3px;
+    }
+
+    .f-brand-title {
+      display: flex;
+      align-items: center;
+      height: 50px;
+      margin-bottom: 14px;
+    }
+
+    .f-brand-logo {
+      height: 50px;
+      width: auto;
+      max-width: 200px;
+      object-fit: contain;
+      display: block;
+    }
+
+    .f-brand-badge {
+      display: inline-block;
+      font-family: 'Comfortaa', cursive;
+      font-size: 11px;
+      font-weight: 800;
+      color: #A93322;
+      background-color: #FFFFFF;
+      border: 1px solid #F3CFC6;
+      padding: 3px 10px;
+      border-radius: 20px;
+      margin-bottom: 12px;
+      box-shadow: 0 2px 6px rgba(200, 88, 72, 0.06);
+    }
+
+    .f-brand-text {
+      font-size: 14.5px;
+      line-height: 1.65;
+      color: #58392E;
+      margin-bottom: 22px;
+    }
+
+    .f-social-group {
+      display: flex;
+      gap: 12px;
+    }
+
+    .f-social-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: #FFFFFF;
+      border: 1.5px solid #E8C7BC;
+      color: #40241A !important;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      box-shadow: 0 3px 10px rgba(135, 75, 60, 0.08);
+    }
+
+    .f-social-btn svg {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+    }
+
+    .f-social-btn:hover {
+      background-color: #C85848 !important;
+      color: #FFFFFF !important;
+      border-color: #C85848;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 14px rgba(200, 88, 72, 0.28);
+    }
+
+    .f-menu-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding: 0;
+      margin: 0;
+    }
+
+    .f-menu-list li a {
+      color: #58392E !important;
+      text-decoration: none;
+      font-size: 14.5px;
+      font-weight: 600;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .f-menu-list li a::before {
+      content: '•';
+      color: #C85848;
+      font-weight: 800;
+      transition: transform 0.2s ease;
+    }
+
+    .f-menu-list li a:hover {
+      color: #A93322 !important;
+      transform: translateX(4px);
+    }
+
+    .f-store-info {
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+
+    .f-store-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .f-store-badge {
+      background-color: #FFFFFF;
+      color: #A93322;
+      font-size: 11.5px;
+      font-weight: 800;
+      padding: 3px 9px;
+      border-radius: 7px;
+      white-space: nowrap;
+      border: 1px solid #F0C7BC;
+      box-shadow: 0 1px 4px rgba(135, 75, 60, 0.05);
+    }
+
+    .f-store-desc {
+      color: #58392E;
+      line-height: 1.45;
+    }
+
+    .f-map-box {
+      width: 100%;
+      height: 135px;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 3px solid #FFFFFF;
+      box-shadow: 0 5px 14px rgba(135, 75, 60, 0.1);
+    }
+
+    .f-map-box iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .f-bottom-bar {
+      background-color: #F1D7CE;
+      border-top: 1px solid #E3C1B6;
+      padding: 15px 0;
+    }
+
+    .f-bottom-flex {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 13.5px;
+      color: #4E3127;
+    }
+
+    @media (max-width: 1024px) {
+      .footer-4col-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .footer-4col-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+      .f-heading, .f-brand-title {
+        height: auto;
+        padding-bottom: 8px;
+      }
+      .f-bottom-flex {
+        flex-direction: column;
+        gap: 6px;
+        text-align: center;
+      }
+    }
   </style>
 </head>
-<body class="p-3 sm:p-8 text-[#4A3E3D] bg-[#FFFDFC]">
+<body class="text-[#4A3E3D] bg-[#FFFDFC]">
 
-  <article class="max-w-3xl mx-auto space-y-8">
-
-    <!-- ==================== HEADER BÀI VIẾT (DANH MỤC + H1 + SAPO 1.8 DÒNG ĐẦU) ==================== -->
-    <header class="space-y-3.5 border-b border-[#F8D2DA]/60 pb-6">
-      <div class="flex flex-wrap items-center gap-2 text-xs">
-        <a href="https://sites.google.com/view/lumi-craft/blog" target="_blank" rel="noopener noreferrer" class="text-[11px] font-bold uppercase tracking-wider text-[#E27389] bg-[#FFEAEF] hover:bg-[#FAD6DF] px-3 py-1 rounded-full transition-colors">
-          Danh mục: Hậu Trường LumiCraft
-        </a>
-        <span class="text-[#A08886] font-medium">· 5 phút đọc</span>
-      </div>
-
-      <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#4A3E3D] leading-[1.3]">
-        Hậu Trường Làm Vòng Tay Thủ Công: Một Chiếc Vòng LumiCraft Ra Đời Như Thế Nào?
-      </h1>
-
-      <!-- ĐOẠN MÔ TẢ NGAY DƯỚI TIÊU ĐỀ (1.8 DÒNG ĐẦU TÓM GỌN Ý & CHỨA TỪ KHÓA IN ĐẬM) -->
-      <p class="text-sm sm:text-[15px] text-[#5C4947] font-medium leading-[1.65]">
-        Khám phá hành trình 4 bước <strong class="text-[#4A3E3D] font-bold">làm vòng tay handmade</strong> tỉ mỉ tại xưởng LumiCraft: từ khâu phối màu, chọn hạt cườm đến thắt nút <strong class="text-[#4A3E3D] font-bold">vòng tay thủ công</strong> và đóng gói hộp quà.
-      </p>
-
-      <div class="flex items-center space-x-3 pt-1 text-xs font-bold text-[#4A3E3D]">
-        <div class="w-8 h-8 rounded-full bg-[#FFEAEF] border border-[#F8D2DA] flex items-center justify-center text-xs text-[#E27389]">
-          LT
-        </div>
-        <div>
-          <p>Lumi Team</p>
-          <p class="text-[10px] text-[#A08886] font-normal">Đội ngũ sáng tạo &amp; Chế tác LumiCraft</p>
-        </div>
-      </div>
-    </header>
-
-    <!-- ==================== ẢNH 1: THUMBNAIL ĐẦU BÀI (CÓ URL KHI HOVER + MÔ TẢ + NGUỒN) ==================== -->
-    <figure class="space-y-2">
-      <a href="https://sites.google.com/view/lumi-craft/ch%E1%BB%8Dn-charm" target="_blank" rel="noopener noreferrer" title="Trải nghiệm tự phối vòng tay thủ công tại LumiCraft Studio" class="block w-full bg-[#FFF5F7] border border-[#F8D2DA] rounded-xl overflow-hidden shadow-xs hover:border-[#E27389] transition-all">
-        <img src="https://lh3.googleusercontent.com/d/1rNvJMEDQqN3FKazrW8jj5N0RDG6hRX00=w1600" 
-             alt="Hậu trường làm vòng tay thủ công LumiCraft từ khâu chọn hạt đến hoàn thiện" 
-             class="w-full h-auto block">
+  <!-- THANH ĐIỀU HƯỚNG (HEADER) -->
+  <header class="lumi-header" id="lumiHeader">
+    <div class="header-inner">
+      <a href="index.html" class="h-logo" title="Trang chủ LumiCraft Studio">
+        <img src="https://lh3.googleusercontent.com/d/1sRIhHNCFd9Ei4ZxAus-AAQmxS9ClYlFL" alt="Logo LumiCraft Studio" class="h-logo-img">
       </a>
-      <figcaption class="text-[11px] text-[#8E7370] italic text-center">
-        Hình 1: Góc bàn chế tác nơi mỗi chiếc <strong class="font-semibold">vòng tay thủ công</strong> LumiCraft bắt đầu thành hình — Nguồn: <a href="https://sites.google.com/view/lumi-craft" target="_blank" rel="noopener noreferrer" class="underline text-[#E27389]">LumiCraft Atelier</a>
-      </figcaption>
-    </figure>
 
-    <!-- ĐOẠN MỞ BÀI CHI TIẾT -->
-    <div class="text-xs sm:text-sm text-[#6E5654] leading-[1.75] space-y-3">
-      <p>
-        Một chiếc <strong class="text-[#4A3E3D]">vòng tay thủ công</strong> hay sợi dây treo điện thoại nhìn thì nhỏ xíu trên tay, nhưng phía sau đó là cả một buổi ngồi chọn hạt, phối màu và thắt từng nút dây tỉ mỉ. Bạn đã bao giờ tò mò món phụ kiện mình đang đeo được tạo ra như thế nào chưa? Hôm nay, LumiCraft mở cửa góc làm việc nhỏ để kể bạn nghe hành trình <strong class="text-[#4A3E3D]">làm vòng tay handmade</strong>, từ lúc lên ý tưởng đến khi chiếc vòng nằm gọn trong hộp quà, sẵn sàng gửi đi.
-      </p>
+      <button class="h-toggle" id="lumiMenuBtn" type="button" aria-label="Mở menu điều hướng" aria-expanded="false" onclick="toggleLumiMenu()">
+        ☰
+      </button>
+
+      <nav class="h-nav" id="lumiNav" aria-label="Điều hướng chính">
+        <a href="index.html" class="h-link">Trang Chủ</a>
+        <a href="gioi-thieu.html" class="h-link">Giới Thiệu</a>
+        <a href="san-pham.html" class="h-link">Sản Phẩm</a>
+        <a href="blog.html" class="h-link active">Blog</a>
+        <a href="chon-charm.html" class="h-cta h-cta-mobile">Chọn Charm ✨</a>
+      </nav>
+
+      <div class="h-action">
+        <a href="chon-charm.html" class="h-cta">Chọn Charm ✨</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- NỘI DUNG BÀI VIẾT BLOG -->
+  <main class="px-4 py-7 sm:px-6 sm:py-12">
+    <article class="max-w-3xl mx-auto space-y-7 sm:space-y-8">
+
+      <!-- ==================== HEADER BÀI VIẾT (DANH MỤC + H1 + SAPO 1.8 DÒNG ĐẦU) ==================== -->
+      <header class="space-y-3.5 border-b border-[#F8D2DA]/60 pb-6">
+        <div class="flex flex-wrap items-center gap-2 text-xs">
+          <a href="blog.html" class="text-[11px] font-bold uppercase tracking-wider text-[#E27389] bg-[#FFEAEF] hover:bg-[#FAD6DF] px-3 py-1 rounded-full transition-colors">
+            Danh mục: Hậu Trường LumiCraft
+          </a>
+          <span class="text-[#A08886] font-medium">· 5 phút đọc</span>
+        </div>
+
+        <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#4A3E3D] leading-[1.3]">
+          Hậu Trường Làm Vòng Tay Thủ Công: Một Chiếc Vòng LumiCraft Ra Đời Như Thế Nào?
+        </h1>
+
+        <!-- ĐOẠN MÔ TẢ NGAY DƯỚI TIÊU ĐỀ (1.8 DÒNG ĐẦU TÓM GỌN Ý & CHỨA TỪ KHÓA IN ĐẬM) -->
+        <p class="text-sm sm:text-[15px] text-[#5C4947] font-medium leading-[1.65]">
+          Khám phá hành trình 4 bước <strong class="text-[#4A3E3D] font-bold">làm vòng tay handmade</strong> tỉ mỉ tại xưởng LumiCraft: từ khâu phối màu, chọn hạt cườm đến thắt nút <strong class="text-[#4A3E3D] font-bold">vòng tay thủ công</strong> và đóng gói hộp quà.
+        </p>
+
+        <div class="flex items-center space-x-3 pt-1 text-xs font-bold text-[#4A3E3D]">
+          <div class="w-8 h-8 rounded-full bg-[#FFEAEF] border border-[#F8D2DA] flex items-center justify-center text-xs text-[#E27389] shrink-0">
+            LT
+          </div>
+          <div>
+            <p>Lumi Team</p>
+            <p class="text-[10px] text-[#A08886] font-normal">Đội ngũ sáng tạo &amp; Chế tác LumiCraft</p>
+          </div>
+        </div>
+      </header>
+
+      <!-- ==================== ẢNH 1: THUMBNAIL ĐẦU BÀI ==================== -->
+      <figure class="space-y-2">
+        <a href="chon-charm.html" title="Trải nghiệm tự phối vòng tay thủ công tại LumiCraft Studio" class="block w-full bg-[#FFF5F7] border border-[#F8D2DA] rounded-xl overflow-hidden shadow-sm hover:border-[#E27389] transition-all">
+          <img src="https://lh3.googleusercontent.com/d/1rNvJMEDQqN3FKazrW8jj5N0RDG6hRX00=w1600" 
+               alt="Hậu trường làm vòng tay thủ công LumiCraft từ khâu chọn hạt đến hoàn thiện" 
+               class="w-full h-auto block">
+        </a>
+        <figcaption class="text-[11px] text-[#8E7370] italic text-center px-2">
+          Hình 1: Góc bàn chế tác nơi mỗi chiếc <strong class="font-semibold">vòng tay thủ công</strong> LumiCraft bắt đầu thành hình — Nguồn: <a href="index.html" class="underline text-[#E27389]">LumiCraft Atelier</a>
+        </figcaption>
+      </figure>
+
+      <!-- ĐOẠN MỞ BÀI CHI TIẾT -->
+      <div class="text-xs sm:text-sm text-[#6E5654] leading-[1.75] space-y-3">
+        <p>
+          Một chiếc <strong class="text-[#4A3E3D]">vòng tay thủ công</strong> hay sợi dây treo điện thoại nhìn thì nhỏ xíu trên tay, nhưng phía sau đó là cả một buổi ngồi chọn hạt, phối màu và thắt từng nút dây tỉ mỉ. Bạn đã bao giờ tò mò món phụ kiện mình đang đeo được tạo ra như thế nào chưa? Hôm nay, LumiCraft mở cửa góc làm việc nhỏ để kể bạn nghe hành trình <strong class="text-[#4A3E3D]">làm vòng tay handmade</strong>, từ lúc lên ý tưởng đến khi chiếc vòng nằm gọn trong hộp quà, sẵn sàng gửi đi.
+        </p>
+      </div>
+
+      <!-- ==================== MỤC 1: BƯỚC 1 - CHỌN GAM MÀU VÀ LÊN Ý TƯỞNG ==================== -->
+      <section class="space-y-4">
+        <h2 class="text-lg sm:text-2xl font-bold text-[#4A3E3D]">1. Bước 1: Chọn gam màu và lên ý tưởng cho vòng tay handmade</h2>
+        <p class="text-xs sm:text-sm text-[#6E5654] leading-[1.75]">
+          Mỗi thiết kế của LumiCraft đều bắt đầu từ một câu hỏi rất đơn giản: chiếc vòng này sẽ mang cảm xúc gì? Có thể là sắc hồng đào dịu dàng, xanh biển trong veo, tím mộng mơ hay đỏ nổi bật cho những ngày muốn thật tự tin.
+        </p>
+
+        <!-- ẢNH 2: BƯỚC 1 -->
+        <figure class="space-y-2">
+          <a href="san-pham.html" title="Xem các bộ sưu tập vòng tay handmade theo gam màu tại LumiCraft" class="block w-full bg-[#FFF5F7] border border-[#F8D2DA] rounded-xl overflow-hidden shadow-sm hover:border-[#E27389] transition-all">
+            <img src="https://lh3.googleusercontent.com/d/1mteg6RpjDaDZBQs5PGuLGwxs9_TdkI2K=w1600" 
+                 alt="Chọn gam màu dây sáp và lên ý tưởng làm vòng tay handmade" 
+                 class="w-full h-auto block">
+          </a>
+          <figcaption class="text-[11px] text-[#8E7370] italic text-center px-2">
+            Hình 2: Tuyển chọn tone màu dây sáp đồng điệu cùng cảm xúc chủ đạo của bộ sưu tập — Nguồn: <a href="san-pham.html" class="underline text-[#E27389]">LumiCraft Showroom</a>
+          </figcaption>
+        </figure>
+
+        <div class="space-y-2 text-xs sm:text-sm text-[#6E5654] leading-[1.75] pt-1">
+          <h3 class="text-base sm:text-lg font-bold text-[#E27389]">Phối màu dây sáp đồng điệu cùng chủ đề bộ sưu tập</h3>
+          <p>
+            Chọn xong gam màu chủ đạo, tụi mình mới tính đến chuyện chọn màu dây sáp (kem sáng, be sữa, nâu gỗ hay đen cá tính) và tìm hạt điểm nhấn. Bộ sưu tập hoa cỏ <em>First Bloom</em> hay đàn cá nhỏ <em>Little Ocean</em> cũng bắt đầu như thế: từ những sắc màu nhỏ xinh giúp mỗi cô gái thể hiện nét riêng đúng tinh thần “Craft your own shine”.
+          </p>
+          <p>
+            Cách làm này giúp phụ kiện lên tay cực kỳ hài hòa; bạn có thể xem thêm các công thức <a href="https://sites.google.com/view/lumi-craft/blog/goi-y-phoi-vong-tay-phong-cach-qua-tang" target="_blank" rel="noopener noreferrer" class="font-bold text-[#E27389] underline hover:text-[#D25870]">gợi ý phối vòng tay charm và phone charm</a> của Lumi để thấy các gam màu này ăn ý với trang phục hàng ngày thế nào nhé!
+          </p>
+        </div>
+      </section>
+
+      <!-- ==================== MỤC 2: BƯỚC 2 - CHỌN HẠT CƯỜM, CHARM VÀ XẾP BỐ CỤC ==================== -->
+      <section class="space-y-4">
+        <h2 class="text-lg sm:text-2xl font-bold text-[#4A3E3D]">2. Bước 2: Chọn hạt cườm, charm và xếp bố cục vòng tay thủ công</h2>
+        <p class="text-xs sm:text-sm text-[#6E5654] leading-[1.75]">
+          Đây là bước tốn thời gian nhất mà không ai trong nhóm nỡ làm vội. Giữa hàng trăm hạt cườm trong suốt, charm hoa năm cánh, cánh bướm, ngôi sao, vầng trăng khuyết, chú cá gốm hay chiếc nơ bạc nhỏ... tụi mình phải nhặt từng viên có bề mặt bóng mịn, không trầy xước rồi xếp thử cạnh nhau trên khay.
+        </p>
+
+        <!-- ẢNH 3: BƯỚC 2 -->
+        <figure class="space-y-2">
+          <a href="chon-charm.html" title="Khám phá khay hạt cườm và charm tại LumiCraft" class="block w-full bg-[#FFF5F7] border border-[#F8D2DA] rounded-xl overflow-hidden shadow-sm hover:border-[#E27389] transition-all">
+            <img src="https://lh3.googleusercontent.com/d/11-W70sjhp-CZ4ZNTzak-dOfvRp9L0uIe=w1600" 
+                 alt="Chọn hạt cườm và xếp bố cục vòng tay thủ công trên khay" 
+                 class="w-full h-auto block">
+          </a>
+          <figcaption class="text-[11px] text-[#8E7370] italic text-center px-2">
+            Hình 3: Từng hạt charm được xếp thử bố cục cân đối trên khay trước khi xỏ dây — Nguồn: <a href="chon-charm.html" class="underline text-[#E27389]">LumiCraft Custom Workshop</a>
+          </figcaption>
+        </figure>
+
+        <div class="space-y-2 text-xs sm:text-sm text-[#6E5654] leading-[1.75] pt-1">
+          <h3 class="text-base sm:text-lg font-bold text-[#E27389]">Quy tắc tạo điểm nhấn khi làm vòng tay handmade</h3>
+          <p>
+            Có những viên charm đứng riêng thì rất xinh, nhưng khi đặt cạnh nhau lại đối chọi về màu sắc, nên Lumi thường phải đổi qua đổi lại vài lần mới chốt được bố cục ưng ý.
+          </p>
+          <p>
+            Mẹo nhỏ nếu bạn cũng đang mê <strong class="text-[#4A3E3D]">làm vòng tay handmade</strong> tại nhà: mỗi chiếc vòng chỉ nên có một cụm charm chính làm tâm điểm, những hạt cườm và lá nhỏ còn lại đóng vai “phông nền” để charm ấy được tỏa sáng.
+          </p>
+        </div>
+      </section>
+
+      <!-- ==================== MỤC 3: BƯỚC 3 - XỎ DÂY VÀ THẮT NÚT THỦ CÔNG ==================== -->
+      <section class="space-y-4">
+        <h2 class="text-lg sm:text-2xl font-bold text-[#4A3E3D]">3. Bước 3: Xỏ dây sáp và thắt nút thủ công từng chút một</h2>
+        <p class="text-xs sm:text-sm text-[#6E5654] leading-[1.75]">
+          Khi bố cục hạt đã chốt, từng viên charm được xỏ lên sợi dây sáp hoặc chỉ đan bền chắc, xen giữa là những nút thắt nhỏ giữ mọi chi tiết nằm đúng vị trí.
+        </p>
+
+        <!-- ẢNH 4: BƯỚC 3 -->
+        <figure class="space-y-2">
+          <a href="san-pham.html" title="Xem các mẫu vòng tay dây sáp thắt nút thủ công tại LumiCraft" class="block w-full bg-[#FFF5F7] border border-[#F8D2DA] rounded-xl overflow-hidden shadow-sm hover:border-[#E27389] transition-all">
+            <img src="https://lh3.googleusercontent.com/d/1WrD9rD4JwEJBWhUEpwP4DpQlcWMr-18p=w1600" 
+                 alt="Xỏ dây sáp và thắt gút rút thủ công hoàn thiện vòng tay" 
+                 class="w-full h-auto block">
+          </a>
+          <figcaption class="text-[11px] text-[#8E7370] italic text-center px-2">
+            Hình 4: Tỉ mỉ từng mối thắt tay tạo nên dấu ấn độc bản cho mỗi chiếc <strong class="font-semibold">vòng tay thủ công</strong> — Nguồn: <a href="san-pham.html" class="underline text-[#E27389]">LumiCraft Atelier</a>
+          </figcaption>
+        </figure>
+
+        <div class="space-y-2 text-xs sm:text-sm text-[#6E5654] leading-[1.75] pt-1">
+          <h3 class="text-base sm:text-lg font-bold text-[#E27389]">Dấu ấn độc bản và nút rút linh hoạt</h3>
+          <p>
+            Vì được chế tác hoàn toàn bằng tay nên lực siết ngón tay, khoảng thở giữa các nút thắt hay độ nghiêng của mỗi cánh hoa đều mang dấu ấn của người làm. Có hôm cả nhóm ngồi xâu hạt suốt 4 tiếng liền, ngẩng lên mỏi nhừ lưng mới nhớ ra mình chưa ăn trưa. Nhưng đổi lại, không chiếc vòng nào giống hệt chiếc nào, tạo nên nét đáng yêu rất riêng của <strong class="text-[#4A3E3D]">vòng tay thủ công</strong>.
+          </p>
+          <p>
+            Phần đuôi vòng luôn được hoàn thiện bằng mối gút rút thông minh, giúp bạn dễ dàng nới rộng hay thu hẹp theo cổ tay. Nếu chưa biết cổ tay mình bao nhiêu cm, bạn có thể tham khảo ngay bài <a href="https://sites.google.com/view/lumi-craft/blog/huong-dan-do-co-tay-chon-size" target="_blank" rel="noopener noreferrer" class="font-bold text-[#E27389] underline hover:text-[#D25870]">hướng dẫn đo cổ tay và chọn size vòng tay</a> của LumiCraft để chọn tỷ lệ chuẩn nhất nhé.
+          </p>
+        </div>
+      </section>
+
+      <!-- ==================== MỤC 4: BƯỚC 4 - KIỂM TRA ĐỘ BỀN VÀ ĐÓNG GÓI ==================== -->
+      <section class="space-y-4">
+        <h2 class="text-lg sm:text-2xl font-bold text-[#4A3E3D]">4. Bước 4: Kiểm tra độ bền, đóng gói hộp quà và gửi đi</h2>
+        <p class="text-xs sm:text-sm text-[#6E5654] leading-[1.75]">
+          Trước khi rời khỏi bàn làm việc, mỗi sản phẩm đều được tụi mình kiểm tra kỹ lần cuối: nút thắt đã chặt chưa, bề mặt charm đã được lau bóng sạch vân tay chưa, và gút rút kéo thử có mượt mà không. Sau đó, chiếc vòng được cài lên bìa giấy in hình ngôi sao, đặt vào hộp giấy kraft lót giấy rơm êm ái, kèm tấm thiệp nhỏ nếu bạn muốn gửi làm quà tặng.
+        </p>
+
+        <!-- ẢNH 5: BƯỚC 4 -->
+        <figure class="space-y-2">
+          <a href="san-pham.html" title="Đặt mua vòng tay handmade đóng gói hộp quà tại LumiCraft" class="block w-full bg-[#FFF5F7] border border-[#F8D2DA] rounded-xl overflow-hidden shadow-sm hover:border-[#E27389] transition-all">
+            <img src="https://lh3.googleusercontent.com/d/1aY-rbZiJkVfVUhIs9NofDgh4hNKgxn31=w1600" 
+                 alt="Đóng gói hoàn thiện hộp quà vòng tay thủ công LumiCraft" 
+                 class="w-full h-auto block">
+          </a>
+          <figcaption class="text-[11px] text-[#8E7370] italic text-center px-2">
+            Hình 5: Hộp quà <strong class="font-semibold">vòng tay thủ công</strong> được đóng gói chỉn chu, sẵn sàng gửi đến bạn — Nguồn: <a href="san-pham.html" class="underline text-[#E27389]">LumiCraft Atelier</a>
+          </figcaption>
+        </figure>
+
+        <div class="space-y-2 text-xs sm:text-sm text-[#6E5654] leading-[1.75] pt-1">
+          <p>
+            Khi đón chiếc vòng về tay, bạn đừng quên đọc thêm bài viết chia sẻ về <a href="https://sites.google.com/view/lumi-craft/blog/cach-bao-quan-vong-tay-handmade" target="_blank" rel="noopener noreferrer" class="font-bold text-[#E27389] underline hover:text-[#D25870]">cách bảo quản vòng tay handmade bền đẹp</a> để dây sáp và hạt charm luôn trong trẻo như ngày đầu tiên nhé.
+          </p>
+        </div>
+      </section>
+
+      <!-- ==================== MỤC 5: KẾT NỐI VÀ THIẾT KẾ RIÊNG ==================== -->
+      <section class="space-y-3 border-t border-[#F8D2DA]/60 pt-6 text-xs sm:text-sm text-[#6E5654] leading-[1.75]">
+        <h2 class="text-lg sm:text-2xl font-bold text-[#4A3E3D]">5. Muốn sở hữu chiếc vòng “đúng gu” của riêng bạn?</h2>
+        <p>
+          Bạn không nhất thiết phải chọn các mẫu làm sẵn. Nếu đã có một gam màu yêu thích, một hình charm mang ý nghĩa riêng hoặc muốn chuẩn bị món quà độc nhất cho bạn thân, hãy nhắn cho Lumi: tụi mình sẽ cùng bạn chọn màu dây, phối hạt và hoàn thiện riêng một chiếc <strong class="text-[#4A3E3D]">vòng tay thủ công</strong> đúng ý.
+        </p>
+        <p>
+          Mỗi chiếc vòng LumiCraft là kết quả của rất nhiều lần chọn lựa, xâu hạt và thắt nút bằng cả sự tận tâm. Hy vọng lần tới khi nhìn xuống cổ tay, bạn sẽ thấy chiếc vòng nhỏ của mình thêm phần ấm áp và đáng yêu hơn một chút nữa.
+        </p>
+      </section>
+
+      <!-- ==================== CALL TO ACTION CUỐI BÀI ==================== -->
+      <section class="border border-[#F8D2DA] bg-[#FFF5F7] rounded-2xl p-6 sm:p-8 text-center space-y-4 shadow-sm">
+        <span class="inline-block text-[10px] font-bold tracking-widest uppercase text-[#E27389] bg-white border border-[#F8D2DA] px-3.5 py-1 rounded shadow-sm">
+          LUMICRAFT ATELIER STUDIO
+        </span>
+        <h3 class="text-lg sm:text-2xl font-bold text-[#4A3E3D]">
+          Từ Những Hạt Nhỏ Đến Chiếc Vòng Của Riêng Bạn – Craft Your Own Shine!
+        </h3>
+        <p class="text-xs sm:text-sm text-[#7A6260] max-w-lg mx-auto leading-[1.6]">
+          Bắt đầu trải nghiệm phối charm theo sở thích hoặc gửi yêu cầu thiết kế vòng handmade độc bản cho LumiCraft ngay hôm nay.
+        </p>
+        <div class="pt-2">
+          <a href="chon-charm.html" style="background-color: #E27389; color: #FFFFFF;" class="inline-block py-3.5 px-6 sm:px-8 text-xs font-bold uppercase tracking-widest bg-gradient-to-r from-[#F497A9] to-[#E27389] hover:from-[#E27389] hover:to-[#D25870] rounded-lg shadow-md hover:scale-105 transition-all">
+            BẮT ĐẦU TỰ THIẾT KẾ CHARM NGAY →
+          </a>
+        </div>
+      </section>
+
+    </article>
+  </main>
+
+  <!-- CHÂN TRANG 4 CỘT -->
+  <footer class="lumi-footer-fixed">
+    <div class="footer-inner-wrap">
+      <div class="footer-4col-grid">
+
+        <div>
+          <a href="index.html" class="f-brand-title" title="Trang chủ LumiCraft Studio">
+            <img src="https://lh3.googleusercontent.com/d/1sRIhHNCFd9Ei4ZxAus-AAQmxS9ClYlFL" alt="Logo LumiCraft Studio" class="f-brand-logo" loading="lazy">
+          </a>
+          <span class="f-brand-badge">Craft Your Own Shine</span>
+          <p class="f-brand-text">Thương hiệu phụ kiện thủ công ngọt ngào. Nơi những hạt charm nhỏ bé lưu giữ phong cách và câu chuyện riêng biệt của bạn.</p>
+          <div class="f-social-group">
+            <a href="https://www.facebook.com/profile.php?id=61594591964097" target="_blank" rel="noopener noreferrer" class="f-social-btn" aria-label="Fanpage Facebook LumiCraft">
+              <svg viewBox="0 0 24 24"><path d="M14 13.5h2.5l1-4H14v-2c0-1.03 0-2 2-2h1.5V2.14c-.326-.043-1.557-.14-2.857-.14C11.928 2 10 3.657 10 6.7v2.8H7v4h3V22h4v-8.5z"/></svg>
+            </a>
+            <a href="https://www.facebook.com/profile.php?id=61594591964097" target="_blank" rel="noopener noreferrer" class="f-social-btn" aria-label="Instagram LumiCraft">
+              <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+            <a href="https://www.facebook.com/profile.php?id=61594591964097" target="_blank" rel="noopener noreferrer" class="f-social-btn" aria-label="TikTok LumiCraft">
+              <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="f-heading">Về LumiCraft</h3>
+          <ul class="f-menu-list">
+            <li><a href="gioi-thieu.html">Câu chuyện thương hiệu</a></li>
+            <li><a href="san-pham.html">Bộ sưu tập mới nhất</a></li>
+            <li><a href="https://sites.google.com/view/lumi-craft/blog/huong-dan-do-co-tay-chon-size" target="_blank" rel="noopener noreferrer">Cẩm nang đo size &amp; bảo quản</a></li>
+            <li><a href="blog.html">Góc blog &amp; mẹo phối đồ</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="f-heading">Danh Mục Sản Phẩm</h3>
+          <ul class="f-menu-list">
+            <li><a href="san-pham.html">Vòng Tay Charm Thủ Công</a></li>
+            <li><a href="san-pham.html">Dây Treo Phone Charm</a></li>
+            <li><a href="san-pham.html">Phụ Kiện Đồ Len Móc</a></li>
+            <li><a href="san-pham.html">Vương Miện Handmade</a></li>
+            <li><a href="chon-charm.html">Tự Phối Charm Mẫu Riêng</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="f-heading">Cửa Hàng LumiCraft</h3>
+          <div class="f-store-info">
+            <div class="f-store-row">
+              <span class="f-store-badge">Địa chỉ</span>
+              <span class="f-store-desc">79 Hồ Tùng Mậu, Cầu Giấy, Hà Nội</span>
+            </div>
+            <div class="f-store-row">
+              <span class="f-store-badge">Hotline</span>
+              <span class="f-store-desc">0123 456 78910</span>
+            </div>
+            <div class="f-store-row">
+              <span class="f-store-badge">Email</span>
+              <a href="mailto:lumicraftvn@gmail.com" class="f-store-desc" style="color:#A93322; font-weight:700; text-decoration:none;">lumicraftvn@gmail.com</a>
+            </div>
+          </div>
+
+          <div class="f-map-box">
+            <iframe
+              title="Bản đồ cửa hàng LumiCraft 79 Hồ Tùng Mậu"
+              src="https://www.google.com/maps?q=79%20H%E1%BB%93%20T%C3%B9ng%20M%E1%BA%ADu%2C%20H%C3%A0%20N%E1%BB%99i&output=embed"
+              loading="lazy"
+              allowfullscreen>
+            </iframe>
+          </div>
+        </div>
+
+      </div>
     </div>
 
-    <!-- ==================== MỤC 1: BƯỚC 1 - CHỌN GAM MÀU VÀ LÊN Ý TƯỞNG ==================== -->
-    <section class="space-y-4">
-      <h2 class="text-xl sm:text-2xl font-bold text-[#4A3E3D]">1. Bước 1: Chọn gam màu và lên ý tưởng cho vòng tay handmade</h2>
-      <p class="text-xs sm:text-sm text-[#6E5654] leading-[1.75]">
-        Mỗi thiết kế của LumiCraft đều bắt đầu từ một câu hỏi rất đơn giản: chiếc vòng này sẽ mang cảm xúc gì? Có thể là sắc hồng đào dịu dàng, xanh biển trong veo, tím mộng mơ hay đỏ nổi bật cho những ngày muốn thật tự tin.
-      </p>
-
-      <!-- ẢNH 2: BƯỚC 1 -->
-      <figure class="space-y-2">
-        <a href="https://sites.google.com/view/lumi-craft/s%E1%BA%A3n-ph%E1%BA%A9m" target="_blank" rel="noopener noreferrer" title="Xem các bộ sưu tập vòng tay handmade theo gam màu tại LumiCraft" class="block w-full bg-[#FFF5F7] border border-[#F8D2DA] rounded-xl overflow-hidden shadow-xs hover:border-[#E27389] transition-all">
-          <img src="https://lh3.googleusercontent.com/d/1mteg6RpjDaDZBQs5PGuLGwxs9_TdkI2K=w1600" 
-               alt="Chọn gam màu dây sáp và lên ý tưởng làm vòng tay handmade" 
-               class="w-full h-auto block">
-        </a>
-        <figcaption class="text-[11px] text-[#8E7370] italic text-center">
-          Hình 2: Tuyển chọn tone màu dây sáp đồng điệu cùng cảm xúc chủ đạo của bộ sưu tập — Nguồn: <a href="https://sites.google.com/view/lumi-craft/s%E1%BA%A3n-ph%E1%BA%A9m" target="_blank" rel="noopener noreferrer" class="underline text-[#E27389]">LumiCraft Showroom</a>
-        </figcaption>
-      </figure>
-
-      <div class="space-y-2 text-xs sm:text-sm text-[#6E5654] leading-[1.75] pt-1">
-        <h3 class="text-base sm:text-lg font-bold text-[#E27389]">Phối màu dây sáp đồng điệu cùng chủ đề bộ sưu tập</h3>
-        <p>
-          Chọn xong gam màu chủ đạo, tụi mình mới tính đến chuyện chọn màu dây sáp (kem sáng, be sữa, nâu gỗ hay đen cá tính) và tìm hạt điểm nhấn. Bộ sưu tập hoa cỏ <em>First Bloom</em> hay đàn cá nhỏ <em>Little Ocean</em> cũng bắt đầu như thế: từ những sắc màu nhỏ xinh giúp mỗi cô gái thể hiện nét riêng đúng tinh thần “Craft your own shine”.
-        </p>
-        <p>
-          Cách làm này giúp phụ kiện lên tay cực kỳ hài hòa; bạn có thể xem thêm các công thức <a href="https://sites.google.com/view/lumi-craft/blog/goi-y-phoi-vong-tay-phong-cach-qua-tang" target="_blank" rel="noopener noreferrer" class="font-bold text-[#E27389] underline hover:text-[#D25870]">gợi ý phối vòng tay charm và phone charm</a> của Lumi để thấy các gam màu này ăn ý với trang phục hàng ngày thế nào nhé!
-        </p>
+    <div class="f-bottom-bar">
+      <div class="footer-inner-wrap f-bottom-flex">
+        <span>© 2026 <strong>LUMICRAFT STUDIO</strong>. All rights reserved.</span>
+        <span>CRAFT YOUR OWN SHINE ♡</span>
       </div>
-    </section>
+    </div>
+  </footer>
 
-    <!-- ==================== MỤC 2: BƯỚC 2 - CHỌN HẠT CƯỜM, CHARM VÀ XẾP BỐ CỤC ==================== -->
-    <section class="space-y-4">
-      <h2 class="text-xl sm:text-2xl font-bold text-[#4A3E3D]">2. Bước 2: Chọn hạt cườm, charm và xếp bố cục vòng tay thủ công</h2>
-      <p class="text-xs sm:text-sm text-[#6E5654] leading-[1.75]">
-        Đây là bước tốn thời gian nhất mà không ai trong nhóm nỡ làm vội. Giữa hàng trăm hạt cườm trong suốt, charm hoa năm cánh, cánh bướm, ngôi sao, vầng trăng khuyết, chú cá gốm hay chiếc nơ bạc nhỏ... tụi mình phải nhặt từng viên có bề mặt bóng mịn, không trầy xước rồi xếp thử cạnh nhau trên khay.
-      </p>
+  <script>
+    function toggleLumiMenu() {
+      const nav = document.getElementById('lumiNav');
+      const btn = document.getElementById('lumiMenuBtn');
+      const isOpen = nav.classList.toggle('open');
+      btn.setAttribute('aria-expanded', isOpen);
+      btn.textContent = isOpen ? '✕' : '☰';
+    }
 
-      <!-- ẢNH 3: BƯỚC 2 -->
-      <figure class="space-y-2">
-        <a href="https://sites.google.com/view/lumi-craft/ch%E1%BB%8Dn-charm" target="_blank" rel="noopener noreferrer" title="Khám phá khay hạt cườm và charm tại LumiCraft" class="block w-full bg-[#FFF5F7] border border-[#F8D2DA] rounded-xl overflow-hidden shadow-xs hover:border-[#E27389] transition-all">
-          <img src="https://lh3.googleusercontent.com/d/11-W70sjhp-CZ4ZNTzak-dOfvRp9L0uIe=w1600" 
-               alt="Chọn hạt cườm và xếp bố cục vòng tay thủ công trên khay" 
-               class="w-full h-auto block">
-        </a>
-        <figcaption class="text-[11px] text-[#8E7370] italic text-center">
-          Hình 3: Từng hạt charm được xếp thử bố cục cân đối trên khay trước khi xỏ dây — Nguồn: <a href="https://sites.google.com/view/lumi-craft/ch%E1%BB%8Dn-charm" target="_blank" rel="noopener noreferrer" class="underline text-[#E27389]">LumiCraft Custom Workshop</a>
-        </figcaption>
-      </figure>
-
-      <div class="space-y-2 text-xs sm:text-sm text-[#6E5654] leading-[1.75] pt-1">
-        <h3 class="text-base sm:text-lg font-bold text-[#E27389]">Quy tắc tạo điểm nhấn khi làm vòng tay handmade</h3>
-        <p>
-          Có những viên charm đứng riêng thì rất xinh, nhưng khi đặt cạnh nhau lại đối chọi về màu sắc, nên Lumi thường phải đổi qua đổi lại vài lần mới chốt được bố cục ưng ý.
-        </p>
-        <p>
-          Mẹo nhỏ nếu bạn cũng đang mê <strong class="text-[#4A3E3D]">làm vòng tay handmade</strong> tại nhà: mỗi chiếc vòng chỉ nên có một cụm charm chính làm tâm điểm, những hạt cườm và lá nhỏ còn lại đóng vai “phông nền” để charm ấy được tỏa sáng.
-        </p>
-      </div>
-    </section>
-
-    <!-- ==================== MỤC 3: BƯỚC 3 - XỎ DÂY VÀ THẮT NÚT THỦ CÔNG ==================== -->
-    <section class="space-y-4">
-      <h2 class="text-xl sm:text-2xl font-bold text-[#4A3E3D]">3. Bước 3: Xỏ dây sáp và thắt nút thủ công từng chút một</h2>
-      <p class="text-xs sm:text-sm text-[#6E5654] leading-[1.75]">
-        Khi bố cục hạt đã chốt, từng viên charm được xỏ lên sợi dây sáp hoặc chỉ đan bền chắc, xen giữa là những nút thắt nhỏ giữ mọi chi tiết nằm đúng vị trí.
-      </p>
-
-      <!-- ẢNH 4: BƯỚC 3 -->
-      <figure class="space-y-2">
-        <a href="https://sites.google.com/view/lumi-craft/s%E1%BA%A3n-ph%E1%BA%A9m" target="_blank" rel="noopener noreferrer" title="Xem các mẫu vòng tay dây sáp thắt nút thủ công tại LumiCraft" class="block w-full bg-[#FFF5F7] border border-[#F8D2DA] rounded-xl overflow-hidden shadow-xs hover:border-[#E27389] transition-all">
-          <img src="https://lh3.googleusercontent.com/d/1WrD9rD4JwEJBWhUEpwP4DpQlcWMr-18p=w1600" 
-               alt="Xỏ dây sáp và thắt gút rút thủ công hoàn thiện vòng tay" 
-               class="w-full h-auto block">
-        </a>
-        <figcaption class="text-[11px] text-[#8E7370] italic text-center">
-          Hình 4: Tỉ mỉ từng mối thắt tay tạo nên dấu ấn độc bản cho mỗi chiếc <strong class="font-semibold">vòng tay thủ công</strong> — Nguồn: <a href="https://sites.google.com/view/lumi-craft/s%E1%BA%A3n-ph%E1%BA%A9m" target="_blank" rel="noopener noreferrer" class="underline text-[#E27389]">LumiCraft Atelier</a>
-        </figcaption>
-      </figure>
-
-      <div class="space-y-2 text-xs sm:text-sm text-[#6E5654] leading-[1.75] pt-1">
-        <h3 class="text-base sm:text-lg font-bold text-[#E27389]">Dấu ấn độc bản và nút rút linh hoạt</h3>
-        <p>
-          Vì được chế tác hoàn toàn bằng tay nên lực siết ngón tay, khoảng thở giữa các nút thắt hay độ nghiêng của mỗi cánh hoa đều mang dấu ấn của người làm. Có hôm cả nhóm ngồi xâu hạt suốt 4 tiếng liền, ngẩng lên mỏi nhừ lưng mới nhớ ra mình chưa ăn trưa. Nhưng đổi lại, không chiếc vòng nào giống hệt chiếc nào, tạo nên nét đáng yêu rất riêng của <strong class="text-[#4A3E3D]">vòng tay thủ công</strong>.
-        </p>
-        <p>
-          Phần đuôi vòng luôn được hoàn thiện bằng mối gút rút thông minh, giúp bạn dễ dàng nới rộng hay thu hẹp theo cổ tay. Nếu chưa biết cổ tay mình bao nhiêu cm, bạn có thể tham khảo ngay bài <a href="https://sites.google.com/view/lumi-craft/blog/huong-dan-do-co-tay-chon-size" target="_blank" rel="noopener noreferrer" class="font-bold text-[#E27389] underline hover:text-[#D25870]">hướng dẫn đo cổ tay và chọn size vòng tay</a> của LumiCraft để chọn tỷ lệ chuẩn nhất nhé.
-        </p>
-      </div>
-    </section>
-
-    <!-- ==================== MỤC 4: BƯỚC 4 - KIỂM TRA ĐỘ BỀN VÀ ĐÓNG GÓI ==================== -->
-    <section class="space-y-4">
-      <h2 class="text-xl sm:text-2xl font-bold text-[#4A3E3D]">4. Bước 4: Kiểm tra độ bền, đóng gói hộp quà và gửi đi</h2>
-      <p class="text-xs sm:text-sm text-[#6E5654] leading-[1.75]">
-        Trước khi rời khỏi bàn làm việc, mỗi sản phẩm đều được tụi mình kiểm tra kỹ lần cuối: nút thắt đã chặt chưa, bề mặt charm đã được lau bóng sạch vân tay chưa, và gút rút kéo thử có mượt mà không. Sau đó, chiếc vòng được cài lên bìa giấy in hình ngôi sao, đặt vào hộp giấy kraft lót giấy rơm êm ái, kèm tấm thiệp nhỏ nếu bạn muốn gửi làm quà tặng.
-      </p>
-
-      <!-- ẢNH 5: BƯỚC 4 -->
-      <figure class="space-y-2">
-        <a href="https://sites.google.com/view/lumi-craft/s%E1%BA%A3n-ph%E1%BA%A9m" target="_blank" rel="noopener noreferrer" title="Đặt mua vòng tay handmade đóng gói hộp quà tại LumiCraft" class="block w-full bg-[#FFF5F7] border border-[#F8D2DA] rounded-xl overflow-hidden shadow-xs hover:border-[#E27389] transition-all">
-          <img src="https://lh3.googleusercontent.com/d/1aY-rbZiJkVfVUhIs9NofDgh4hNKgxn31=w1600" 
-               alt="Đóng gói hoàn thiện hộp quà vòng tay thủ công LumiCraft" 
-               class="w-full h-auto block">
-        </a>
-        <figcaption class="text-[11px] text-[#8E7370] italic text-center">
-          Hình 5: Hộp quà <strong class="font-semibold">vòng tay thủ công</strong> được đóng gói chỉn chu, sẵn sàng gửi đến bạn — Nguồn: <a href="https://sites.google.com/view/lumi-craft/s%E1%BA%A3n-ph%E1%BA%A9m" target="_blank" rel="noopener noreferrer" class="underline text-[#E27389]">LumiCraft Atelier</a>
-        </figcaption>
-      </figure>
-
-      <div class="space-y-2 text-xs sm:text-sm text-[#6E5654] leading-[1.75] pt-1">
-        <p>
-          Khi đón chiếc vòng về tay, bạn đừng quên đọc thêm bài viết chia sẻ về <a href="https://sites.google.com/view/lumi-craft/blog/cach-bao-quan-vong-tay-handmade" target="_blank" rel="noopener noreferrer" class="font-bold text-[#E27389] underline hover:text-[#D25870]">cách bảo quản vòng tay handmade bền đẹp</a> để dây sáp và hạt charm luôn trong trẻo như ngày đầu tiên nhé.
-        </p>
-      </div>
-    </section>
-
-    <!-- ==================== MỤC 5: KẾT NỐI VÀ THIẾT KẾ RIÊNG ==================== -->
-    <section class="space-y-3 border-t border-[#F8D2DA]/60 pt-6 text-xs sm:text-sm text-[#6E5654] leading-[1.75]">
-      <h2 class="text-xl sm:text-2xl font-bold text-[#4A3E3D]">5. Muốn sở hữu chiếc vòng “đúng gu” của riêng bạn?</h2>
-      <p>
-        Bạn không nhất thiết phải chọn các mẫu làm sẵn. Nếu đã có một gam màu yêu thích, một hình charm mang ý nghĩa riêng hoặc muốn chuẩn bị món quà độc nhất cho bạn thân, hãy nhắn cho Lumi: tụi mình sẽ cùng bạn chọn màu dây, phối hạt và hoàn thiện riêng một chiếc <strong class="text-[#4A3E3D]">vòng tay thủ công</strong> đúng ý.
-      </p>
-      <p>
-        Mỗi chiếc vòng LumiCraft là kết quả của rất nhiều lần chọn lựa, xâu hạt và thắt nút bằng cả sự tận tâm. Hy vọng lần tới khi nhìn xuống cổ tay, bạn sẽ thấy chiếc vòng nhỏ của mình thêm phần ấm áp và đáng yêu hơn một chút nữa.
-      </p>
-    </section>
-
-    <!-- ==================== CALL TO ACTION CUỐI BÀI ==================== -->
-    <section class="border border-[#F8D2DA] bg-[#FFF5F7] rounded-2xl p-6 sm:p-8 text-center space-y-4 shadow-sm">
-      <span class="inline-block text-[10px] font-bold tracking-widest uppercase text-[#E27389] bg-white border border-[#F8D2DA] px-3.5 py-1 rounded shadow-xs">
-        LUMICRAFT ATELIER STUDIO
-      </span>
-      <h3 class="text-xl sm:text-2xl font-bold text-[#4A3E3D]">
-        Từ Những Hạt Nhỏ Đến Chiếc Vòng Của Riêng Bạn – Craft Your Own Shine!
-      </h3>
-      <p class="text-xs sm:text-sm text-[#7A6260] max-w-lg mx-auto leading-[1.6]">
-        Bắt đầu trải nghiệm phối charm theo sở thích hoặc gửi yêu cầu thiết kế vòng handmade độc bản cho LumiCraft ngay hôm nay.
-      </p>
-      <div class="pt-2">
-        <a href="https://sites.google.com/view/lumi-craft/ch%E1%BB%8Dn-charm" target="_blank" rel="noopener noreferrer" class="inline-block py-3 px-8 text-xs font-bold uppercase tracking-widest text-white bg-gradient-to-r from-[#F497A9] to-[#E27389] hover:from-[#E27389] hover:to-[#D25870] rounded-md shadow-xs hover:scale-105 transition-all">
-          BẮT ĐẦU TỰ THIẾT KẾ CHARM NGAY →
-        </a>
-      </div>
-    </section>
-
-  </article>
+    document.addEventListener('click', function (e) {
+      const header = document.getElementById('lumiHeader');
+      const nav = document.getElementById('lumiNav');
+      const btn = document.getElementById('lumiMenuBtn');
+      if (header && nav && nav.classList.contains('open') && !header.contains(e.target)) {
+        nav.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+        btn.textContent = '☰';
+      }
+    });
+  </script>
 
 </body>
 </html>
